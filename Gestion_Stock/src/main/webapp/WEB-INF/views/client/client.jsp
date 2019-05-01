@@ -100,8 +100,9 @@
                                             <td>${client.getPrenom() }</td>
                                             <td>${client.getAdresse() }</td>
                                             <td>${client.getEmail() }</td>
-                                            <td>                                               
-                                                  <a href="#"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
+                                            <td>  
+                                                   <c:url value="/client/modifier/${client.getId() }" var="urlModif" />                                      
+                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
                                                   <a href="#"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>
                                                        
