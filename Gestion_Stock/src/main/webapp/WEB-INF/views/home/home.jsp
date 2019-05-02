@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Page d'Accueil</h1>
+                        <h1 class="page-header">Tableau de Bord</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
