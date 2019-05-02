@@ -88,7 +88,7 @@
 		                              </div>
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message key="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/client/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>
+                                          <a href="<c:url value="/client/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
                                     </div>
                           
                           </f:form>

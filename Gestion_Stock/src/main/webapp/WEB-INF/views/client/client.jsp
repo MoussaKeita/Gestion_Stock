@@ -104,7 +104,27 @@
                                                    <c:url value="/client/modifier/${client.getId() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                  <a href="#"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>
+                                                 <a href="javascript:void(0)"  data-toggle="modal" data-target="modalClient${client.getId() }"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>                                            
+                                                   <div class="modal fade" id="modalClient${client.getId() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							                                <div class="modal-dialog">
+							                                    <div class="modal-content">
+							                                        <div class="modal-header">
+							                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message key="common.confirm.suppression"/></h4>
+							                                        </div>
+							                                        <div class="modal-body">
+							                                          <fmt:message key="client.confirm.suppression"/>
+							                                        </div>
+							                                        <div class="modal-footer">
+							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="common.annuler"/></button>
+							                                            <c:url value="/client/supprimer/${client.getId() }" var="urlSuppression"/>
+							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.confirmer"/></i></a>
+							                                        </div>
+							                                    </div>
+							                                    <!-- /.modal-content -->
+							                                </div>
+							                                <!-- /.modal-dialog -->
+							                            </div>
                                                        
                                             </td>
                                         </tr>
