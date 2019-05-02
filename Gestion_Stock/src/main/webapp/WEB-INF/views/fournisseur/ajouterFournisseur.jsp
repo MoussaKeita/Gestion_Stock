@@ -64,31 +64,31 @@
                         <div class="panel-body">
                          <c:url value="/fournisseur/enregistrer" var="urlEnregistrer"/>
                           <f:form modelAttribute="fournisseur" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-                            <!--  <f:hidden path="id"/>
-                            <f:hidden path="photo"/> -->
+	                          
 	                          <div class="form-group">
-	                               <label><fmt:message key="common.nom"/></label>
-	                                   <f:input path="nom" class="form-control" placeholder="Nom"/>
+	                           <label><fmt:message key="common.nom"/></label>
+	                                   <input class="form-control" placeholder="Nom"/>
 	                              </div>
-	                              <div class="form-group">
+	                             <div class="form-group">
 	                                 <label><fmt:message key="common.prenom"/></label>
-	                                   <f:input path="prenom" class="form-control" placeholder="Prenom"/>
+	                                   <input class="form-control" placeholder="Prenom"/>
 	                              </div>
 	                              <div class="form-group">
 	                                 <label><fmt:message key="common.adresse"/></label>
-	                                   <f:input path="adresse" class="form-control" placeholder="Adresse"/>
+	                                   <input class="form-control" placeholder="Adresse"/>
 	                              </div>
 	                              <div class="form-group">
 	                                 <label><fmt:message key="common.email"/></label>
-	                                   <f:input path="email" class="form-control" placeholder="Email"/>
+	                                   <input class="form-control" placeholder="Email"/>
 	                              </div>
 			                            <div class="form-group">
 		                                 <label><fmt:message key="common.photo"/></label>
 		                                   <input type="file" name="file"/>
 		                              </div>
+	                              
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message key="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/fournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>
+                                          <a href="<c:url value="/fournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
                                     </div>
                           
                           </f:form>
