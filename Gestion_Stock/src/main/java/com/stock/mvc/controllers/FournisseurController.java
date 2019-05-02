@@ -31,7 +31,7 @@ public class FournisseurController {
 	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
 	public String ajouterFournisseur(Model model) {
 		Fournisseur fournisseur = new Fournisseur();
-		model.addAttribute("fournisseur","fournisseur");
+		model.addAttribute("fournisseur",fournisseur);
 		return "fournisseur/ajouterFournisseur";
 		
 	}
