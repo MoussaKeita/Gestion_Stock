@@ -38,8 +38,12 @@ public class ClientController {
 	//@RequestMapping(value="/nouveau" , method = RequestMethod.POST)
 	@RequestMapping(value="/enregistrer")
 	public String enregistrer(Model model, Client client) {
-		clientService.save(client);
-		
+		if(client.getId()!=null) {
+			
+			clientService.update(client);
+		}else {
+			clientService.save(client);
+		}
 		return "redirect:/client/";	
 	}
 	@RequestMapping(value="/modifier/{id}")
