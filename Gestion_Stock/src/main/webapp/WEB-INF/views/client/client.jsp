@@ -104,8 +104,8 @@
                                                    <c:url value="/client/modifier/${client.getId() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0)"  data-toggle="modal" data-target="modalClient${client.getId() }"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>                                            
-                                                   <div class="modal fade" id="modalClient${client.getId() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalClient${client.getId() }"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
+                                 <div class="modal fade" id="modalClient${client.getId() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
 							                                        <div class="modal-header">
@@ -124,8 +124,7 @@
 							                                    <!-- /.modal-content -->
 							                                </div>
 							                                <!-- /.modal-dialog -->
-							                            </div>
-                                                       
+							                            </div>                                                                                              
                                             </td>
                                         </tr>
                                     </c:forEach>                                     
