@@ -64,7 +64,8 @@
                         <div class="panel-body">
                          <c:url value="/fournisseur/enregistrer" var="urlEnregistrer"/>
                           <f:form modelAttribute="fournisseur" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-	                          
+	                         
+	                   
 	                          <div class="form-group">
 	                           <label><fmt:message key="common.nom"/></label>
 	                                   <input class="form-control" placeholder="Nom"/>
