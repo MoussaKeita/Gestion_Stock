@@ -13,15 +13,10 @@
         <property name="dao" ref="clientDao"></property>
         </bean>
         
-<<<<<<< HEAD
-        <bean id="flickrDao" class="com.stock.mvc.dao.impl.FlickrDaoImpl"/>
-        <bean id="flickrService" class="com.stock.mvc.serviceImpl.FlickrServiceImpl">
-        <property name="dao" ref="flickrDao"></property>
-=======
+		
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">
         <property name="dao" ref="fournisseurDao"></property>
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
         </bean>
         
     </beans>
