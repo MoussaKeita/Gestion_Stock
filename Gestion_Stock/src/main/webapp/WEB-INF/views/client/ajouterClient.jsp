@@ -65,11 +65,9 @@
                          <c:url value="/client/enregistrer" var="urlEnregistrer"/>
                           <f:form modelAttribute="client" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
                              <f:hidden path="id"/>
-<<<<<<< HEAD
+
                              <f:hidden path="photo"/>
-=======
-                            <f:hidden path="photo"/>
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
+
 	                          <div class="form-group">
 	                                 <label><fmt:message key="common.nom"/></label>
 	                                   <f:input path="nom" class="form-control" placeholder="Nom"/>
