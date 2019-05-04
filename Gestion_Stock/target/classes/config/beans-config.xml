@@ -22,10 +22,15 @@
         <bean id="flickrService" class="com.stock.mvc.serviceImpl.FlickrServiceImpl">
         <property name="dao" ref="flickrDao"></property>
         </bean>
+        
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">
         <property name="dao" ref="fournisseurDao"></property>
-
-        </bean>
+		</bean>
+		
+		<bean id="venteDao" class="com.stock.mvc.dao.impl.VenteDaoImpl"/>
+        <bean id="venteService" class="com.stock.mvc.serviceImpl.VenteServiceImpl">
+        <property name="dao" ref="venteDao"></property>
+		</bean>
        
     </beans>

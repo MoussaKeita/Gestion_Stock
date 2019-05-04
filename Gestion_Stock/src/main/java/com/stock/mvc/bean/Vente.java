@@ -15,11 +15,10 @@ import javax.persistence.Table;
 @Table(name = "vente")
 public class Vente implements Serializable{
     @Id
-    @GeneratedValue
-    @Column(name="id_vente")
-    private Long id;
+    //@GeneratedValue
+    @Column(name="code_vente")
     private String code;
-    private Date dateVente;
+    private String dateVente;
     @OneToMany(mappedBy="vente")
     private List<LigneVente> Ligneventes; 
     //@ManyToOne
@@ -28,14 +27,6 @@ public class Vente implements Serializable{
     public Vente() {
     	
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -46,11 +37,11 @@ public class Vente implements Serializable{
 	}
 
 	
-	public Date getDateVente() {
+	public String getDateVente() {
 		return dateVente;
 	}
 
-	public void setDateVente(Date dateVente) {
+	public void setDateVente(String dateVente) {
 		this.dateVente = dateVente;
 	}
 
