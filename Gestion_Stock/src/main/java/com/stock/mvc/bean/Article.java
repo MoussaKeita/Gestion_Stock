@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -16,11 +15,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "article")
 public class Article implements Serializable{
-           @Id
+        /*   @Id
            @GeneratedValue
            @Column(name="id_Article")
-           private Long idArticle;
-           private String codeArticle;
+           private Long id*/
+	
+	       @Id
+	       @Column(name="code_Article")
+           private String code;
            private String libelle;
            private BigDecimal prixUnitaireHT;
            private BigDecimal prixUnitaireTTC;
@@ -46,22 +48,17 @@ public class Article implements Serializable{
         	  
           }
 
-
-		public Long getIdArticle() {
-			return idArticle;
+		public String getCode() {
+			return code;
 		}
 
-		public void setIdArticle(Long idArticle) {
-			this.idArticle = idArticle;
+
+
+		public void setCode(String code) {
+			this.code = code;
 		}
 
-		public String getCodeArticle() {
-			return codeArticle;
-		}
 
-		public void setCodeArticle(String codeArticle) {
-			this.codeArticle = codeArticle;
-		}
 
 		public String getLibelle() {
 			return libelle;

@@ -16,33 +16,33 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue
     @Column(name="id_Category")
-    private Long idCategory;
+    private Long id;
     
     @OneToMany(mappedBy = "category")
     private List<Article> articles;
-    private String codeCategory;
+    private String code;
     private String libelle;
 
      public Category() {
 	
       }
-     
-     
-    public Long getIdCategory() {
-		return idCategory;
-	}
 
-	public void setIdCategory(Long idCategory) {
-		this.idCategory = idCategory;
-	}
+	public Long getId() {
+	return id;
+}
 
-	public String getCodeCategory() {
-		return codeCategory;
-	}
+public void setId(Long id) {
+	this.id = id;
+}
 
-	public void setCodeCategory(String codeCategory) {
-		this.codeCategory = codeCategory;
-	}
+
+	public String getCode() {
+	return code;
+}
+
+public void setCode(String code) {
+	this.code = code;
+}
 
 	public String getLibelle() {
 		return libelle;

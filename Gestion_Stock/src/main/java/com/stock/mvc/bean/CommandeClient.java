@@ -11,18 +11,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Commande_Client")
 public class CommandeClient implements Serializable {
-
+/*
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;*/
+	
+	@Id
 	private String code;
 	private Date dateCommande;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getCode() {
 		return code;
 	}

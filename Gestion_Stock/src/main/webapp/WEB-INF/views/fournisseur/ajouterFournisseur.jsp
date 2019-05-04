@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Application Gestion de Stock</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath() %>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message key="fournisseur.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message key="fournisseur.propose" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,7 +58,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="fournisseur.nouveau" />
+                            <fmt:message key="fournisseur.infopropose" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
