@@ -66,7 +66,6 @@
                           <f:form modelAttribute="fournisseur" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
 	                         
 	                   
-
                              <f:hidden path="id"/>
 
                              <f:hidden path="photo"/>

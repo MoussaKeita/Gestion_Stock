@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,11 +19,11 @@ public class Vente implements Serializable{
     @Column(name="id_vente")
     private Long id;
     private String code;
-    private Date date;
+    private Date dateVente;
     @OneToMany(mappedBy="vente")
     private List<LigneVente> Ligneventes; 
-    @ManyToOne
-    private Administrateur administrateur;
+    //@ManyToOne
+    //private Administrateur administrateur;
     
     public Vente() {
     	
@@ -46,12 +45,13 @@ public class Vente implements Serializable{
 		this.code = code;
 	}
 
-	public Date getDate() {
-		return date;
+	
+	public Date getDateVente() {
+		return dateVente;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateVente(Date dateVente) {
+		this.dateVente = dateVente;
 	}
 
 	public List<LigneVente> getLigneventes() {
@@ -61,15 +61,6 @@ public class Vente implements Serializable{
 	public void setLigneventes(List<LigneVente> ligneventes) {
 		Ligneventes = ligneventes;
 	}
-
-	public Administrateur getAdministrateur() {
-		return administrateur;
-	}
-
-	public void setAdministrateur(Administrateur administrateur) {
-		this.administrateur = administrateur;
-	}
-	
 	
     
 }
