@@ -75,7 +75,7 @@ public class ClientController {
 			clientService.save(client);
 			}
 		}
-		return "redirect:/client";
+		return "redirect:/client/";
 
 		}
 	//modification
