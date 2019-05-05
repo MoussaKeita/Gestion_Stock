@@ -67,4 +67,16 @@ public class VenteServiceImpl implements VenteService {
 		return dao.findCountBy(paramName, paramValue);
 	}
 
+	@Override
+	public Vente getbyCode(String code) {
+		// TODO Auto-generated method stub
+		return dao.getbyCode(code);
+	}
+
+	@Override
+	public void removebyCode(String code) {
+		// TODO Auto-generated method stub
+		dao.removebyCode(code);
+	}
+
 }

@@ -14,5 +14,7 @@ public interface VenteService{
 	public Vente findOne(String paramName, Object paramValue);
 	public Vente findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
+	public Vente getbyCode(String code);
+	public void removebyCode(String code);
 }
 

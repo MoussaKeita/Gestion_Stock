@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,27 +15,18 @@ import javax.persistence.Table;
 @Table(name = "vente")
 public class Vente implements Serializable{
     @Id
-    @GeneratedValue
-    @Column(name="id_vente")
-    private Long id;
+    //@GeneratedValue
+    @Column(name="code_vente")
     private String code;
-    private Date date;
+    private String dateVente;
     @OneToMany(mappedBy="vente")
     private List<LigneVente> Ligneventes; 
-    @ManyToOne
-    private Administrateur administrateur;
+    //@ManyToOne
+    //private Administrateur administrateur;
     
     public Vente() {
     	
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -46,12 +36,13 @@ public class Vente implements Serializable{
 		this.code = code;
 	}
 
-	public Date getDate() {
-		return date;
+	
+	public String getDateVente() {
+		return dateVente;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateVente(String dateVente) {
+		this.dateVente = dateVente;
 	}
 
 	public List<LigneVente> getLigneventes() {
@@ -61,15 +52,6 @@ public class Vente implements Serializable{
 	public void setLigneventes(List<LigneVente> ligneventes) {
 		Ligneventes = ligneventes;
 	}
-
-	public Administrateur getAdministrateur() {
-		return administrateur;
-	}
-
-	public void setAdministrateur(Administrateur administrateur) {
-		this.administrateur = administrateur;
-	}
-	
 	
     
 }

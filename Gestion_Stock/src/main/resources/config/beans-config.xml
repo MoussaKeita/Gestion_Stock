@@ -17,6 +17,11 @@
         <bean id="categoryService" class="com.stock.mvc.serviceImpl.CategoryServiceImpl">
         <property name="dao" ref="categoryDao"></property>
         </bean>
+        
+        <bean id="venteDao" class="com.stock.mvc.dao.impl.VenteDaoImpl"/>
+        <bean id="venteService" class="com.stock.mvc.serviceImpl.VenteServiceImpl">
+        <property name="dao" ref="venteDao"></property>
+		</bean>
 
         <bean id="flickrDao" class="com.stock.mvc.dao.impl.FlickrDaoImpl"/>
         <bean id="flickrService" class="com.stock.mvc.serviceImpl.FlickrServiceImpl">

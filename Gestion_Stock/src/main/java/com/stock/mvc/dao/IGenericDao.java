@@ -15,5 +15,6 @@ public interface IGenericDao<E> {//pour designer que c'est une interface generiq
 	public E findOne(String paramName, Object paramValue);
 	public E findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramName, Object paramValue);
+	public void removebyCode(String code);
 
 }

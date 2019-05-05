@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message key="client.propose" /></h1>
+                        <h1 class="page-header"><fmt:message key="vente.propose" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,40 +58,28 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="client.infopropose" />
+                            <fmt:message key="vente.infopropose" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/client/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="client" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-                             <f:hidden path="id"/>
-
-                             <f:hidden path="photo"/>
-
+                         <c:url value="/vente/enregistrer" var="urlEnregistrer"/>
+                          <f:form modelAttribute="vente" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+	                         
+	                  
 	                          <div class="form-group">
-	                                 <label><fmt:message key="common.nom"/></label>
-	                                   <f:input path="nom" class="form-control" placeholder="Nom"/>
+	                                 <label><fmt:message key="common.code"/></label>
+	                                   <f:input path="code" class="form-control" placeholder="Code"/>
 	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message key="common.prenom"/></label>
-	                                   <f:input path="prenom" class="form-control" placeholder="Prenom"/>
+	                              
+	                           <div class="form-group">
+	                                 <label><fmt:message key="common.date"/></label>
+	                                   <f:input path="dateVente" class="form-control" placeholder="Date Commande"/>
 	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message key="common.adresse"/></label>
-	                                   <f:input path="adresse" class="form-control" placeholder="Adresse"/>
-	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message key="common.email"/></label>
-	                                   <f:input path="email" class="form-control" placeholder="Email"/>
-	                              </div>
-			                            <div class="form-group">
-		                                 <label><fmt:message key="common.photo"/></label>
-		                                   <input type="file" name="file"/>
-		                              </div>
+                   		
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message key="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/client/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
-                                    </div>
+                                          <a href="<c:url value="/vente/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
+                                    </div>																																																																	
                           
                           </f:form>
                   
@@ -110,7 +98,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
+												 	    <!-- jQuery -->							
     <script src="<%=request.getContextPath() %>/resources/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

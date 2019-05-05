@@ -22,8 +22,9 @@ public class Administrateur implements Serializable {
 	private String email;
 	private String password;
 	private String photo;
-	@OneToMany(mappedBy="administrateur")
-	private List<Vente> ventes;
+	//@OneToMany(mappedBy="administrateur")
+	//private List<Vente> ventes;
+	
 	@OneToMany(mappedBy="administrateur")
     private List<Facture> factures; 
 	@OneToMany(mappedBy="administrateur")
@@ -71,12 +72,7 @@ public class Administrateur implements Serializable {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public List<Vente> getVentes() {
-		return ventes;
-	}
-	public void setVentes(List<Vente> ventes) {
-		this.ventes = ventes;
-	}
+	
 	public List<Facture> getFactures() {
 		return factures;
 	}

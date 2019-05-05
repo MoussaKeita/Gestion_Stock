@@ -53,10 +53,22 @@ public class GenericDaoImpl<E> implements IGenericDao<E>{
 	public E getbyId(Long id) {
 		return em.find(type,id);
 	}
+	/*
+	@Override
+	public E getbyCode(String code) {
+		return em.find(type,code);
+	}*/
 
 	@Override
 	public void remove(Long id) {
 		E tab = em.getReference(type,id);
+		em.remove(tab);
+		
+	}
+	
+	@Override
+	public void removebyCode(String code) {
+		E tab = em.getReference(type,code);
 		em.remove(tab);
 		
 	}
