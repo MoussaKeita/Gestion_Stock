@@ -10,6 +10,8 @@ public interface IGenericDao<E> {//pour designer que c'est une interface generiq
 	public List<E> selectAll(String sortField, String sort);
 	public E getbyId(Long id);
 	public void remove(Long id);
+	public E getbyCode(String code);
+	public void remove(String code);
 	public E findOne(String paramName, Object paramValue);
 	public E findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramName, Object paramValue);

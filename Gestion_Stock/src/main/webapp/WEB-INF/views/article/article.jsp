@@ -85,27 +85,31 @@
                                     <thead>
                                         <tr>
                                             <th><fmt:message key="common.photo"/></th>
-                                            <th><fmt:message key="common.nom"/></th>
-                                            <th><fmt:message key="common.prenom"/></th>
-                                            <th><fmt:message key="common.adresse"/></th>
-                                            <th><fmt:message key="common.email"/></th>
+                                            <th><fmt:message key="common.code"/></th>
+                                            <th><fmt:message key="common.libelle"/></th>
+                                            <th><fmt:message key="common.prixUnitaireHT"/></th>
+                                            <th><fmt:message key="common.prixUnitaireTTC"/></th>
+                                            <th><fmt:message key="common.tauxTVA"/></th>
+                                            <th><fmt:message key="common.category"/></th>
                                             <th><fmt:message key="common.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${articles }" var="article">
                                         <tr class="odd gradeX">
-                                           <!-- <td class="center"><img src="${article.getPhoto() }" width="50px" height="50px"/></td>-->
-                                            <td>${client.getNom() }</td>
-                                            <td>${client.getPrenom() }</td>
-                                            <td>${client.getAdresse() }</td>
-                                            <td>${client.getEmail() }</td>
-                                            <td>  
+                                           <td class="center"><img src="${article.getPhoto() }" width="50px" height="50px"/></td>
+                                            <td>${article.getCode() }</td>
+                                            <td>${article.getLibelle() }</td>
+                                            <td>${article.getPrixUnitaireHT() }</td>
+                                            <td>${article.getPrixUnitaireTTC() }</td> 
+                                            <td>${article.getTauxTVA() }</td>
+                                            <td>${article.getCategory().getCode() }</td>
+                                           <td> 
                                                    <c:url value="/article/modifier/${article.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalClient${article.getCode()}"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
-                                 <div class="modal fade" id="modalClient${article.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${article.getCode()}"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
+                                 <div class="modal fade" id="modalArticle${article.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
 							                                        <div class="modal-header">
@@ -113,11 +117,11 @@
 							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message key="common.confirm.suppression"/></h4>
 							                                        </div>
 							                                        <div class="modal-body">
-							                                          <fmt:message key="client.confirm.suppression"/>
+							                                          <fmt:message key="article.confirm.suppression"/>
 							                                        </div>
 							                                        <div class="modal-footer">
 							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="common.annuler"/></button>
-							                                            <c:url value="/client/supprimer/${article.getCode() }" var="urlSuppression"/>
+							                                            <c:url value="/article/supprimer/${article.getCode() }" var="urlSuppression"/>
 							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.confirmer"/></i></a>
 							                                        </div>
 							                                    </div>

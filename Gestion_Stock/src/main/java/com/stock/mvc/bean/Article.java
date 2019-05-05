@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -28,8 +29,9 @@ public class Article implements Serializable{
            private BigDecimal prixUnitaireTTC;
            private BigDecimal tauxTVA;
            private String photo;
-           
+              
            @ManyToOne
+           @JoinColumn(name="idCategory")
            private Category category;
            @ManyToOne
            private BonLivraison bonLivraison;

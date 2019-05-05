@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message key="fournisseur.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message key="article.nouveau" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,34 +58,38 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="fournisseur.nouveau" />
+                            <fmt:message key="article.nouveau" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/fournisseur/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="fournisseur" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-	                         
-	                   
-
-                             <f:hidden path="id"/>
-
+                         <c:url value="/article/enregistrer" var="urlEnregistrer"/>
+                          <f:form modelAttribute="article" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+                            <!-- <f:hidden path="code"/>-->
                              <f:hidden path="photo"/>
 
 	                          <div class="form-group">
-	                                 <label><fmt:message key="common.nom"/></label>
-	                                   <f:input path="nom" class="form-control" placeholder="Nom"/>
+	                                 <label><fmt:message key="common.code"/></label>
+	                                   <f:input path="code" class="form-control" placeholder="codeArticle"/>
 	                              </div>
 	                              <div class="form-group">
-	                                 <label><fmt:message key="common.prenom"/></label>
-	                                   <f:input path="prenom" class="form-control" placeholder="Prenom"/>
+	                                 <label><fmt:message key="common.libelle"/></label>
+	                                   <f:input path="libelle" class="form-control" placeholder="Designation"/>
+	                              </div>
+	                             <div class="form-group">
+	                                 <label><fmt:message key="common.prixUnitaireHT"/></label>
+	                                   <f:input path="prixUnitaireHT" class="form-control" placeholder="PrixUnitaireHT"/>
 	                              </div>
 	                              <div class="form-group">
-	                                 <label><fmt:message key="common.adresse"/></label>
-	                                   <f:input path="adresse" class="form-control" placeholder="Adresse"/>
+	                                 <label><fmt:message key="common.prixUnitaireTTC"/></label>
+	                                   <f:input path="prixUnitaireTTC" class="form-control" placeholder="PrixUnitaireTTC"/>
 	                              </div>
 	                              <div class="form-group">
-	                                 <label><fmt:message key="common.email"/></label>
-	                                   <f:input path="email" class="form-control" placeholder="Email"/>
+	                                 <label><fmt:message key="common.tauxTVA"/></label>
+	                                   <f:input path="tauxTVA" class="form-control" placeholder="TauxTVA"/>
+	                              </div>
+	                              <div class="form-group">
+	                                 <label><fmt:message key="common.category"/></label>
+	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="code" itemValue="id"/>
 	                              </div>
 			                            <div class="form-group">
 		                                 <label><fmt:message key="common.photo"/></label>
@@ -93,7 +97,7 @@
 		                              </div>
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message key="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/fournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
+                                          <a href="<c:url value="/article/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
                                     </div>
                           
                           </f:form>

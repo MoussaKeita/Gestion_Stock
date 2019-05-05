@@ -18,9 +18,6 @@ import com.flickr4java.flickr.auth.Permission;
 import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.stock.mvc.dao.IFlickrDao;
 
-
-
-
 public class FlickrDaoImpl implements IFlickrDao{
 	private Flickr flickr;
 	private UploadMetaData uploadMetaData= new UploadMetaData();

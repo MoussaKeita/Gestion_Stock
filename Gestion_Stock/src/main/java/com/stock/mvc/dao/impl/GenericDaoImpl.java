@@ -94,4 +94,13 @@ public class GenericDaoImpl<E> implements IGenericDao<E>{
 		query.setParameter(paramName , paramValue);
 		return query.getResultList().size() > 0 ? ((Long)query.getSingleResult()).intValue() : 0;
 	}
+	@Override
+	public E getbyCode(String code) {
+		return em.find(type,code);
+	}
+	@Override
+	public void remove(String code) {
+		E tab = em.getReference(type,code);
+		em.remove(tab);	
+	}
 }

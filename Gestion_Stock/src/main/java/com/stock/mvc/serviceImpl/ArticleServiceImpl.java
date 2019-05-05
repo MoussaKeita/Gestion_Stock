@@ -43,16 +43,6 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article getbyId(Long id) {
-		return dao.getbyId(id);
-	}
-
-	@Override
-	public void remove(Long id) {
-		dao.remove(id);
-	}
-
-	@Override
 	public Article findOne(String paramName, Object paramValue) {
 		return dao.findOne(paramName, paramValue);
 	}
@@ -67,4 +57,23 @@ public class ArticleServiceImpl implements ArticleService {
 		return dao.findCountBy(paramName, paramValue);
 	}
 
+	@Override
+	public Article getbyCode(String code) {
+	 return dao.getbyCode(code);
+	}
+
+	@Override
+	public void remove(String code) {
+		 dao.remove(code);
+	}
+
+	@Override
+	public Article getbyId(Long id) {
+		return dao.getbyId(id);
+	}
+
+	@Override
+	public void remove(Long id) {
+		dao.remove(id);
+	}
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Category implements Serializable {
     @Id
     @GeneratedValue
-    @Column(name="id_Category")
+    @Column(name="idCategory")
     private Long id;
     
     @OneToMany(mappedBy = "category")
