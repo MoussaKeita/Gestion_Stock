@@ -96,7 +96,7 @@
                                         <tr class="odd gradeX">
                                            
                                             <td>${commandeClient.getCode() }</td>
-                                            <td>${commandeClient.getDatecommande() }</td>
+                                            <td>${commandeClient.getDateCommande() }</td>
                                           
                                             <td>  
                                                    <c:url value="/commandeClient/modifier/${commandeClient.getCode() }" var="urlModif" />                                      
@@ -165,7 +165,7 @@
                                         <tr class="odd gradeX">
                                            
                                             <td>${commandeClient.getCode() }</td>
-                                            <td>${commandeClient.getDatecommande() }</td>
+                                            <td>${commandeClient.getDateCommande() }</td>
                                           
                                             <td>  
                                                    <c:url value="/commandeClient/modifier/${commandeClient.getCode() }" var="urlModif" />                                      
