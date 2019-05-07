@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stock.mvc.bean.CommandeClient;
+import com.stock.mvc.bean.Vente;
 import com.stock.mvc.dao.CommandeClientDao;
 import com.stock.mvc.service.CommandeClientService;
 
@@ -67,4 +68,16 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 		return dao.findCountBy(paramName, paramValue);
 	}
 
+	@Override
+	public CommandeClient getbyCode(String code) {
+		// TODO Auto-generated method stub
+		return dao.getbyCode(code);
+	}
+
+	@Override
+	public void removebyCode(String code) {
+		// TODO Auto-generated method stub
+		dao.removebyCode(code);
+	}
+	
 }

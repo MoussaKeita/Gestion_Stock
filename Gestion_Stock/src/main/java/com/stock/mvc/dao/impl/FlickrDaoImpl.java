@@ -21,15 +21,15 @@ import com.stock.mvc.dao.IFlickrDao;
 public class FlickrDaoImpl implements IFlickrDao{
 	private Flickr flickr;
 	private UploadMetaData uploadMetaData= new UploadMetaData();
-	private String apiKey="fbd934011fe203251d12102361962067";
-	private String sharedSecret="5f9a8095cb17b93c";
+	private String apiKey="24e29498ebeffd57db873c64335b47dc"; // mon code   fbd934011fe203251d12102361962067
+	private String sharedSecret="5aecdd91629e4076"; // mon code   5f9a8095cb17b93c
 	
 	private void connect() {
 		flickr=new Flickr(apiKey,sharedSecret,new REST());
 		Auth auth=new Auth();
 		auth.setPermission(Permission.READ);
-		auth.setToken("72157678731273846-45f683ca35c4b3c2");
-		auth.setTokenSecret("6342826986448e45");
+		auth.setToken("72157684609961345-30373708a11e803b");// mon code   72157678731273846-45f683ca35c4b3c2
+		auth.setTokenSecret("10d5e24768469364"); // mon code   6342826986448e45
 		RequestContext requestContext= RequestContext.getRequestContext();
 		requestContext.setAuth(auth);
 		flickr.setAuth(auth);

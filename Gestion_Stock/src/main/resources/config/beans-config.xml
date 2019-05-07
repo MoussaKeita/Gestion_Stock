@@ -27,9 +27,16 @@
         <bean id="flickrService" class="com.stock.mvc.serviceImpl.FlickrServiceImpl">
         <property name="dao" ref="flickrDao"></property>
         </bean>
+        
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">
         <property name="dao" ref="fournisseurDao"></property>
+
+        </bean>
+        
+        <bean id="commandeclientDao" class="com.stock.mvc.dao.impl.CommandeClientDaoImpl"/>
+        <bean id="commandeclientService" class="com.stock.mvc.serviceImpl.CommandeClientServiceImpl">
+        <property name="dao" ref="commandeclientDao"></property>
 
         </bean>
        

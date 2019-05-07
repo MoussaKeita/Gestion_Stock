@@ -3,6 +3,7 @@ package com.stock.mvc.service;
 import java.util.List;
 
 import com.stock.mvc.bean.CommandeClient;
+import com.stock.mvc.bean.Vente;
 
 public interface CommandeClientService{
 	public CommandeClient save(CommandeClient entity);
@@ -14,5 +15,7 @@ public interface CommandeClientService{
 	public CommandeClient findOne(String paramName, Object paramValue);
 	public CommandeClient findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
+	public CommandeClient getbyCode(String code);
+	public void removebyCode(String code);
 }
 
