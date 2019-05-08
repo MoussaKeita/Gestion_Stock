@@ -73,7 +73,8 @@
 	                              
 	                           <div class="form-group">
 	                                 <label><fmt:message key="common.date"/></label>
-	                                   <f:input path="dateVente" class="form-control" placeholder="Date Commande"/>
+	                                   <input type="text" class="form-control" value="2012-04-05">
+	                               <!--    <f:input path="dateVente" class="form-control" placeholder="Date Commande"/> -->
 	                              </div>
                    		
 	                           <div class="panel-footer">

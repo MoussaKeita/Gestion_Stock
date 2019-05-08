@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "vente")
@@ -18,7 +20,8 @@ public class Vente implements Serializable{
     //@GeneratedValue
     @Column(name="code_vente")
     private String code;
-    private String dateVente;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateVente;
     @OneToMany(mappedBy="vente")
     private List<LigneVente> Ligneventes; 
     //@ManyToOne
@@ -37,11 +40,11 @@ public class Vente implements Serializable{
 	}
 
 	
-	public String getDateVente() {
+	public Date getDateVente() {
 		return dateVente;
 	}
 
-	public void setDateVente(String dateVente) {
+	public void setDateVente(Date dateVente) {
 		this.dateVente = dateVente;
 	}
 

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Commande_Client")
@@ -18,6 +20,7 @@ public class CommandeClient implements Serializable {
 	
 	@Id
 	private String code;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCommande;
 
 	public String getCode() {
