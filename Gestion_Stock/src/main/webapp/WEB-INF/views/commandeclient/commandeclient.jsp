@@ -76,7 +76,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="commande.list" />
+                            <fmt:message code="common.ajouter" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -85,18 +85,13 @@
                                     <thead>
                                         <tr>
                                             
-<<<<<<< HEAD
-                                            <th><fmt:message key="common.code"/></th>
-                                            <th><fmt:message key="common.clients"/></th>
-                                            <th><fmt:message key="common.date"/></th>
-                                            <th><fmt:message key="common.total"/></th>
-                                            <th><fmt:message key="common.actions"/></th>
-=======
                                             <th><fmt:message code="common.code"/></th>
+                                            <th><fmt:message code="common.clients"/></th>
                                             <th><fmt:message code="common.date"/></th>
-                                         
+                                            <th><fmt:message code="common.total"/></th>
                                             <th><fmt:message code="common.actions"/></th>
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
+       
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -111,18 +106,15 @@
                                             <td>  
                                             
                                   <c:url value="/commandeClient/details/${commandeClient.getCode() }" var="urlDetails" />                                      
-                                                  <a href="${urlDetails }"><i class="fa fa-th-list">&nbsp;<fmt:message key="common.details"/></i></a>
+                                                  <a href="${urlDetails }"><i class="fa fa-th-list">&nbsp;<fmt:message code="common.details"/></i></a>
                                                         &nbsp;|&nbsp;           
                                             
                                                    <c:url value="/commandeClient/modifier/${commandeClient.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-<<<<<<< HEAD
-                                                        
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommandeClient${commandeClient.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
-=======
+                                    
                                                  <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommandeClient${commandeClient.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
+
                                  <div class="modal fade" id="modalcommandeClient${commandeClient.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
@@ -160,86 +152,7 @@
                <!--    <div class="col-lg-12">  -->
                 
            </div>     
-                
-              <!-- Details de la commande -->  
-              
-              <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-<<<<<<< HEAD
-                            <fmt:message key="common.detail" />
-=======
-                            <fmt:message code="commande.list" />
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            
-<<<<<<< HEAD
-                                            <th><fmt:message key="common.articles"/></th>
-                                            <th><fmt:message key="common.quantite"/></th>
-                                         	<th><fmt:message key="common.prix"/></th>
-                                         	<th><fmt:message key="common.prixUnitaireTTC"/></th>  
-                                         	<th><fmt:message key="common.tauxTVA"/></th>
-                                            <th><fmt:message key="common.actions"/></th>
-=======
-                                            <th><fmt:message code="common.code"/></th>
-                                            <th><fmt:message code="common.date"/></th>
-                                         
-                                            <th><fmt:message code="common.actions"/></th>
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${clients }" var="commandeClient">
-                                        <tr class="odd gradeX">
-                                           
-                                            <td>${commandeClient.getCode() }</td>
-                                            <td>${commandeClient.getDateCommande() }</td>
-                                          
-                                            <td>  
-                                                   <c:url value="/commandeClient/modifier/${commandeClient.getCode() }" var="urlModif" />                                      
-                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
-                                                        &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommandeClient${commandeClient.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
-                                 <div class="modal fade" id="modalcommandeClient${commandeClient.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							                                <div class="modal-dialog">
-							                                    <div class="modal-content">
-							                                        <div class="modal-header">
-							                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message code="common.confirm.suppression"/></h4>
-							                                        </div>
-							                                        <div class="modal-body">
-							                                          <fmt:message code="commandeClient.confirm.suppression"/>
-							                                        </div>
-							                                        <div class="modal-footer">
-							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message code="common.annuler"/></button>
-							                                            <c:url value="/commandeClient/supprimer/${commandeClient.getCode() }" var="urlSuppression"/>
-							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.confirmer"/></i></a>
-							                                        </div>
-							                                    </div>
-							                                    <!-- /.modal-content -->
-							                                </div>
-							                                <!-- /.modal-dialog -->
-							                            </div>                                                                                              
-                                            </td>
-                                        </tr>
-                                    </c:forEach>                                     
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                           
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
+               
                 
                <!--    <div class="col-lg-12">  -->
                 
@@ -250,6 +163,8 @@
         <!-- /#page-wrapper -->
 
     </div>  
+    		</div> 
+    				  
     <!-- /#wrapper -->
     
     <!-- jQuery -->
