@@ -86,7 +86,7 @@
                                         <tr>
                                             
                                             <th><fmt:message code="common.code"/></th>
-                                            <th><fmt:message code="common.clients"/></th>
+                                            <th><fmt:message code="common.client"/></th>
                                             <th><fmt:message code="common.date"/></th>
                                             <th><fmt:message code="common.total"/></th>
                                             <th><fmt:message code="common.actions"/></th>
