@@ -17,8 +17,7 @@ public class LigneCmdClient implements Serializable {
     private Long id;
 	@OneToOne
     private Article article;
-	@ManyToOne
-    private Administrateur administrateur;
+
     
 	
 	public Long getId() {
@@ -29,13 +28,6 @@ public class LigneCmdClient implements Serializable {
 		this.id = id;
 	}
 
-	public Administrateur getAdministrateur() {
-		return administrateur;
-	}
-
-	public void setAdministrateur(Administrateur administrateur) {
-		this.administrateur = administrateur;
-	}
 
 	public Article getArticle() {
 		return article;

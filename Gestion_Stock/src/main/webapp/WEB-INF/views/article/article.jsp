@@ -56,7 +56,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message key="common.article" /></h1>
+                        <h1 class="page-header"><fmt:message code="common.article" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->                 
                 </div>
@@ -64,9 +64,9 @@
                 <div class="row">
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
-						    <li><a href="<c:url value="/article/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message key="common.ajouter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message key="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message key="common.importer"/></i></a></li>
+						    <li><a href="<c:url value="/article/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
+						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
+						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
 
 						  </ol>
                      </div>
@@ -76,7 +76,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="article.List" />
+                            <fmt:message code="article.List" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -84,14 +84,14 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th><fmt:message key="common.photo"/></th>
-                                            <th><fmt:message key="common.code"/></th>
-                                            <th><fmt:message key="common.libelle"/></th>
-                                            <th><fmt:message key="common.prixUnitaireHT"/></th>
-                                            <th><fmt:message key="common.prixUnitaireTTC"/></th>
-                                            <th><fmt:message key="common.tauxTVA"/></th>
-                                            <th><fmt:message key="common.category"/></th>
-                                            <th><fmt:message key="common.actions"/></th>
+                                            <th><fmt:message code="common.photo"/></th>
+                                            <th><fmt:message code="common.code"/></th>
+                                            <th><fmt:message code="common.libelle"/></th>
+                                            <th><fmt:message code="common.prixUnitaireHT"/></th>
+                                            <th><fmt:message code="common.prixUnitaireTTC"/></th>
+                                            <th><fmt:message code="common.tauxTVA"/></th>
+                                            <th><fmt:message code="common.category"/></th>
+                                            <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -106,23 +106,23 @@
                                             <td>${article.getCategory().getCode() }</td>
                                            <td> 
                                                    <c:url value="/article/modifier/${article.getCode() }" var="urlModif" />                                      
-                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
+                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${article.getCode()}"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${article.getCode()}"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
                                  <div class="modal fade" id="modalArticle${article.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
 							                                        <div class="modal-header">
 							                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message key="common.confirm.suppression"/></h4>
+							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message code="common.confirm.suppression"/></h4>
 							                                        </div>
 							                                        <div class="modal-body">
-							                                          <fmt:message key="article.confirm.suppression"/>
+							                                          <fmt:message code="article.confirm.suppression"/>
 							                                        </div>
 							                                        <div class="modal-footer">
-							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="common.annuler"/></button>
+							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message code="common.annuler"/></button>
 							                                            <c:url value="/article/supprimer/${article.getCode() }" var="urlSuppression"/>
-							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.confirmer"/></i></a>
+							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.confirmer"/></i></a>
 							                                        </div>
 							                                    </div>
 							                                    <!-- /.modal-content -->

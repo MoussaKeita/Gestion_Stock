@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Application Gestion de Stock</title>
+    <title>Application Gestion de Stock </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath() %>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,8 +40,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 
-        <%@ include file="/WEB-INF/views/menu_top/topMenu.jsp" %>
-        <%@ include file="/WEB-INF/views/menu_left/leftMenu.jsp" %>
+
             <!-- /.navbar-static-side -->
         </nav>
 
@@ -50,43 +49,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="category.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message code="errors.msg.403"/></h1>
+                        <c:url value="${backUrl }" var="back"/>
+                        <a href="${backUrl }"><fmt:message code="common.back"/></a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                       <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <fmt:message code="category.nouveau" />
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                         <c:url value="/category/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="category" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-                             <f:hidden path="id"/>                           
-	                          <div class="form-group">
-	                                 <label><fmt:message code="common.libelle"/></label>
-	                                   <f:input path="libelle" class="form-control" placeholder="Designation"/>
-	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.code"/></label>
-	                                   <f:input path="code" class="form-control" placeholder="codeCategorie"/>
-	                              </div>
-	                              
-	                           <div class="panel-footer">
-                                          <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/category/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
-                                    </div>
-                          
-                          </f:form>
-                  
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->

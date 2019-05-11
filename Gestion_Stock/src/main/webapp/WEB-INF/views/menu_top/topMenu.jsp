@@ -1,4 +1,4 @@
-            <div class="navbar-header">
+ <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -7,8 +7,8 @@
                 </button>
                 <a class="navbar-brand" href="javascript:void(0)">Gestion de Stock</a>
             </div>
-             <!-- /.navbar-header -->
-<!--  
+            <!-- /.navbar-header -->
+
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -57,11 +57,11 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
-                    </ul>-->
+                    </ul>
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-              <!--   <li class="dropdown">
+                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
@@ -139,7 +139,7 @@
                     </ul>
                     <!-- /.dropdown-tasks -->
                 </li>
-                <!-- /.dropdown --><!--  
+                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -199,19 +199,24 @@
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
-                <!-- /.dropdown --><!--  --
+                <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
+                        
+                            <li class="divider"></li>
+                        <c:url value="/changelocale/fr" var="frUrl"/>
+                        <c:url value="/changelocale/en" var="enUrl"/>
+                           <li><a href="${frUrl }"><i class="fa fa-globe fa-fw"></i><fmt:message code="locale.fr"/></a>
+                           <li><a href="${enUrl }"><i class="fa fa-globe fa-fw"></i><fmt:message code="locale.en"/></a>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        <c:url value="/j_spring_security_logout" var="logout"/>
+                        <li><a href="${logout }"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                        
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
