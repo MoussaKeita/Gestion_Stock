@@ -44,8 +44,8 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 	}
 
 	@Override
-	public CommandeClient getbyId(Long id) {
-		return dao.getbyId(id);
+	public CommandeClient getbyCode(String code) {
+		return dao.getbyCode(code);
 	}
 
 	@Override
@@ -66,12 +66,6 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 	@Override
 	public int findCountBy(String paramName, Object paramValue) {
 		return dao.findCountBy(paramName, paramValue);
-	}
-
-	@Override
-	public CommandeClient getbyCode(String code) {
-		// TODO Auto-generated method stub
-		return dao.getbyCode(code);
 	}
 
 	@Override

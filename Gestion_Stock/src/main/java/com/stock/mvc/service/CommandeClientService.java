@@ -10,12 +10,11 @@ public interface CommandeClientService{
 	public CommandeClient update(CommandeClient entity);
 	public List<CommandeClient> selectAll();
 	public List<CommandeClient> selectAll(String sortField, String sort);
-	public CommandeClient getbyId(Long id);
+	public CommandeClient getbyCode(String code);
 	public void remove(Long id);
 	public CommandeClient findOne(String paramName, Object paramValue);
 	public CommandeClient findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
-	public CommandeClient getbyCode(String code);
 	public void removebyCode(String code);
 }
 

@@ -24,6 +24,9 @@ public class Client implements Serializable {
 	private String photo;
     @OneToMany(mappedBy = "client")
 	private List<BonCommande> bonCommandes;
+    @OneToMany(mappedBy="client")
+    private List<CommandeClient> commandeClients;
+
     
 	public Long getId() {
 		return id;
@@ -73,6 +76,13 @@ public class Client implements Serializable {
 	public void setBonCommandes(List<BonCommande> bonCommandes) {
 		this.bonCommandes = bonCommandes;
 	}
-    
+	public List<CommandeClient> getCommandeClients() {
+		return commandeClients;
+	}
+	public void setCommandeClients(List<CommandeClient> commandeClients) {
+		this.commandeClients = commandeClients;
+	}
+
+	
     
 }

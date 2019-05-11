@@ -86,8 +86,9 @@
                                         <tr>
                                             
                                             <th><fmt:message key="common.code"/></th>
+                                            <th><fmt:message key="common.clients"/></th>
                                             <th><fmt:message key="common.date"/></th>
-                                         
+                                            <th><fmt:message key="common.total"/></th>
                                             <th><fmt:message key="common.actions"/></th>
                                         </tr>
                                     </thead>
@@ -96,12 +97,20 @@
                                         <tr class="odd gradeX">
                                            
                                             <td>${commandeClient.getCode() }</td>
+                                            <td>${commandeClient.getClient().getId() }</td>
                                             <td>${commandeClient.getDateCommande() }</td>
+                                            <td>${commandeClient.getTotal() }</td>
                                           
                                             <td>  
+                                            
+                                  <c:url value="/commandeClient/details/${commandeClient.getCode() }" var="urlDetails" />                                      
+                                                  <a href="${urlDetails }"><i class="fa fa-th-list">&nbsp;<fmt:message key="common.details"/></i></a>
+                                                        &nbsp;|&nbsp;           
+                                            
                                                    <c:url value="/commandeClient/modifier/${commandeClient.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message key="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
+                                                        
                                                  <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommandeClient${commandeClient.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message key="common.supprimer"/></i></a>  
                                  <div class="modal fade" id="modalcommandeClient${commandeClient.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
@@ -136,16 +145,18 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-         
-                <!-- /.row -->
                 
-            </div>
-            
-            <div class="row">
+               <!--    <div class="col-lg-12">  -->
+                
+           </div>     
+                
+              <!-- Details de la commande -->  
+              
+              <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="commande.list" />
+                            <fmt:message key="common.detail" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -154,9 +165,11 @@
                                     <thead>
                                         <tr>
                                             
-                                            <th><fmt:message key="common.code"/></th>
-                                            <th><fmt:message key="common.date"/></th>
-                                         
+                                            <th><fmt:message key="common.articles"/></th>
+                                            <th><fmt:message key="common.quantite"/></th>
+                                         	<th><fmt:message key="common.prix"/></th>
+                                         	<th><fmt:message key="common.prixUnitaireTTC"/></th>  
+                                         	<th><fmt:message key="common.tauxTVA"/></th>
                                             <th><fmt:message key="common.actions"/></th>
                                         </tr>
                                     </thead>
@@ -205,18 +218,18 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-         
-                <!-- /.row -->
                 
-            </div>
-            
-            <!-- /.container-fluid -->
-        </div>
+               <!--    <div class="col-lg-12">  -->
+                
+           </div>     
+              
+                <!-- /.row -->        
+        
         <!-- /#page-wrapper -->
 
-    </div>
+    </div>  
     <!-- /#wrapper -->
-
+    
     <!-- jQuery -->
     <script src="<%=request.getContextPath() %>/resources/bower_components/jquery/dist/jquery.min.js"></script>
 

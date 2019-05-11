@@ -2,15 +2,22 @@ package com.stock.mvc.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.stock.mvc.bean.CommandeClient;
 import com.stock.mvc.bean.LigneCmdClient;
 import com.stock.mvc.dao.LigneCmdClientDao;
+import com.stock.mvc.service.CommandeClientService;
 import com.stock.mvc.service.LigneCmdClientService;
 
 @Transactional
 public class LigneCmdClientServiceImpl implements LigneCmdClientService {
 	private LigneCmdClientDao dao ;
+	private CommandeClient cmd;
+	@Autowired
+	private CommandeClientService cmdService;
+	
 	// getter and setter pour pouvoir faire l'injection de dependance//
 	public LigneCmdClientDao getDao() {
 		return dao;
@@ -46,6 +53,13 @@ public class LigneCmdClientServiceImpl implements LigneCmdClientService {
 	public LigneCmdClient getbyId(Long id) {
 		return dao.getbyId(id);
 	}
+	
+	@Override
+	public LigneCmdClient getbyCodeCommandeClient(String code) {
+		// TODO Auto-generated method stub
+		cmd= cmdService.getbyCode(code);
+		return dao.getbyCode(code);
+	}
 
 	@Override
 	public void remove(Long id) {
@@ -66,6 +80,8 @@ public class LigneCmdClientServiceImpl implements LigneCmdClientService {
 	public int findCountBy(String paramName, Object paramValue) {
 		return dao.findCountBy(paramName, paramValue);
 	}
+
+	
 
 }
 

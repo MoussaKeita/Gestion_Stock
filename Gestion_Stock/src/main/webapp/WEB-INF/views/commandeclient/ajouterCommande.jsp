@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message key="vente.propose" /></h1>
+                        <h1 class="page-header"><fmt:message key="commandeClient.propose" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,12 +58,12 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message key="vente.infopropose" />
+                            <fmt:message key="commandeClient.infopropose" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/vente/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="vente" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+                         <c:url value="/commandeClient/enregistrer" var="urlEnregistrer"/>
+                          <f:form modelAttribute="client" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
 	                         
 	                  
 	                          <div class="form-group">
@@ -71,15 +71,24 @@
 	                                   <f:input path="code" class="form-control" placeholder="Code"/>
 	                              </div>
 	                              
+	                              <div class="form-group">
+	                                 <label><fmt:message key="common.clients"/></label>
+	                                   <f:input path="client.id" class="form-control" placeholder="Id Client"/>
+	                              </div>
+	                              
 	                           <div class="form-group">
 	                                 <label><fmt:message key="common.date"/></label>
-	                                   <f:input type ="date" path="dateVente" class="form-control" />
-	                               <!--    <f:input  path="dateVente" class="form-control" placeholder="Date Commande"/>  value="2012-04-05"  -->
+	                                   <f:input path="dateCommande" class="form-control" placeholder="Date Commande"/>
+	                              </div>
+	                              
+	                              <div class="form-group">
+	                                 <label><fmt:message key="common.total"/></label>
+	                                   <f:input path="total" class="form-control" placeholder="Total"/>
 	                              </div>
                    		
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message key="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/vente/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
+                                          <a href="<c:url value="/commandeClient/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message key="common.annuler"/></i></a>                                         	                           
                                     </div>																																																																	
                           
                           </f:form>
@@ -92,6 +101,8 @@
                 
                 <!-- /.row -->
             </div>
+            
+            
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
