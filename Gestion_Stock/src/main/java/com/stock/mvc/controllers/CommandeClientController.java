@@ -19,10 +19,6 @@ import com.stock.mvc.service.LigneCmdClientService;
 public class CommandeClientController {
 	@Autowired
 	private CommandeClientService clientService;
-	@Autowired
-	private LigneCmdClientService ligneCommandeClientService;
-	@Autowired
-	private CommandeClientService commandeClientService;
 	
 	// find//
 	@RequestMapping("/")

@@ -10,8 +10,7 @@ public interface LigneCmdClientService{
 	public LigneCmdClient update(LigneCmdClient entity);
 	public List<LigneCmdClient> selectAll();
 	public List<LigneCmdClient> selectAll(String sortField, String sort);
-	public LigneCmdClient getbyId(Long id);
-	public LigneCmdClient getbyCodeCommandeClient(String code);	
+	public LigneCmdClient getbyId(Long id);	
 	public void remove(Long id);
 	public LigneCmdClient findOne(String paramName, Object paramValue);
 	public LigneCmdClient findOne(String[] paramName, Object[] paramValue);

@@ -14,9 +14,7 @@ import com.stock.mvc.service.LigneCmdClientService;
 @Transactional
 public class LigneCmdClientServiceImpl implements LigneCmdClientService {
 	private LigneCmdClientDao dao ;
-	private CommandeClient cmd;
-	@Autowired
-	private CommandeClientService cmdService;
+	
 	
 	// getter and setter pour pouvoir faire l'injection de dependance//
 	public LigneCmdClientDao getDao() {
@@ -54,13 +52,6 @@ public class LigneCmdClientServiceImpl implements LigneCmdClientService {
 		return dao.getbyId(id);
 	}
 	
-	@Override
-	public LigneCmdClient getbyCodeCommandeClient(String code) {
-		// TODO Auto-generated method stub
-		cmd= cmdService.getbyCode(code);
-		return dao.getbyCode(code);
-	}
-
 	@Override
 	public void remove(Long id) {
 		dao.remove(id);

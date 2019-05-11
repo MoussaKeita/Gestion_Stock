@@ -21,19 +21,15 @@ public class LigneCmdClient implements Serializable {
     private Long id;
 	@OneToOne
     private Article article;
-<<<<<<< HEAD
+
 	private BigDecimal prixUnitaireHT;
 	private BigDecimal prixUnitaireTTC;
 	private int quantite;
 	
-	@ManyToOne
-    private Administrateur administrateur;
+	//@ManyToOne
+    //private Administrateur administrateur;
 	@ManyToOne
     private CommandeClient commandeClient;
-=======
-
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
-    
 	
 	public Long getId() {
 		return id;
