@@ -22,8 +22,14 @@ public class Fournisseur implements Serializable {
 	private String email;
 	private String password;
 	private String photo;
+	
+    @OneToMany(mappedBy="fournisseur")
+    private List<CommandeFournisseur> commandeFournisseurs;
+	
 	@OneToMany(mappedBy="fournisseur")
     private List<MouvementStock> mouvementStocks;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -72,6 +78,11 @@ public class Fournisseur implements Serializable {
 	public void setMouvementStocks(List<MouvementStock> mouvementStocks) {
 		this.mouvementStocks = mouvementStocks;
 	}
-	
+	public List<CommandeFournisseur> getCommandeFournisseurs() {
+		return commandeFournisseurs;
+	}
+	public void setCommandeFournisseurs(List<CommandeFournisseur> commandeFournisseurs) {
+		this.commandeFournisseurs = commandeFournisseurs;
+	}
 	
 }

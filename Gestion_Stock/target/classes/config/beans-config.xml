@@ -30,6 +30,11 @@
         <property name="dao" ref="flickrDao"></property>
         </bean>
         
+         <bean id="commandeFournisseurDao" class="com.stock.mvc.dao.impl.CommandeFournisseurDaoImpl"/>
+        <bean id="cmdFournisseurService" class="com.stock.mvc.serviceImpl.CommandeFournisseurServiceImpl">
+        <property name="dao" ref="commandeFournisseurDao"></property>
+        </bean>
+        
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">
         <property name="dao" ref="fournisseurDao"></property>
