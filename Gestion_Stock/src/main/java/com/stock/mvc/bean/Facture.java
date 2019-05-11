@@ -23,8 +23,7 @@ public class Facture implements Serializable {
 	private Date datePaiement;
 	@OneToMany(mappedBy = "facture")
     private List<BonCommande> bonCommandes;
-	@ManyToOne
-    private Administrateur administrateur;
+
 	
 	public Long getId() {
 		return id;
@@ -56,12 +55,7 @@ public class Facture implements Serializable {
 	public void setBonCommandes(List<BonCommande> bonCommandes) {
 		this.bonCommandes = bonCommandes;
 	}
-	public Administrateur getAdministrateur() {
-		return administrateur;
-	}
-	public void setAdministrateur(Administrateur administrateur) {
-		this.administrateur = administrateur;
-	}
+
 	
 	
 	

@@ -21,6 +21,7 @@ public class LigneCmdClient implements Serializable {
     private Long id;
 	@OneToOne
     private Article article;
+<<<<<<< HEAD
 	private BigDecimal prixUnitaireHT;
 	private BigDecimal prixUnitaireTTC;
 	private int quantite;
@@ -29,6 +30,9 @@ public class LigneCmdClient implements Serializable {
     private Administrateur administrateur;
 	@ManyToOne
     private CommandeClient commandeClient;
+=======
+
+>>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
     
 	
 	public Long getId() {
@@ -39,13 +43,6 @@ public class LigneCmdClient implements Serializable {
 		this.id = id;
 	}
 
-	public Administrateur getAdministrateur() {
-		return administrateur;
-	}
-
-	public void setAdministrateur(Administrateur administrateur) {
-		this.administrateur = administrateur;
-	}
 
 	public Article getArticle() {
 		return article;

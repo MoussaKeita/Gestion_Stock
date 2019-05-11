@@ -1,7 +1,7 @@
 
 <%@ include file="/WEB-INF/views/includes/includes.jsp" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -51,13 +51,13 @@
                         <h3 class="panel-title">Espace Connexion</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="j_spring_security_check" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" name="j_username" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Mot de passe" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Mot de passe" name="j_password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -65,7 +65,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Se connecter</a>
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="login"/>
                             </fieldset>
                         </form>
                     </div>
