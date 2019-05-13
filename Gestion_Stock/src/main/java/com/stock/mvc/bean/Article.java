@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "article")
 public class Article implements Serializable{
@@ -150,7 +152,7 @@ public class Article implements Serializable{
 		public void setLigneCmdFournisseur(LigneCmdFournisseur ligneCmdFournisseur) {
 			this.ligneCmdFournisseur = ligneCmdFournisseur;
 		}
-
+@JsonIgnore
 		public List<MouvementStock> getMouvementStocks() {
 			return MouvementStocks;
 		}

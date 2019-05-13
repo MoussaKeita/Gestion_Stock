@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
@@ -52,7 +54,7 @@ public void setCode(String code) {
 		this.libelle = libelle;
 	}
 
-
+@JsonIgnore
 	public List<Article> getArticles() {
 		return articles;
 	}

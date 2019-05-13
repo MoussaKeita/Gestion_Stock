@@ -35,6 +35,12 @@
         <property name="dao" ref="commandeFournisseurDao"></property>
         </bean>
         
+        <bean id="ligneCmdFournisseurDao" class="com.stock.mvc.dao.impl.LigneCmdFournisseurDaoImpl"/>
+        <bean id="lignecmdFournisseurService" class="com.stock.mvc.serviceImpl.LigneCmdFournisseurServiceImpl">
+        <property name="dao" ref="ligneCmdFournisseurDao"></property>
+        </bean>
+        
+        
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">
         <property name="dao" ref="fournisseurDao"></property>

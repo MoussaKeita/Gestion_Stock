@@ -66,6 +66,19 @@ public class LigneCmdFournisseurServiceImpl implements LigneCmdFournisseurServic
 	public int findCountBy(String paramName, Object paramValue) {
 		return dao.findCountBy(paramName, paramValue);
 	}
+	@Override
+	public List<LigneCmdFournisseur> getbyIdCommande(Long idCmdFournisseur) {
+		
+		return dao.getbyIdCommande(idCmdFournisseur);
+	}
+
+	@Override
+	public List<LigneCmdFournisseur> getbyCodeCommande(String code) {
+		
+		return dao.getbyCodeCommande(code);
+	}
+
+
 
 }
 
