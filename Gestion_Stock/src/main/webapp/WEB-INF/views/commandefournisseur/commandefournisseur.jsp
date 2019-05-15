@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/views/includes/includes.jsp" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
 
     <meta charset="utf-8">
@@ -100,12 +99,12 @@
                                             <td>${cmd.getFournisseur().getNom() }</td>
                                             <td>${cmd.getDateCommande() }</td>
                                             <td>${cmd.getTotalCommande()}</td>
-                                            <td>    
-                                            <textArea id="json${cmd.getCode() }" style="display: none;">${cmd.getLigneCommandeJson() }</textArea>                                     
-                                                  <button class="btn btn-link" onclick="updateDetailCommande(${cmd.getLigneCommandeJson()});"><i class="fa fa-th-list"></i></button>
+                                            <td>  
+                                              <textArea  id = "json${cmd.getCode() }" style="display: none;">${cmd.getLigneCommandeJson() } </textArea>                               
+                                                <button class="btn btn-link" onclick="updateDetailCommande(${cmd.getCode() });"><i class="fa fa-th-list"></i></button>
                                                         &nbsp;|&nbsp;
                                                    <c:url value="/commandefournisseur/modifier/${cmd.getCode() }" var="urlModif" />                                      
-                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
+                                                <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
                                                  <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommande${cmd.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
                                  <div class="modal fade" id="modalcommande${cmd.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -165,7 +164,7 @@
                                             <th><fmt:message code="common.total"/></th>                                           
                                         </tr>
                                     </thead>
-                                    <tbody id="detailCommande">
+                                    <tbody id="detailCommande">                          
 	                                  	                                    
                                     </tbody>
                                 </table>

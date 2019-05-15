@@ -45,7 +45,7 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 			LigneCmdFournisseur ligne = new LigneCmdFournisseur();
 			ligne.setCommandeFournisseur(commande);
 			ligne.setQuantite(BigDecimal.ONE);
-			ligne.setPrixUnitaire(article.getPrixUnitaireTTC());
+			ligne.setPrixUnitaireTTC(article.getPrixUnitaireTTC());
 			ligne.setArticle(article);
 			ligneCmdFournisseur.put(article.getCode() ,ligne);
 			return ligne;
@@ -78,7 +78,7 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 	public String generateCodeCommande() {
 		return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
 	}
-
+	@Override
 	public CommandeFournisseur getCommande() {
 		return commande;
 	}
@@ -86,7 +86,7 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 	public void setCommande(CommandeFournisseur commande) {
 		this.commande = commande;
 	}
-
+	@Override
 	public Map<String, LigneCmdFournisseur> getLigneCmdFournisseur() {
 		return ligneCmdFournisseur;
 	}

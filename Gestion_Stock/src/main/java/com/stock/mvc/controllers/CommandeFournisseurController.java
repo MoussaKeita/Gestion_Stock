@@ -7,9 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.CommandeFournisseur;
 import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.LigneCmdFournisseur;
@@ -51,6 +54,7 @@ public class CommandeFournisseurController {
 		
 		return "commandefournisseur/commandefournisseur";
          }
+	
 	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
 	public String nouvelleCommande(Model model) {
 		List<Fournisseur> fournisseurs = fournisseurService.selectAll();
@@ -58,9 +62,36 @@ public class CommandeFournisseurController {
 			fournisseurs = new ArrayList<Fournisseur>();
 		}
 		model.addAttribute("fournisseurs",fournisseurs);
-		model.addAttribute("codeCmd", modelCommande.generateCodeCommande());
-		model.addAttribute("dateCmd" , new Date());
-		return "commandefournisseur/nouvelleCommande";
-		
+		model.addAttribute("codeCmd",modelCommande.generateCodeCommande());
+		model.addAttribute("dateCmd",new Date());
+	
+		return "commandefournisseur/nouvelleCommande";	
+	}
+	
+	@RequestMapping(value="/creerCommande")
+	@ResponseBody
+	public CommandeFournisseur creerCommande(final Long id) {
+		if(id==null) {
+			return null;
+		}
+		Fournisseur fournisseur = fournisseurService.getbyId(id);
+		if(fournisseur==null) {
+			return null;
+		}
+		modelCommande.creerCommande(fournisseur);
+		return modelCommande.getCommande();			
+	}
+	
+	@RequestMapping(value="/detailArticle")
+	@ResponseBody
+	public Article getArticleByCode(final String code) {
+		if(code==null) {
+			return null;
+		}
+		Article article = articleService.findOne("code",""+code);
+		if(article==null) {
+			return null;
+		}
+		return article;
 	}
 }

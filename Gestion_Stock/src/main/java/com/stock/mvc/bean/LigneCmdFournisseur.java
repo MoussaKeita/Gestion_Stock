@@ -29,7 +29,7 @@ public class LigneCmdFournisseur implements Serializable {
     private CommandeFournisseur commandeFournisseur;
 	
 	private BigDecimal quantite;
-	private BigDecimal prixUnitaire;
+	private BigDecimal prixUnitaireTTC;
     
 
 	public Long getId() {
@@ -39,7 +39,6 @@ public class LigneCmdFournisseur implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	//@JsonIgnore
 	public Article getArticle() {
 		return article;
 	}
@@ -64,13 +63,14 @@ public class LigneCmdFournisseur implements Serializable {
 		this.quantite = quantite;
 	}
 
-	public BigDecimal getPrixUnitaire() {
-		return prixUnitaire;
+	public BigDecimal getPrixUnitaireTTC() {
+		return prixUnitaireTTC;
 	}
 
-	public void setPrixUnitaire(BigDecimal prixUnitaire) {
-		this.prixUnitaire = prixUnitaire;
+	public void setPrixUnitaireTTC(BigDecimal prixUnitaireTTC) {
+		this.prixUnitaireTTC = prixUnitaireTTC;
 	}
-	
-	
+
+
+
 }

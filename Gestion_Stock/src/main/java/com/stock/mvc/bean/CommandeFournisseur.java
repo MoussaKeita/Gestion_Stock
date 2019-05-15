@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -61,6 +59,7 @@ public class CommandeFournisseur implements Serializable {
 	public void setFournisseur(Fournisseur fournisseur) {
 		this.fournisseur = fournisseur;
 	}
+	@JsonIgnore
 	public List<LigneCmdFournisseur> getLigneCmdFournisseurs() {
 		return ligneCmdFournisseurs;
 	}
@@ -71,8 +70,8 @@ public class CommandeFournisseur implements Serializable {
 		totalCommande = BigDecimal.ZERO;
 		if(!ligneCmdFournisseurs.isEmpty()) {
 			for(LigneCmdFournisseur ligneCmdFournisseur :ligneCmdFournisseurs ) {
-				if(ligneCmdFournisseur.getQuantite()!=null && ligneCmdFournisseur.getPrixUnitaire()!=null) {
-			BigDecimal totalLigne = ligneCmdFournisseur.getQuantite().multiply(ligneCmdFournisseur.getPrixUnitaire());
+				if(ligneCmdFournisseur.getQuantite()!=null && ligneCmdFournisseur.getPrixUnitaireTTC()!=null) {
+			BigDecimal totalLigne = ligneCmdFournisseur.getQuantite().multiply(ligneCmdFournisseur.getPrixUnitaireTTC());
 			totalCommande = totalCommande.add(totalLigne);
 				}
 			}

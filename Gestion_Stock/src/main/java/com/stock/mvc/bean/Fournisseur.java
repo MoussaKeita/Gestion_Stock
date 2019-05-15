@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name="Fournisseur")
 public class Fournisseur implements Serializable {
@@ -78,6 +80,7 @@ public class Fournisseur implements Serializable {
 	public void setMouvementStocks(List<MouvementStock> mouvementStocks) {
 		this.mouvementStocks = mouvementStocks;
 	}
+	@JsonIgnore
 	public List<CommandeFournisseur> getCommandeFournisseurs() {
 		return commandeFournisseurs;
 	}
