@@ -70,14 +70,19 @@ function creerCommande(id){
 			function(data){
 				if(data){
 					var total = data.quantite * data.prixUnitaireTTC;
-					 detailHtml +=
-						 "<tr>"+
-					       "<td>" + data.article.code + "</td>"+
-					       "<td id='quantite" + data.article.code + "' >" + data.quantite + "</td>"+
-					       "<td>" + data.prixUnitaireTTC + "</td>"+
-					       "<td id='total" + data.article.code + "'>" + total + "</td>"+
-				       "</tr>";	
-				$("#detailNouvelleCommande").append(detailHtml);
+					if($("#quantite" + data.article.code).length > 0 && $("#total" + data.article.code).length > 0){
+						$("#quantite" + data.article.code).text(data.quantite);
+						$("#total" + data.article.code).text(total);
+					}else{
+						   detailHtml +=
+							 "<tr>"+
+						       "<td>" + data.article.code + "</td>"+
+						       "<td id='quantite" + data.article.code + "' >" + data.quantite + "</td>"+
+						       "<td>" + data.prixUnitaireTTC + "</td>"+
+						       "<td id='total" + data.article.code + "'>" + total + "</td>"+
+					       "</tr>";	
+					     $("#detailNouvelleCommande").append(detailHtml);
+					  }
 				  }else{
 					  alert("article not found");
 				  }
