@@ -41,6 +41,7 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 			BigDecimal quantite = lc.getQuantite().add(BigDecimal.ONE);
 			lc.setQuantite(quantite);
 			ligneCmdFournisseur.put(article.getCode() ,lc);
+			return lc;
 		}else {
 			LigneCmdFournisseur ligne = new LigneCmdFournisseur();
 			ligne.setCommandeFournisseur(commande);
@@ -50,7 +51,7 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 			ligneCmdFournisseur.put(article.getCode() ,ligne);
 			return ligne;
 		}
-		return null;
+	
 	}
 
 	@Override

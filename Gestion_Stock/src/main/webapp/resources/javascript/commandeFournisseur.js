@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	$("#code_search").on("keypress",function(e){
 		if(e.which=='13'){
-			var code = $("#code_search").val()
+			var code = $("#code_search").val();
 				if(verifierFournisseur() && code){
-					rechercherArticle(code);
+					searchArticle(code);
 				}
 		}
 	});
@@ -14,33 +14,6 @@ $(document).ready(function(){
 		    }
 	});
 });
-
-function verifierFournisseur(){
-    var id = $("#listfournisseurs option:selected").val();
-    if(id){
-   	 if(id=="-1"){
-   		 alert("veuilleez selectionner un fournisseur");
-   		 return false;
-   	   }
-   	 return true;
-    }
-}
-function creerCommande(id){
-	if(id){
-		 $.getJSON("creerCommande",{
-   			 id:id,
-   			 ajax: true
-   			 
-   		 },
-   		 function(data){
-   			 if(data){
-   				 $("#codeCommande").text(data.code);
-   				 $("#dateCommande").text(data.dateCommande);
-   			 }
-   		  }
-   		);
-	}
-}
 
 function updateDetailCommande(code){	
 	var merde = $.parseJSON($("#json" + code).text());
@@ -56,31 +29,60 @@ function updateDetailCommande(code){
 		       "</tr>";		 
 	 }
 	 $("#detailCommande").html(detailHtml);
- }
- 
- function rechercherArticle(code){
+   }
+}
+
+function verifierFournisseur(){
+    var id = $("#listfournisseurs option:selected").val();
+    if(id){
+   	 if(id==="-1"){
+   		 alert("veuillez selectionner un fournisseur");
+   		 return false;
+   	   }
+   	 return true;
+    }
+}
+
+function creerCommande(id){
+	if(id){
+		 $.getJSON("creerCommande",{
+   			 id:id,
+   			 ajax: true
+   			 
+   		 },
+   		 function(data){
+   			 if(data){
+   				 $("#codeCommande").text(data);
+   				//$("#dateCommande").text(data.dateCommande);
+   			 }
+   		  }
+   		);
+	}
+}
+
+ function searchArticle(code){
 		if(code){
 			var detailHtml="";
-			$.getJSON("detailArticle", {
+			$.getJSON("ajouterLigne", {
 				code : code,
 				ajax:true
 			},
 			function(data){
 				if(data){
-					 detailHtml+=
-					"<tr>"+
-				       "<td>" + data.code + "</td>"+
-				       "<td>1</td>"+
-				       "<td>" + data.prixUnitaireTTC + "</td>"+
-				       "<td>0</td>"+
-			       "</tr>";		
+					var total = data.quantite * data.prixUnitaireTTC;
+					 detailHtml +=
+						 "<tr>"+
+					       "<td>" + data.article.code + "</td>"+
+					       "<td id='quantite" + data.article.code + "' >" + data.quantite + "</td>"+
+					       "<td>" + data.prixUnitaireTTC + "</td>"+
+					       "<td id='total" + data.article.code + "'>" + total + "</td>"+
+				       "</tr>";	
 				$("#detailNouvelleCommande").append(detailHtml);
 				  }else{
 					  alert("article not found");
 				  }
-				}
+			}
 		
 				);
-		}
-  }
-}
+			}
+ }

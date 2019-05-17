@@ -67,19 +67,19 @@
                           <div class="form-row">
 	                          <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.code"/></label>
-		                                   <input class="form-control" placeholder="Code" id="codeCommande" value="${codeCmd }" disabled/>
+		                                   <input class="form-control" placeholder="Code" id="codeCommande" value="" disabled/>
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.date"/></label>
-		                                   <input  class="form-control" placeholder="Date Commande" id="dateCommande" value="${dateCmd }" disabled />
+		                                   <input  class="form-control" placeholder="Date Commande" id="dateCommande" value="" disabled />
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
 		                              <label><fmt:message code="common.fournisseur"/></label>
 		                                 <select class="form-control" id="listfournisseurs">
 		                                 
-		                                 <option value=""><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
+		                                 <option value="-1"><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
 		                                     <c:forEach items="${fournisseurs }" var="four">
 		                                           <option value="${four.getId() }">${four.getNom() }</option>
 		                                     </c:forEach>

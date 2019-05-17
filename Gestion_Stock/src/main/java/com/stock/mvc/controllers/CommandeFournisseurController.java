@@ -55,16 +55,13 @@ public class CommandeFournisseurController {
 		return "commandefournisseur/commandefournisseur";
          }
 	
-	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
+	@RequestMapping(value="/nouveau")
 	public String nouvelleCommande(Model model) {
 		List<Fournisseur> fournisseurs = fournisseurService.selectAll();
 		if(fournisseurs==null) {
 			fournisseurs = new ArrayList<Fournisseur>();
 		}
 		model.addAttribute("fournisseurs",fournisseurs);
-		model.addAttribute("codeCmd",modelCommande.generateCodeCommande());
-		model.addAttribute("dateCmd",new Date());
-	
 		return "commandefournisseur/nouvelleCommande";	
 	}
 	
@@ -78,13 +75,12 @@ public class CommandeFournisseurController {
 		if(fournisseur==null) {
 			return null;
 		}
-		modelCommande.creerCommande(fournisseur);
-		return modelCommande.getCommande();			
+	   modelCommande.creerCommande(fournisseur);
+		return modelCommande.getCommande();	
 	}
-	
-	@RequestMapping(value="/detailArticle")
+	@RequestMapping(value="/ajouterLigne")
 	@ResponseBody
-	public Article getArticleByCode(final String code) {
+	public LigneCmdFournisseur getArticleByCode(final String code) {
 		if(code==null) {
 			return null;
 		}
@@ -92,6 +88,7 @@ public class CommandeFournisseurController {
 		if(article==null) {
 			return null;
 		}
-		return article;
+		return modelCommande.ajouterLigneCmd(article);
+	  
 	}
 }
