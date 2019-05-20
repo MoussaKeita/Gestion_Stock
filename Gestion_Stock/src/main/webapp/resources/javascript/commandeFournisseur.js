@@ -10,9 +10,32 @@ $(document).ready(function(){
 	
 	$("#listfournisseurs").on("change", function(e){
 		if(verifierFournisseur()){//si le fournisseur a été bien choisi//
+			$("#clientNotSelectedMsgBlock").hide("slow", function() {$("#clientNotSelectedMsgBlock").hide()});
 			creerCommande($("#listfournisseurs option:selected").val());
 		    }
 	});
+	$("#btnEnregistrerCommande").on("click", function(){
+		$.getJSON("enregistrerCommande", function(data){
+			if(data){
+				window.location(data);
+			}
+			
+		});
+		
+	});
+	/*$("#btnEnregistrerCommande").on("click", function(){
+		$.getJSON("enregistrerCommande", function(data){
+			if(data){
+				//window.location(data).href=""+data;
+				window.location(data);
+			}
+			
+		});
+	});*/
+	
+	$("#notFoundMsgBlock").hide();
+	$("#clientNotSelectedMsgBlock").hide();
+	$("#unexpectedErrorMsgBlock").hide();
 });
 
 function updateDetailCommande(code){	
@@ -25,7 +48,7 @@ function updateDetailCommande(code){
 			       "<td>" + merde[index].article.code + "</td>"+
 			       "<td>" + merde[index].quantite + "</td>"+
 			       "<td>" + merde[index].prixUnitaireTTC + "</td>"+
-			       "<td>0</td>"+
+			       "<td>" + merde[index].totalCommande + "</td>"+
 		       "</tr>";		 
 	 }
 	 $("#detailCommande").html(detailHtml);
@@ -36,7 +59,7 @@ function verifierFournisseur(){
     var id = $("#listfournisseurs option:selected").val();
     if(id){
    	 if(id==="-1"){
-   		 alert("veuillez selectionner un fournisseur");
+   		$("#clientNotSelectedMsgBlock").show("slow", function() {$("#clientNotSelectedMsgBlock").show()});
    		 return false;
    	   }
    	 return true;
@@ -51,12 +74,8 @@ function creerCommande(id){
    			 
    		 },
    		 function(data){
-   			 if(data){
-   				 $("#codeCommande").text(data);
-   				//$("#dateCommande").text(data.dateCommande);
-   			 }
-   		  }
-   		);
+   			 console.log("Le client a été mis à jours avec succès");
+   		  });
 	}
 }
 
@@ -75,19 +94,34 @@ function creerCommande(id){
 						$("#total" + data.article.code).text(total);
 					}else{
 						   detailHtml +=
-							 "<tr>"+
+							 "<tr id='ligne" + data.article.code + "'>"+
 						       "<td>" + data.article.code + "</td>"+
 						       "<td id='quantite" + data.article.code + "' >" + data.quantite + "</td>"+
 						       "<td>" + data.prixUnitaireTTC + "</td>"+
 						       "<td id='total" + data.article.code + "'>" + total + "</td>"+
+		 "<td><button class='btn btn-link' onclick='supprimerLigneCmd(" + data.article.code + ")'><i class='fa fa-trash-o'></i></button> </td>"+
 					       "</tr>";	
 					     $("#detailNouvelleCommande").append(detailHtml);
 					  }
-				  }else{
-					  alert("article not found");
+					$("#notFoundMsgBlock").hide("slow", function() {$("#notFoundMsgBlock").hide()});
+					$("#code_search").val("");
 				  }
+			}).fail(function(){
+				$("#notFoundMsgBlock").show("slow", function() {$("#notFoundMsgBlock").show()});
+			   });
 			}
-		
-				);
+         }
+function supprimerLigneCmd(code){
+	if($("#ligne" + code).length > 0){
+		$.getJSON("supprimerLigne",{
+			  code : code ,
+			  ajax : true
+		},
+		function(data){
+			if(data){
+				$("#ligne" + code).hide("show", function(){$("#ligne" + code).remove()});
 			}
- }
+		});
+	}
+	
+}

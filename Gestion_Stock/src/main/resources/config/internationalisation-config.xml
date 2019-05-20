@@ -17,12 +17,12 @@
 	</bean>
 	
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-	<property name="defaultLocale" value="fr"></property>
+	<property name="defaultLocale" value="en"></property>
 	</bean>
 	
 	
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-	<property name="basename" value="WEB-INF/messages/applicationresources"/>
+	<property name="basename" value="/WEB-INF/messages/applicationresources"/>
 	<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
 </beans>

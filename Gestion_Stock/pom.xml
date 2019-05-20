@@ -201,6 +201,13 @@
 			<artifactId>spring-core</artifactId>
 			<version>3.1.2.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+    <groupId>org.jxls</groupId>
+    <artifactId>jxls-jexcel</artifactId>
+    <version>1.0.6</version>
+</dependency>
+
 	</dependencies>
     <build>
         <plugins>

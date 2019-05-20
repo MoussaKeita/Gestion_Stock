@@ -54,7 +54,16 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                       <div class="row">
+	                <div class="alert alert-danger" id="clientNotSelectedMsgBlock">
+	                     <fmt:message code="commande.fournisseur.select.fournisseur.msg.error"/>
+	                </div>
+		               <div class="alert alert-danger" id="notFoundMsgBlock">
+		                     <fmt:message code="commandeFournisseur.article.not.found"/>
+		                </div>
+		             <div class="alert alert-danger" id="unexpectedErrorMsgBlock">
+	                     <fmt:message code="commande.fournisseur.select.fournisseur.unexpected.error"/>
+	                </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -62,17 +71,17 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/commandeClient/enregistrer" var="urlEnregistrer"/>
-                          <form  action="" method="post" enctype="multipart/form-data" role="form">
+                        <!--  <c:url value="/commandefournisseur/enregistrer" var="urlEnregistrer"/> -->
+                      <form  action="/mvc/commandefournisseur/" method="post" enctype="multipart/form-data" role="form">
                           <div class="form-row">
 	                          <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.code"/></label>
-		                                   <input class="form-control" placeholder="Code" id="codeCommande" value="" disabled/>
+		                                   <input class="form-control" placeholder="Code" id="codeCommande" value="${codecmd }" disabled/>
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.date"/></label>
-		                                   <input  class="form-control" placeholder="Date Commande" id="dateCommande" value="" disabled />
+		                                   <input  class="form-control" placeholder="Date Commande" id="dateCommande" value="${dateCmd }" disabled />
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
@@ -89,7 +98,7 @@
                           </div>   
                           <br /><br /><br /><br />                                   		
 	                           <div class="panel-footer">
-                                          <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
+                                          <button type="submit" id="btnEnregistrerCommande" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
                                           <a href="<c:url value="/commandefournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
                                     </div>																																																																	
                           
@@ -119,9 +128,7 @@
 			                         <input class="form-control" type="text" id="code_search" placeholder="saisir un code article" />
 			                        
 			                        </div>
-			                        <div class="col-md-4 mb-3">
-			                        <label><fmt:message code="commandeClient.article.not.found"/></label>
-			                        </div>
+			                       
 	                        </div>
 	                        <br /><br /><br /><br /> 
                             <div class="dataTable_wrapper">
@@ -132,7 +139,8 @@
                                             <th><fmt:message code="common.article"/></th>
                                             <th><fmt:message code="common.quantite"/></th>
                                             <th><fmt:message code="common.prixUnitaireTTC"/></th>
-                                            <th><fmt:message code="common.total"/></th>                                           
+                                            <th><fmt:message code="common.total"/></th>   
+                                            <th><fmt:message code="common.actions"/></th>                                         
                                         </tr>
                                     </thead>
                                     <tbody id="detailNouvelleCommande">
