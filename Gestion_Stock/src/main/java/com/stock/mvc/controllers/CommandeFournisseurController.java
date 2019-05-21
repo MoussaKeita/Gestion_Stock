@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +19,6 @@ import com.stock.mvc.bean.CommandeFournisseur;
 import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.LigneCmdFournisseur;
 import com.stock.mvc.model.ModelCmdFournisseur;
-import com.stock.mvc.model.StringResponse;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.CommandeFournisseurService;
 import com.stock.mvc.service.FournisseurService;
@@ -125,4 +126,18 @@ public class CommandeFournisseurController {
 		}
 		return "redirect:/commandefournisseur";
 	}
+	@RequestMapping(value = "/supprimer/{code}")
+	public String supprimerFournisseur(Model model, @PathVariable String code) {
+		if (code != null) {
+
+			CommandeFournisseur cmd = cmdFournisseurService.getbyCode(code);
+			if (code != null) {
+				
+				cmdFournisseurService.remove(code);
+			}
+		}
+
+		return "redirect:/commandefournisseur/";
+	}
+
 }

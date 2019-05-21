@@ -46,10 +46,20 @@ public class CommandeFournisseurServiceImpl implements CommandeFournisseurServic
 	public CommandeFournisseur getbyId(Long id) {
 		return dao.getbyId(id);
 	}
+	@Override
+	public CommandeFournisseur getbyCode(String code) {
+		
+		return dao.getbyCode(code);
+	}
 
 	@Override
 	public void remove(Long id) {
 		dao.remove(id);
+	}
+	@Override
+	public void remove(String code) {
+		dao.remove(code);
+		
 	}
 
 	@Override

@@ -11,7 +11,9 @@ public interface CommandeFournisseurService{
 	public List<CommandeFournisseur> selectAll(String sortField, String sort);
 	public CommandeFournisseur getbyId(Long id);
 	public void remove(Long id);
+	public void remove(String code);
 	public CommandeFournisseur findOne(String paramName, Object paramValue);
 	public CommandeFournisseur findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
+	public CommandeFournisseur getbyCode(String code);
 }
