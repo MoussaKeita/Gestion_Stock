@@ -112,9 +112,9 @@ public class CommandeFournisseurController {
 	@ResponseBody
 	public String enregistrerCommande(HttpServletRequest request) {
 		CommandeFournisseur nouvelleCommande = null;
-		if(modelCommande.getCommande() !=null) {
+		//if(modelCommande.getCommande() !=null) {
 			nouvelleCommande = cmdFournisseurService.save(modelCommande.getCommande());
-		}
+		//}
 		if(nouvelleCommande !=null) {
 			Collection<LigneCmdFournisseur> ligneCommandes = modelCommande.getLignesCmdFournisseur(nouvelleCommande);
 			if(ligneCommandes  !=null && !ligneCommandes .isEmpty()) {

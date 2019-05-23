@@ -98,7 +98,8 @@
                           </div>   
                           <br /><br /><br /><br />                                   		
 	                           <div class="panel-footer">
-                                          <button type="submit" id="btnEnregistrerCommande" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
+                                        <!--    <button type="submit" id="btnEnregistrerCommande" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>     -->
+                                          <a href="<c:url value="/enregistrerCommande/"/>" class="btn btn-primary"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.enregistrer"/></i></a> 
                                           <a href="<c:url value="/commandefournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
                                     </div>																																																																	
                           
