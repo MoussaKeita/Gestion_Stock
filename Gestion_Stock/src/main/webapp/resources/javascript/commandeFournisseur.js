@@ -1,5 +1,5 @@
-$(document).ready(function(){
-	$("#code_search").on("keypress",function(e){
+$(document).ready(function() {
+$("#code_search").on("keypress",function(e){
 		if(e.which=='13'){
 			var code = $("#code_search").val();
 				if(verifierFournisseur() && code){
@@ -7,7 +7,7 @@ $(document).ready(function(){
 				}
 		}
 	});
-	
+		
 	$("#listfournisseurs").on("change", function(e){
 		if(verifierFournisseur()){//si le fournisseur a été bien choisi//
 			$("#clientNotSelectedMsgBlock").hide("slow", function() {$("#clientNotSelectedMsgBlock").hide()});
@@ -17,44 +17,38 @@ $(document).ready(function(){
 	$("#btnEnregistrerCommande").on("click", function(){
 		$.getJSON("enregistrerCommande", function(data){
 			if(data){
-				window.location(data);
+				//window.location(data);
+				console.log(data);
 			}
 			
 		});
 		
 	});
-	/*$("#btnEnregistrerCommande").on("click", function(){
-		$.getJSON("enregistrerCommande", function(data){
-			if(data){
-				//window.location(data).href=""+data;
-				window.location(data);
-			}
-			
-		});
-	});*/
-	
+
 	$("#notFoundMsgBlock").hide();
 	$("#clientNotSelectedMsgBlock").hide();
 	$("#unexpectedErrorMsgBlock").hide();
+	
 });
 
-function updateDetailCommande(code){	
-	var merde = $.parseJSON($("#json" + code).text());
-	 var detailHtml="";
- if(merde){
-	 for(var index=0 ; index < merde.length ; index++){
-		 detailHtml +=
+function updateDetailCommande(code) {
+	var merde = $.parseJSON($("#json" + code).text()); // return lignes de commande client by idCommande
+	var detailHtml = "";
+	if(merde) {
+		
+		for(var index = 0; index < merde.length; index++) {
+			var total = merde[index].quantite * merde[index].prixUnitaireTTC;
+			 detailHtml +=
 				"<tr>"+
 			       "<td>" + merde[index].article.code + "</td>"+
 			       "<td>" + merde[index].quantite + "</td>"+
 			       "<td>" + merde[index].prixUnitaireTTC + "</td>"+
-			       "<td>" + merde[index].totalCommande + "</td>"+
+			       "<td>" + merde[index].total + "</td>"+
 		       "</tr>";		 
-	 }
-	 $("#detailCommande").html(detailHtml);
-   }
+		}
+		$("#detailCommande").html(detailHtml);
+	}	
 }
-
 function verifierFournisseur(){
     var id = $("#listfournisseurs option:selected").val();
     if(id){
@@ -65,7 +59,6 @@ function verifierFournisseur(){
    	 return true;
     }
 }
-
 function creerCommande(id){
 	if(id){
 		 $.getJSON("creerCommande",{
@@ -78,7 +71,6 @@ function creerCommande(id){
    		  });
 	}
 }
-
  function searchArticle(code){
 		if(code){
 			var detailHtml="";
@@ -111,6 +103,7 @@ function creerCommande(id){
 			   });
 			}
          }
+		 
 function supprimerLigneCmd(code){
 	if($("#ligne" + code).length > 0){
 		$.getJSON("supprimerLigne",{
@@ -119,9 +112,12 @@ function supprimerLigneCmd(code){
 		},
 		function(data){
 			if(data){
-				$("#ligne" + code).hide("show", function(){$("#ligne" + code).remove()});
+				$("#ligne" + code).hide("slow", function(){$("#ligne" + code).remove()});
 			}
 		});
 	}
 	
 }
+
+
+

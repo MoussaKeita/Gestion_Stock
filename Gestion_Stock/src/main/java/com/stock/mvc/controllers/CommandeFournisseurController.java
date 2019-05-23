@@ -72,6 +72,7 @@ public class CommandeFournisseurController {
 	
 	@RequestMapping(value="/creerCommande")
 	@ResponseBody
+	
 	public CommandeFournisseur creerCommande(final Long id) {
 		if(id==null) {
 			return null;
@@ -81,7 +82,7 @@ public class CommandeFournisseurController {
 		if(fournisseur==null) {
 			return null;
 		}
-		return modelCommande.getCommande();	
+		return modelCommande.getCommande();		
 	}
 	@RequestMapping(value="/ajouterLigne")
 	@ResponseBody

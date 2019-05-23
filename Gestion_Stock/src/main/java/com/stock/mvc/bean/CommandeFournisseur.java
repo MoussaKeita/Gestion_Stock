@@ -29,10 +29,9 @@ public class CommandeFournisseur implements Serializable {
     private String code;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCommande;
-	/*@Transient
+	@Transient
 	private BigDecimal totalCommande;
-	*/
-	private BigDecimal totalCommande;
+	
 	public void setTotalCommande(BigDecimal totalCommande) {
 		this.totalCommande = totalCommande;
 	}

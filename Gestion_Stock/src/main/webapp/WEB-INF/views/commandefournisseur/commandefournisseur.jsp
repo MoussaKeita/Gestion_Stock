@@ -101,7 +101,7 @@
                                             <td>${cmd.getTotalCommande()}</td>
                                             <td>  
                                               <textArea  id = "json${cmd.getCode() }" style="display: none;">${cmd.getLigneCommandeJson() } </textArea>                               
-                                                <button class="btn btn-link" onclick="updateDetailCommande(${cmd.getCode() });"><i class="fa fa-th-list"></i></button>
+                                                <button class="btn btn-link" onclick="updateDetailCommande('${cmd.getCode() }');"><i class="fa fa-th-list"></i></button>     
                                                         &nbsp;|&nbsp;
                                                    <c:url value="/commandefournisseur/modifier/${cmd.getCode() }" var="urlModif" />                                      
                                                 <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
