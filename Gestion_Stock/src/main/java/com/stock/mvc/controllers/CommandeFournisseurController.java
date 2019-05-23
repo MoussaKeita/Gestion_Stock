@@ -129,15 +129,15 @@ public class CommandeFournisseurController {
 	}
 	@RequestMapping(value = "/supprimer/{code}")
 	public String supprimerFournisseur(Model model, @PathVariable String code) {
-		if (code != null) {
-
-			CommandeFournisseur cmd = cmdFournisseurService.getbyCode(code);
-			if (code != null) {
-				
-				cmdFournisseurService.remove(code);
-			}
+		if (code == null) {
+			return null;
 		}
-
+		CommandeFournisseur commande = cmdFournisseurService.getbyCode(code);
+		List<LigneCmdFournisseur> ligneCommandes = commande.getLigneCmdFournisseurs();
+		for(LigneCmdFournisseur ligneCmdFourni :ligneCommandes) {
+			ligneCmdFournisseurService.remove(ligneCmdFourni.getId());
+		}
+		cmdFournisseurService.remove(code);
 		return "redirect:/commandefournisseur/";
 	}
 

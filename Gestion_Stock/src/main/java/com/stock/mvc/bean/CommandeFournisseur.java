@@ -5,8 +5,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -38,7 +40,8 @@ public class CommandeFournisseur implements Serializable {
 	@ManyToOne
 	private Fournisseur fournisseur; 
 	
-	@OneToMany(mappedBy="commandeFournisseur")
+	//@OneToMany(mappedBy="commandeFournisseur")
+	@OneToMany(mappedBy ="commandeFournisseur",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<LigneCmdFournisseur> ligneCmdFournisseurs;
 
 	public String getCode() {
@@ -95,8 +98,6 @@ public class CommandeFournisseur implements Serializable {
 		}
 		return "";
 	}
-	
-	
 	
 
 }
