@@ -25,6 +25,17 @@ public class modelCmdFournisseurImpl implements ModelCmdFournisseur {
 		commande=null;
 		ligneCmdFournisseur.clear();
 	}
+	
+	@Override
+	public CommandeFournisseur updateCommande(CommandeFournisseur oldcommande) {
+		commande = oldcommande;
+		return commande;
+	}
+	
+	public void setLigne(String code, LigneCmdFournisseur ligneCmdFournisseur) {
+		this.ligneCmdFournisseur.put(code, ligneCmdFournisseur);
+		
+	}
 
 	@Override
 	public void creerCommande(){

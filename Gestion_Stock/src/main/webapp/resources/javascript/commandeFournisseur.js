@@ -83,7 +83,7 @@ function creerCommande(id){
 					var total = data.quantite * data.prixUnitaireTTC;
 					if($("#quantite" + data.article.code).length > 0 && $("#total" + data.article.code).length > 0){
 						$("#quantite" + data.article.code).text(data.quantite);
-						$("#total" + data.article.code).text(total);
+					$("#total" + data.article.code).text(total);
 					}else{
 						   detailHtml +=
 							 "<tr id='ligne" + data.article.code + "'>"+

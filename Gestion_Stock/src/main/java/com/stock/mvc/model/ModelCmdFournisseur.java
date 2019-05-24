@@ -20,4 +20,6 @@ public interface ModelCmdFournisseur {
     Map<String, LigneCmdFournisseur> getLigneCmdFournisseur();
     Collection<LigneCmdFournisseur> getLignesCmdFournisseur(CommandeFournisseur commande);
     void init();
+	CommandeFournisseur updateCommande(CommandeFournisseur commande);
+	void setLigne(String code, LigneCmdFournisseur ligne);
 }

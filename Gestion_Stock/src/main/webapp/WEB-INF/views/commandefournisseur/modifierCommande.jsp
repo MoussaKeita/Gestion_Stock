@@ -54,26 +54,16 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-	                <div class="alert alert-danger" id="clientNotSelectedMsgBlock">
-	                     <fmt:message code="commande.fournisseur.select.fournisseur.msg.error"/>
-	                </div>
-		               <div class="alert alert-danger" id="notFoundMsgBlock">
-		                     <fmt:message code="commandeFournisseur.article.not.found"/>
-		                </div>
-		             <div class="alert alert-danger" id="unexpectedErrorMsgBlock">
-	                     <fmt:message code="commande.fournisseur.select.fournisseur.unexpected.error"/>
-	                </div>
+	               
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <fmt:message code="common.detail" />
-                        </div>
+            
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        <!--  <c:url value="/commandefournisseur/enregistrer" var="urlEnregistrer"/> -->
-                      <form  action="/mvc/commandefournisseur/" method="post" enctype="multipart/form-data" role="form">
-                          <div class="form-row">
+                       <c:url value="/commandefournisseur/modifier" var="urlmod"/> 
+                      <form modelAttribute="commandefournisseur" action="${urlmod }" method="post" enctype="multipart/form-data" role="form">
+                      <!--     <div class="form-row">
 	                          <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.code"/></label>
 		                                   <input class="form-control" placeholder="Code" id="codeCommande" value="${codecmd }" disabled/>
@@ -99,9 +89,9 @@
                           <br /><br /><br /><br />                                   		
 	                           <div class="panel-footer">
                                             <button type="submit" id="btnEnregistrerCommande" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>    
-                                        <!--   <a href="<c:url value="/enregistrerCommande/"/>" class="btn btn-primary"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.enregistrer"/></i></a> -->
+                                       
                                           <a href="<c:url value="/commandefournisseur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
-                                    </div>																																																																	
+                                    </div>	-->																																																																
                           
                           </form>
                   
@@ -123,12 +113,12 @@
                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-	                        <div class="form-row">
+	                           <div class="form-row">
 	                            <div class="col-md-4 mb-3">
-			                        <label><fmt:message code="common.article"/></label>
-			                         <input class="form-control" type="text" id="code_search" placeholder="saisir un code article" />
+			                      <!--    <label><fmt:message code="common.article"/></label>
+			                         <input class="form-control" type="text" id="code_search" placeholder="saisir un code article" />   -->
 			                        
-			                        </div>
+			                        </div>       
 			                       
 	                        </div>
 	                        <br /><br /><br /><br /> 
@@ -141,13 +131,20 @@
                                             <th><fmt:message code="common.quantite"/></th>
                                             <th><fmt:message code="common.prixUnitaireTTC"/></th>
                                             <th><fmt:message code="common.total"/></th>   
-                                            <th><fmt:message code="common.actions"/></th>                                         
+                                              <th><fmt:message code="common.actions"/></th>                                   
                                         </tr>
                                     </thead>
-                                    <tbody id="detailNouvelleCommande">
-                                    <tr>
-                                    </tr>
-	                                  	                                    
+                                    <tbody >
+                              <c:forEach items="${lignes }" var="ligne">
+                                        <tr class="odd gradeX">
+                                           
+                                        <td>${ligne.getArticle().getCode() }</td>
+                                            <td>${ligne.getQuantite() }</td>
+                                            <td>${ligne.getPrixUnitaireTTC() }</td>
+                                            <td>${ligne.getQuantite()*ligne.getPrixUnitaireTTC() }</td>
+                                            <td id="detailNouvelleCommande"></td>
+                                            </tr>	  
+                               </c:forEach>                                	                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -177,7 +174,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath() %>/resources/javascript/commandeFournisseur.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/javascript/modifierFournisseur.js"></script>
 
 </body>
 

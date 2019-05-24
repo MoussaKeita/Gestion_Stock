@@ -112,12 +112,15 @@ public class CommandeFournisseurController {
 	@ResponseBody
 	public String enregistrerCommande(HttpServletRequest request) {
 		CommandeFournisseur nouvelleCommande = null;
-		//if(modelCommande.getCommande() !=null) {
+		if(modelCommande.getCommande() !=null) {
+			nouvelleCommande = cmdFournisseurService.update(modelCommande.getCommande());
+		}else {
 			nouvelleCommande = cmdFournisseurService.save(modelCommande.getCommande());
-		//}
+		}
 		if(nouvelleCommande !=null) {
 			Collection<LigneCmdFournisseur> ligneCommandes = modelCommande.getLignesCmdFournisseur(nouvelleCommande);
 			if(ligneCommandes  !=null && !ligneCommandes .isEmpty()) {
+				//ligneCmdFournisseurService.update();
 				for(LigneCmdFournisseur ligneCmdFourni :ligneCommandes ) {
 					ligneCmdFournisseurService.save(ligneCmdFourni);	
 				}
@@ -127,8 +130,34 @@ public class CommandeFournisseurController {
 		}
 		return "redirect:/commandefournisseur/";
 	}
+	
+	@RequestMapping(value = "/modifier/{code}")
+	public String modifierCommande(Model model ,@PathVariable String code) {
+		
+		if(code == null) {
+			return null;
+		}	
+		CommandeFournisseur commande = cmdFournisseurService.getbyCode(code);
+		if(commande == null) {
+			return null;
+		}
+		CommandeFournisseur cmd = modelCommande.updateCommande(commande);
+		//Map<Long,LigneCommandeFournisseur> map = new HashMap<Long,LigneCommandeFournisseur>();
+		
+		List<LigneCmdFournisseur> lignes = ligneCmdFournisseurService.getbyCodeCommande(code);
+		if (lignes != null || !lignes.isEmpty() ){
+			for (LigneCmdFournisseur ligne : lignes) {
+				//map.put(ligne.getArticle().getIdArticle(), ligne);
+				modelCommande.setLigne(ligne.getArticle().getCode(), ligne);
+			}
+		}
+		model.addAttribute("commande", cmd);	
+		model.addAttribute("lignes", lignes);
+		return "commandefournisseur/modifierCommande";
+	}
+	
 	@RequestMapping(value = "/supprimer/{code}")
-	public String supprimerFournisseur(Model model, @PathVariable String code) {
+	public String supprimerCommande(Model model, @PathVariable String code) {
 		if (code == null) {
 			return null;
 		}

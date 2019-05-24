@@ -1,5 +1,6 @@
 package com.stock.mvc.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.stock.mvc.bean.LigneCmdFournisseur;
