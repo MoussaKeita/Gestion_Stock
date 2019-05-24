@@ -108,6 +108,23 @@ public class CommandeFournisseurController {
 		}
 		return modelCommande.supprimerLigneCmd(article);
 	}
+	
+	@RequestMapping(value="/supprimerLigne/{id}")
+	@ResponseBody
+	public String supprimer(Model model , Long id) {
+		if(id==null) {
+			return null;
+		}
+		LigneCmdFournisseur ligne= ligneCmdFournisseurService.getbyId(id);
+		Article article = ligne.getArticle();
+		if(article==null) {
+			return null;
+		}
+		// modelCommande.supprimerLigneCmd(article);
+		articleService.remove(article.getCode());
+		return "redirect:/commandefournisseur/modifierCommande";
+	}
+	
 	@RequestMapping(value="/enregistrerCommande")
 	@ResponseBody
 	public String enregistrerCommande(HttpServletRequest request) {

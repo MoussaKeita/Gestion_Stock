@@ -20,10 +20,10 @@ $(document).ready(function() {
 					       "</tr>";	
 					     $("#detailNouvelleCommande").append(detailHtml);
 					  } 
-			}
+			});
 	 }
  
- }		 
+ }	 
 function supprimerLigneCmd(code){
 	if($("#ligne" + code).length > 0){
 		$.getJSON("supprimerLigne",{

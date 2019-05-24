@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="commande.fournisseur.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message code="commande.modifier" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -142,7 +142,13 @@
                                             <td>${ligne.getQuantite() }</td>
                                             <td>${ligne.getPrixUnitaireTTC() }</td>
                                             <td>${ligne.getQuantite()*ligne.getPrixUnitaireTTC() }</td>
-                                            <td id="detailNouvelleCommande"></td>
+	                                            <td >
+	                                             <c:url value="/commandefournisseur/modifier/${ligne.getId() }" var="urlModif" />                                      
+                                    <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
+                                                        &nbsp;|&nbsp;
+                                                        <c:url value="/commandefournisseur/supprimerLigne/${ligne.getId() }" var="urlSuppression"/>
+							        <a href="${urlSuppression }" ><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.confirmer"/></i></a>
+	                                            </td>
                                             </tr>	  
                                </c:forEach>                                	                                    
                                     </tbody>
