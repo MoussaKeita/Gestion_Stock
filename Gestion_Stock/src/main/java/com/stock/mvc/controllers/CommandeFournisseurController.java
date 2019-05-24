@@ -125,7 +125,7 @@ public class CommandeFournisseurController {
 			}
 			
 		}
-		return "redirect:/commandefournisseur";
+		return "redirect:/commandefournisseur/";
 	}
 	@RequestMapping(value = "/supprimer/{code}")
 	public String supprimerFournisseur(Model model, @PathVariable String code) {

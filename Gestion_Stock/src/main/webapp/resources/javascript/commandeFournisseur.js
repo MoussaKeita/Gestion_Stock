@@ -17,8 +17,8 @@ $("#code_search").on("keypress",function(e){
 	$("#btnEnregistrerCommande").on("click", function(){
 		$.getJSON("enregistrerCommande", function(data){
 			if(data){
-				//window.location(data);
-				console.log(data);
+				window.location(data);
+				//console.log(data);
 			}
 			
 		});
@@ -43,7 +43,7 @@ function updateDetailCommande(code) {
 			       "<td>" + merde[index].article.code + "</td>"+
 			       "<td>" + merde[index].quantite + "</td>"+
 			       "<td>" + merde[index].prixUnitaireTTC + "</td>"+
-			       "<td>" + merde[index].total + "</td>"+
+			       "<td>" + total + "</td>"+
 		       "</tr>";		 
 		}
 		$("#detailCommande").html(detailHtml);
