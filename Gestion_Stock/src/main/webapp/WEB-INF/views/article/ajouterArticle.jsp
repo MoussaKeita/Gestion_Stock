@@ -79,14 +79,16 @@
 	                                 <label><fmt:message code="common.prixUnitaireHT"/></label>
 	                                   <f:input path="prixUnitaireHT" class="form-control" placeholder="PrixUnitaireHT"/>
 	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.prixUnitaireTTC"/></label>
-	                                   <f:input path="prixUnitaireTTC" class="form-control" placeholder="PrixUnitaireTTC"/>
-	                              </div>
+	                              
 	                              <div class="form-group">
 	                                 <label><fmt:message code="common.tauxTVA"/></label>
 	                                   <f:input path="tauxTVA" class="form-control" placeholder="TauxTVA"/>
 	                              </div>
+	                              <div class="form-group">
+	                                 <label><fmt:message code="common.prixUnitaireTTC"/></label>
+	                                   <f:input path="prixUnitaireTTC" class="form-control" placeholder="PrixUnitaireTTC"/>
+	                              </div>
+	                              
 	                              <div class="form-group">
 	                                 <label><fmt:message code="common.category"/></label>
 	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="code" itemValue="id"/>
@@ -128,6 +130,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath() %>/resources/javascript/article.js"></script>
 
 </body>
 

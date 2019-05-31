@@ -67,4 +67,9 @@ public class LigneVenteServiceImpl implements LigneVenteService {
 		return dao.findCountBy(paramName, paramValue);
 	}
 
+	@Override
+	public List<LigneVente> getbyCodeCommande(String code) {
+		return dao.getbyCodeCommande(code);
+	}
+
 }

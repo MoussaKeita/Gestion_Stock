@@ -93,6 +93,7 @@ function creerCommande(id){
 						       "<td id='total" + data.article.code + "'>" + total + "</td>"+
 		 "<td><button class='btn btn-link' onclick='supprimerLigneCmd(" + data.article.code + ")'><i class='fa fa-trash-o'></i></button> </td>"+
 					       "</tr>";	
+
 					     $("#detailNouvelleCommande").append(detailHtml);
 					  }
 					$("#notFoundMsgBlock").hide("slow", function() {$("#notFoundMsgBlock").hide()});

@@ -18,7 +18,7 @@ public class Roles {
 	@JoinColumn(name="idUtilisateur")
 	private Utilisateur utilisateur;
 	
-	private Roles() {
+	public Roles() {
 		
 	}
 

@@ -7,4 +7,6 @@ import com.stock.mvc.bean.BonCommande;
 @Repository
 public interface BonCommandeDao extends IGenericDao<BonCommande>{
 
+	
+
 }

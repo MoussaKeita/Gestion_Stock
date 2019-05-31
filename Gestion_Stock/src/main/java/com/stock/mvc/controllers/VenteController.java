@@ -1,84 +1,184 @@
 package com.stock.mvc.controllers;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.stock.mvc.bean.CommandeClient;
 import com.stock.mvc.bean.Vente;
+import com.stock.mvc.model.ModelVente;
+import com.stock.mvc.service.ArticleService;
+import com.stock.mvc.service.CommandeClientService;
+import com.stock.mvc.service.LigneVenteService;
 import com.stock.mvc.service.VenteService;
-import com.stock.mvc.service.IflickrService;
+
 
 @Controller
 @RequestMapping(value="/vente")
 public class VenteController {
+
 	@Autowired
 	private VenteService venteService;
 	@Autowired
-	private IflickrService flickrService;
-	// find//
+	private CommandeClientService commandeClientService;
+	@Autowired
+	private ArticleService articleService;
+	@Autowired
+	private LigneVenteService ligneVenteService;
+	@Autowired
+	private ModelVente modelVente;
+	@Autowired
+	private CommandeClientService commandeclientService;
+	
 	@RequestMapping("/")
-	public String vente(Model model) {
+	public String index(Model model) {
+		
+		
 		List<Vente> ventes = venteService.selectAll();
-		if(ventes==null) {
+		List<CommandeClient> cmdClients = commandeclientService.selectAll();
+		if(ventes.isEmpty()) {
 			ventes = new ArrayList<Vente>();
 		}
 		model.addAttribute("ventes",ventes);
-		return "vente/vente";
-	}
-	//find par defaut//
-	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
-	public String ajouterVente(Model model) {
-		Vente vente = new Vente();
-		model.addAttribute("vente",vente);
-		return "vente/ajouterVente";
+		model.addAttribute("cmdClients",cmdClients);
 		
+		return "vente/vente";
+         }
+	
+	@RequestMapping(value="/nouveau")
+	public String nouvelleCommande(Model model) {
+		List<CommandeClient> commandeclients = commandeClientService.selectAll();
+		if(commandeclients ==null) {
+			commandeclients = new ArrayList<CommandeClient>();
+		}
+		modelVente.creerVente();
+		model.addAttribute("codecmd",modelVente.getCommande().getCode());
+		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());
+		model.addAttribute("commandeclients",commandeclients);
+		return "vente/nouvelleVente";	
 	}
 	
-	//creation et mis a jours//
-	@RequestMapping(value="/enregistrer")
-    public String enregistrer(Model model, Vente vente){
-		
-			if(vente.getCode()!=null){
-			              venteService.update(vente);
-			         }
-			else{
-			
-			venteService.save(vente);
-			}
-		
-		return "redirect:/vente/";
-
+	@RequestMapping(value="/creerVente")
+	@ResponseBody
+	
+	public Vente creerVente(final String code) {
+		if(code==null) {
+			return null;
 		}
-	//modification
-	@RequestMapping(value="/modifier/{code}")
-	public String modifierVente(Model model, @PathVariable String code) {
-		if(code!=null) {
-			Vente vente = venteService.getbyCode(code);
-			if(vente!=null) {
-				model.addAttribute("vente",vente);
-			}
+		CommandeClient commandeClient = commandeClientService.getbyCode(code);
+		modelVente.modifierVente(commandeClient);
+		if(commandeClient==null) {
+			return null;
 		}
-		
-		return "vente/ajouterVente";
+		return modelVente.getCommande();		
+	}/*
+	@RequestMapping(value="/ajouterLigne")
+	@ResponseBody
+	public LigneVente getArticleByCode(final String code) {
+		if(code==null) {
+			return null;
+		}
+		Article article = articleService.findOne("code",""+code);
+		if(article==null) {
+			return null;
+		}
+		return modelVente.ajouterLigneVente(article);
 	}
-	@RequestMapping(value="/supprimer/{code}")
-	public String supprimerVente(Model model, @PathVariable String code) {
-		if(code!=null) {
-			Vente vente = venteService.getbyCode(code);
-			if(vente!=null) {
-				venteService.removebyCode(code);
+	@RequestMapping(value="/supprimerLigne")
+	@ResponseBody
+	public LigneVente supprimerLigneCmd(final String code) {
+		if(code==null) {
+			return null;
+		}
+		Article article = articleService.getbyCode(code);
+		if(article==null) {
+			return null;
+		}
+		return modelVente.supprimerLigneVente(article);
+	}
+	
+	@RequestMapping(value="/supprimerLigne/{id}")
+	@ResponseBody
+	public String supprimer(Model model , Long id) {
+		if(id==null) {
+			return null;
+		}
+		LigneVente ligne= ligneVenteService.getbyId(id);
+		Article article = ligne.getArticle();
+		if(article==null) {
+			return null;
+		}
+		// modelCommande.supprimerLigneCmd(article);
+		articleService.remove(article.getCode());
+		return "redirect:/vente/modifierVente";
+	}
+	*/
+	@RequestMapping(value="/enregistrerVente")
+	@ResponseBody
+	public String enregistrerCommande(HttpServletRequest request) {
+		Vente nouvelleCommande = null;
+		if(modelVente.getCommande() !=null) {
+			nouvelleCommande = venteService.update(modelVente.getCommande());
+		}else {
+			nouvelleCommande = venteService.save(modelVente.getCommande());
+			
+		}
+		/*if(nouvelleCommande !=null) {
+			Collection<LigneVente> ligneVentes = modelVente.getLignesVente(nouvelleCommande);
+			if(ligneVentes  !=null && !ligneVentes.isEmpty()) {
+				//ligneCmdFournisseurService.update();
+				for(LigneVente ligneV :ligneVentes) {
+					ligneVenteService.save(ligneV);	
+				}
+				modelVente.init();
+			}
+			
+		}*/
+		return "redirect:/vente/";
+	}
+	/*
+	@RequestMapping(value = "/modifier/{code}")
+	public String modifierCommande(Model model ,@PathVariable String code) {
+		
+		if(code == null) {
+			return null;
+		}	
+		Vente vente = venteService.getbyCode(code);
+		if(vente == null) {
+			return null;
+		}
+		Vente cmd = modelVente.updateVente(vente);
+		//Map<Long,LigneCommandeFournisseur> map = new HashMap<Long,LigneCommandeFournisseur>();
+		
+		List<LigneVente> lignes = ligneVenteService.getbyCodeCommande(code);
+		if (lignes != null || !lignes.isEmpty() ){
+			for (LigneVente ligne : lignes) {
+				//map.put(ligne.getArticle().getIdArticle(), ligne);
+				modelVente.setLigne(ligne.getArticle().getCode(), ligne);
 			}
 		}
-		return "redirect:/vente/";	
+		model.addAttribute("commande", cmd);	
+		model.addAttribute("lignes", lignes);
+		return "vente/modifierVente";
+	}
+	*/
+	@RequestMapping(value = "/supprimer/{code}")
+	public String supprimerCommande(Model model, @PathVariable String code) {
+		if (code == null) {
+			return null;
+		}
+		Vente vente = venteService.getbyCode(code);
+		venteService.remove(code);
+		return "redirect:/vente/";
 	}
 
 }

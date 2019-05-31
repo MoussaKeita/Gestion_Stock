@@ -7,4 +7,5 @@ import com.stock.mvc.bean.MouvementStock;
 @Repository
 public interface MouvementStockDao extends IGenericDao<MouvementStock>{
 
+
 }

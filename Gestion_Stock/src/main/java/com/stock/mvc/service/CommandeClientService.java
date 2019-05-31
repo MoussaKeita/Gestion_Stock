@@ -15,6 +15,6 @@ public interface CommandeClientService{
 	public CommandeClient findOne(String paramName, Object paramValue);
 	public CommandeClient findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
-	public void removebyCode(String code);
+	public void remove(String code);
 }
 

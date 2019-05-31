@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import com.stock.mvc.bean.Article;
+import com.stock.mvc.bean.Client;
 import com.stock.mvc.bean.CommandeFournisseur;
 import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.LigneCmdFournisseur;

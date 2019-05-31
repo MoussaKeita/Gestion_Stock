@@ -74,6 +74,7 @@ public class Fournisseur implements Serializable {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	@JsonIgnore
 	public List<MouvementStock> getMouvementStocks() {
 		return mouvementStocks;
 	}

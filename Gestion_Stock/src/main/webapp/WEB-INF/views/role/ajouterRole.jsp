@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="vente.propose" /></h1>
+                        <h1 class="page-header"><fmt:message code="article.nouveau" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,34 +58,25 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="vente.infopropose" />
+                            <fmt:message code="role.nouveau" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/vente/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="vente" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-	                         
-	                  
+                         <c:url value="/role/enregistrer" var="urlEnregistrer"/>
+                          <f:form modelAttribute="role" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+
 	                          <div class="form-group">
-	                                 <label><fmt:message code="common.code"/></label>
-	                                   <f:input path="code" class="form-control" placeholder="Code"/>
+	                                 <label><fmt:message code="common.role"/></label>
+	                                   <f:input path="roleName" class="form-control" placeholder="codeArticle"/>
 	                              </div>
-	                              
-	                           <div class="form-group">
-<<<<<<< HEAD
-	                                 <label><fmt:message key="common.date"/></label>
-	                                   <f:input type ="date" path="dateVente" class="form-control" />
-	                               <!--    <f:input  path="dateVente" class="form-control" placeholder="Date Commande"/>  value="2012-04-05"  -->
-=======
-	                                 <label><fmt:message code="common.date"/></label>
-	                                   <f:input path="dateVente" class="form-control" placeholder="Date Commande"/>
->>>>>>> branch 'master' of https://github.com/MoussaKeita/Gestion_Stock.git
+	                              <div class="form-group">
+	                                 <label><fmt:message code="common.category"/></label>
+	                                   <f:select path="utilisateur.idUtilisateur" class="form-control" items="${users }" itemLabel="nom" itemValue="idUtilisateur"/>
 	                              </div>
-                   		
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/vente/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
-                                    </div>																																																																	
+                                          <a href="<c:url value="/role/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
+                                    </div>
                           
                           </f:form>
                   
@@ -104,7 +95,7 @@
     </div>
     <!-- /#wrapper -->
 
-												 	    <!-- jQuery -->							
+    <!-- jQuery -->
     <script src="<%=request.getContextPath() %>/resources/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -115,6 +106,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath() %>/resources/javascript/article.js"></script>
 
 </body>
 

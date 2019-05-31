@@ -24,6 +24,21 @@
         <bean id="venteService" class="com.stock.mvc.serviceImpl.VenteServiceImpl">
         <property name="dao" ref="venteDao"></property>
 		</bean>
+		
+		 <bean id="ligneVenteDao" class="com.stock.mvc.dao.impl.LigneVenteDaoImpl"/>
+        <bean id="ligneVenteService" class="com.stock.mvc.serviceImpl.LigneVenteServiceImpl">
+        <property name="dao" ref="ligneVenteDao"></property>
+		</bean>
+		
+	<bean id="roleDao" class="com.stock.mvc.dao.impl.RoleDaoImpl"/>
+        <bean id="roleService" class="com.stock.mvc.serviceImpl.RoleServiceImpl">
+        <property name="dao" ref="roleDao"></property>
+		</bean>
+
+ <bean id="utilisateurDao" class="com.stock.mvc.dao.impl.UtilisateurDaoImpl"/>
+        <bean id="userService" class="com.stock.mvc.serviceImpl.UtilisateurServiceImpl">
+        <property name="dao" ref="utilisateurDao"></property>
+		</bean>
 
         <bean id="flickrDao" class="com.stock.mvc.dao.impl.FlickrDaoImpl"/>
         <bean id="flickrService" class="com.stock.mvc.serviceImpl.FlickrServiceImpl">
@@ -40,6 +55,10 @@
         <property name="dao" ref="ligneCmdFournisseurDao"></property>
         </bean>
         
+         <bean id="ligneCmdClientDao" class="com.stock.mvc.dao.impl.LigneCmdClientDaoImpl"/>
+        <bean id="lignecmdClientService" class="com.stock.mvc.serviceImpl.LigneCmdClientServiceImpl">
+        <property name="dao" ref="ligneCmdClientDao"></property>
+        </bean>
         
         <bean id="fournisseurDao" class="com.stock.mvc.dao.impl.FournisseurDaoImpl"/>
         <bean id="fournisseurService" class="com.stock.mvc.serviceImpl.FournisseurServiceImpl">

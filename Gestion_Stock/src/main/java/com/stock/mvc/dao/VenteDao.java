@@ -7,4 +7,5 @@ import com.stock.mvc.bean.Vente;
 @Repository
 public interface VenteDao extends IGenericDao<Vente>{
 
+
 }

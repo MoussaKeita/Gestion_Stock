@@ -3,7 +3,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ public class BonCommande implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date dateBonCommande;
-    @OneToMany(mappedBy = "bonCommande")
+    @OneToMany(mappedBy = "bonCommande",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
     private List<Article> articles;
     @ManyToOne
     private Facture facture;

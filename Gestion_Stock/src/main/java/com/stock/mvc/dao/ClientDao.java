@@ -6,4 +6,5 @@ import com.stock.mvc.bean.Client;
 @Repository
 public interface ClientDao extends IGenericDao<Client>{
 
+
 }

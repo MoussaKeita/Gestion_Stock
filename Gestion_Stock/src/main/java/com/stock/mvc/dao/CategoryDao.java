@@ -6,4 +6,5 @@ import com.stock.mvc.bean.Category;
 @Repository
 public interface CategoryDao extends IGenericDao<Category>{
 
+
 }

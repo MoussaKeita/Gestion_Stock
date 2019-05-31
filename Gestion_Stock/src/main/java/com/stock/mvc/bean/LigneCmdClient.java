@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name="Ligne_Cmd_Client")
 public class LigneCmdClient implements Serializable {
@@ -22,12 +24,9 @@ public class LigneCmdClient implements Serializable {
 	@OneToOne
     private Article article;
 
-	private BigDecimal prixUnitaireHT;
+	private BigDecimal quantite;
 	private BigDecimal prixUnitaireTTC;
-	private int quantite;
 	
-	//@ManyToOne
-    //private Administrateur administrateur;
 	@ManyToOne
     private CommandeClient commandeClient;
 	
@@ -48,13 +47,7 @@ public class LigneCmdClient implements Serializable {
 		this.article = article;
 	}
 
-	public BigDecimal getPrixUnitaireHT() {
-		return prixUnitaireHT;
-	}
 
-	public void setPrixUnitaireHT(BigDecimal prixUnitaireHT) {
-		this.prixUnitaireHT = prixUnitaireHT;
-	}
 
 	public BigDecimal getPrixUnitaireTTC() {
 		return prixUnitaireTTC;
@@ -64,14 +57,16 @@ public class LigneCmdClient implements Serializable {
 		this.prixUnitaireTTC = prixUnitaireTTC;
 	}
 
-	public int getQuantite() {
+
+
+	public BigDecimal getQuantite() {
 		return quantite;
 	}
 
-	public void setQuantite(int quantite) {
+	public void setQuantite(BigDecimal quantite) {
 		this.quantite = quantite;
 	}
-
+	@JsonIgnore
 	public CommandeClient getCommandeClient() {
 		return commandeClient;
 	}

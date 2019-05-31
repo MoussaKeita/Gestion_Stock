@@ -1,86 +1,191 @@
 package com.stock.mvc.controllers;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.stock.mvc.bean.Article;
+import com.stock.mvc.bean.Client;
 import com.stock.mvc.bean.CommandeClient;
 import com.stock.mvc.bean.LigneCmdClient;
+import com.stock.mvc.model.ModelCmdClient;
+import com.stock.mvc.service.ArticleService;
+import com.stock.mvc.service.ClientService;
 import com.stock.mvc.service.CommandeClientService;
 import com.stock.mvc.service.LigneCmdClientService;
 
 @Controller
 @RequestMapping(value="/commandeClient")
 public class CommandeClientController {
-	@Autowired
-	private CommandeClientService clientService;
 	
-	// find//
+	@Autowired
+	private CommandeClientService commandeclientService;
+	
+	@Autowired
+	private ArticleService articleService;
+	@Autowired
+	private LigneCmdClientService ligneCmdClientService;
+	@Autowired
+	private ModelCmdClient modelCommande;
+	@Autowired
+	private ClientService clientService;
+	
 	@RequestMapping("/")
 	public String index(Model model) {
-		List<CommandeClient> clients = clientService.selectAll();
-		if(clients.isEmpty()) {
-			clients = new ArrayList<CommandeClient>();
-		}
-		/*else {
-			for(CommandeClient commandeClient: clients) {
-			List<LigneCmdClient> ligneCdeClt= ligneCommandeClientService.
-			}
-		}*/
-		model.addAttribute("clients",clients);
-		return "commandeclient/commandeclient";
-	}
-
-	//find par defaut//
-	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
-	public String ajouterClient(Model model) {
-		CommandeClient client = new CommandeClient();
-		model.addAttribute("client",client);
-		return "commandeclient/ajouterCommande";
 		
+		List<CommandeClient> cmdClients = commandeclientService.selectAll();
+		if(cmdClients.isEmpty()) {
+			cmdClients = new ArrayList<CommandeClient>();
+		}
+		else {
+			for(CommandeClient cmdClient : cmdClients) {
+		  List<LigneCmdClient> ligneCmdClient = ligneCmdClientService.getbyCodeCommande(cmdClient.getCode());
+		  cmdClient.setLigneCommandeClients(ligneCmdClient);
+			}
+		}
+		model.addAttribute("cmdClients",cmdClients);
+		
+		return "commandeclient/commandeclient";
+         }
+	
+	@RequestMapping(value="/nouveau")
+	public String nouvelleCommande(Model model) {
+		List<Client> clients = clientService.selectAll();
+		if(clients==null) {
+			clients = new ArrayList<Client>();
+		}
+		modelCommande.creerCommande();
+		model.addAttribute("codecmd",modelCommande.getCommande().getCode());
+		model.addAttribute("dateCmd",modelCommande.getCommande().getDateCommande());
+		model.addAttribute("clients",clients);
+		return "commandeclient/nouvelleCommande";	
 	}
 	
-	//creation et mis a jours//
-	@RequestMapping(value="/enregistrer")
-	public String enregistrer(Model model, CommandeClient client){
-		
-			if(client.getCode()!=null){
-			              clientService.update(client);
-			         }
-			else{
+	@RequestMapping(value="/creerCommande")
+	@ResponseBody
+	
+	public CommandeClient creerCommande(final Long id) {
+		if(id==null) {
+			return null;
+		}
+		Client client = clientService.getbyId(id);
+		  modelCommande.modifierCommande(client);
+		if(client==null) {
+			return null;
+		}
+		return modelCommande.getCommande();		
+	}
+	@RequestMapping(value="/ajouterLigne")
+	@ResponseBody
+	public LigneCmdClient getArticleByCode(final String code) {
+		if(code==null) {
+			return null;
+		}
+		Article article = articleService.findOne("code",""+code);
+		if(article==null) {
+			return null;
+		}
+		return modelCommande.ajouterLigneCmd(article);
+	}
+	@RequestMapping(value="/supprimerLigne")
+	@ResponseBody
+	public LigneCmdClient supprimerLigneCmd(final String code) {
+		if(code==null) {
+			return null;
+		}
+		Article article = articleService.getbyCode(code);
+		if(article==null) {
+			return null;
+		}
+		return modelCommande.supprimerLigneCmd(article);
+	}
+	
+	@RequestMapping(value="/supprimerLigne/{id}")
+	@ResponseBody
+	public String supprimer(Model model , Long id) {
+		if(id==null) {
+			return null;
+		}
+		LigneCmdClient ligne= ligneCmdClientService.getbyId(id);
+		Article article = ligne.getArticle();
+		if(article==null) {
+			return null;
+		}
+		// modelCommande.supprimerLigneCmd(article);
+		articleService.remove(article.getCode());
+		return "redirect:/commandeclient/modifierCommande";
+	}
+	
+	@RequestMapping(value="/enregistrerCommande")
+	@ResponseBody
+	public String enregistrerCommande(HttpServletRequest request) {
+		CommandeClient nouvelleCommande = null;
+		if(modelCommande.getCommande() !=null) {
+			nouvelleCommande = commandeclientService.update(modelCommande.getCommande());
+		}else {
+			nouvelleCommande = commandeclientService.save(modelCommande.getCommande());
+		}
+		if(nouvelleCommande !=null) {
+			Collection<LigneCmdClient> ligneCommandes = modelCommande.getLignesCmdClient(nouvelleCommande);
+			if(ligneCommandes  !=null && !ligneCommandes .isEmpty()) {
+				//ligneCmdFournisseurService.update();
+				for(LigneCmdClient ligneCmdCli :ligneCommandes ) {
+					ligneCmdClientService.save(ligneCmdCli);	
+				}
+				modelCommande.init();
+			}
 			
-			clientService.save(client);
-			}
-			return "redirect:/commandeClient/";
 		}
-		
-	//modification
-	@RequestMapping(value="/modifier/{code}")
-	public String modifierClient(Model model, @PathVariable String code) {
-		if(code!=null) {
-			CommandeClient client = clientService.getbyCode(code);
-			if(client!=null) {
-				model.addAttribute("client", client);
-			}
-		}
-		
-		return "commandeclient/ajouterCommande";
+		return "redirect:/commandeclient/";
 	}
-	@RequestMapping(value="/supprimer/{code}")
-	public String supprimerClient(Model model, @PathVariable String code) {
-		if(code!=null) {
-			CommandeClient client= clientService.getbyCode(code);
-			if(client!=null) {
-				clientService.removebyCode(code);
+	
+	@RequestMapping(value = "/modifier/{code}")
+	public String modifierCommande(Model model ,@PathVariable String code) {
+		
+		if(code == null) {
+			return null;
+		}	
+		CommandeClient commande = commandeclientService.getbyCode(code);
+		if(commande == null) {
+			return null;
+		}
+		CommandeClient cmd = modelCommande.updateCommande(commande);
+		//Map<Long,LigneCommandeFournisseur> map = new HashMap<Long,LigneCommandeFournisseur>();
+		
+		List<LigneCmdClient> lignes = ligneCmdClientService.getbyCodeCommande(code);
+		if (lignes != null || !lignes.isEmpty() ){
+			for (LigneCmdClient ligne : lignes) {
+				//map.put(ligne.getArticle().getIdArticle(), ligne);
+				modelCommande.setLigne(ligne.getArticle().getCode(), ligne);
 			}
 		}
-		return "redirect:/commandeClient/";	
+		model.addAttribute("commande", cmd);	
+		model.addAttribute("lignes", lignes);
+		return "commandeclient/modifierCommande";
 	}
+	
+	@RequestMapping(value = "/supprimer/{code}")
+	public String supprimerCommande(Model model, @PathVariable String code) {
+		if (code == null) {
+			return null;
+		}
+		CommandeClient commande = commandeclientService.getbyCode(code);
+		List<LigneCmdClient> ligneCommandes = commande.getLigneCommandeClients();
+		for(LigneCmdClient ligneCmdCli :ligneCommandes) {
+			ligneCmdClientService.remove(ligneCmdCli.getId());
+		}
+		commandeclientService.remove(code);
+		return "redirect:/commandeclient/";
+	}
+
 	
 }
 

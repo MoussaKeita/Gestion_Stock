@@ -1,6 +1,7 @@
 package com.stock.mvc.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,9 @@ public class LigneVente implements Serializable{
     private Article article;
     @ManyToOne
     private Vente vente;
+    
+	private BigDecimal quantite;
+	private BigDecimal prixUnitaireTTC;
     
     public LigneVente() {
     	
@@ -48,6 +52,22 @@ public class LigneVente implements Serializable{
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+
+	public BigDecimal getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(BigDecimal quantite) {
+		this.quantite = quantite;
+	}
+
+	public BigDecimal getPrixUnitaireTTC() {
+		return prixUnitaireTTC;
+	}
+
+	public void setPrixUnitaireTTC(BigDecimal prixUnitaireTTC) {
+		this.prixUnitaireTTC = prixUnitaireTTC;
 	}
 	
     

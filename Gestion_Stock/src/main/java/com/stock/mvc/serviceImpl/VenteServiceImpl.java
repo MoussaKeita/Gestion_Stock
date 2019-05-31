@@ -51,6 +51,11 @@ public class VenteServiceImpl implements VenteService {
 	public void remove(Long id) {
 		dao.remove(id);
 	}
+	@Override
+	public void remove(String code) {
+		dao.remove(code);
+	}
+
 
 	@Override
 	public Vente findOne(String paramName, Object paramValue) {
@@ -71,12 +76,6 @@ public class VenteServiceImpl implements VenteService {
 	public Vente getbyCode(String code) {
 		// TODO Auto-generated method stub
 		return dao.getbyCode(code);
-	}
-
-	@Override
-	public void removebyCode(String code) {
-		// TODO Auto-generated method stub
-		dao.removebyCode(code);
 	}
 
 }

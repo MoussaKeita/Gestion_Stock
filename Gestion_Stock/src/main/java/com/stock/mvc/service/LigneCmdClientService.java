@@ -15,5 +15,6 @@ public interface LigneCmdClientService{
 	public LigneCmdClient findOne(String paramName, Object paramValue);
 	public LigneCmdClient findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
+	public List<LigneCmdClient> getbyCodeCommande(String code);
 }
 

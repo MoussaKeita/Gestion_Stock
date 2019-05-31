@@ -69,9 +69,9 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 	}
 
 	@Override
-	public void removebyCode(String code) {
+	public void remove(String code) {
 		// TODO Auto-generated method stub
-		dao.removebyCode(code);
+		dao.remove(code);
 	}
 	
 }

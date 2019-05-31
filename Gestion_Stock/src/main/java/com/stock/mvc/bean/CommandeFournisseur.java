@@ -40,7 +40,6 @@ public class CommandeFournisseur implements Serializable {
 	@ManyToOne
 	private Fournisseur fournisseur; 
 	
-	//@OneToMany(mappedBy="commandeFournisseur")
 	@OneToMany(mappedBy ="commandeFournisseur",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<LigneCmdFournisseur> ligneCmdFournisseurs;
 

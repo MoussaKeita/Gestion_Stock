@@ -7,5 +7,6 @@ import com.stock.mvc.bean.Article;
 @Repository
 public interface ArticleDao extends IGenericDao<Article>{
 
+
 }
 

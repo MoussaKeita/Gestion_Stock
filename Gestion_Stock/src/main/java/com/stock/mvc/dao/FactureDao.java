@@ -7,4 +7,5 @@ import com.stock.mvc.bean.Facture;
 @Repository
 public interface FactureDao extends IGenericDao<Facture>{
 
+
 }

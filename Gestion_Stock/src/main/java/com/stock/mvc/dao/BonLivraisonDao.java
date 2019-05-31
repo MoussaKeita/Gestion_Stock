@@ -7,4 +7,5 @@ import com.stock.mvc.bean.BonLivraison;
 @Repository
 public interface BonLivraisonDao extends IGenericDao<BonLivraison>{
 
+
 }

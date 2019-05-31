@@ -69,6 +69,10 @@
                                 <li>
                                     <a href="${category}"><fmt:message code="common.parametrage.category"/></a>
                                 </li>
+                                    <c:url value="/role/" var="role" />
+                                <li>
+                                    <a href="${role}"><fmt:message code="common.role"/></a>
+                                </li>
                              </ul>     <!-- /.nav-second-level -->
                         </ul>
                     </div>

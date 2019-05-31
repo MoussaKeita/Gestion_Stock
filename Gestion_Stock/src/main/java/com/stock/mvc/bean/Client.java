@@ -2,12 +2,18 @@ package com.stock.mvc.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="Client")
@@ -24,10 +30,17 @@ public class Client implements Serializable {
 	private String photo;
     @OneToMany(mappedBy = "client")
 	private List<BonCommande> bonCommandes;
+    
+  /* @OneToMany(mappedBy="client",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference*/
+ 
     @OneToMany(mappedBy="client")
     private List<CommandeClient> commandeClients;
-
-    
+  /*  
+    @OneToMany(mappedBy = "client")
+	private List<Vente> ventes;
+    */
 	public Long getId() {
 		return id;
 	}
@@ -70,19 +83,27 @@ public class Client implements Serializable {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	@JsonIgnore
 	public List<BonCommande> getBonCommandes() {
 		return bonCommandes;
 	}
 	public void setBonCommandes(List<BonCommande> bonCommandes) {
 		this.bonCommandes = bonCommandes;
 	}
+	@JsonIgnore
 	public List<CommandeClient> getCommandeClients() {
 		return commandeClients;
 	}
 	public void setCommandeClients(List<CommandeClient> commandeClients) {
 		this.commandeClients = commandeClients;
+	}/*
+	public List<Vente> getVentes() {
+		return ventes;
 	}
-
+	public void setVentes(List<Vente> ventes) {
+		this.ventes = ventes;
+	}
+*/
 	
     
 }

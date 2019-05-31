@@ -7,4 +7,5 @@ import com.stock.mvc.bean.Fournisseur;
 @Repository
 public interface FournisseurDao extends IGenericDao<Fournisseur>{
 
+
 }
