@@ -64,7 +64,7 @@
                 <div class="row">
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
-						    <li><a href="<c:url value="/article/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
+						    <li><a href="<c:url value="/stock/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						    <c:url value="/article/export/" var ="export" />
 						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
@@ -85,34 +85,28 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th><fmt:message code="common.photo"/></th>
-                                            <th><fmt:message code="common.code"/></th>
-                                            <th><fmt:message code="common.libelle"/></th>
-                                            <th><fmt:message code="common.prixUnitaireHT"/></th>
-                                            <th><fmt:message code="common.prixUnitaireTTC"/></th>
-                                            <th><fmt:message code="common.tauxTVA"/></th>
-                                            <th><fmt:message code="common.category"/></th>
-                                            <th><fmt:message code="common.seuil"/></th>
+                                            <th><fmt:message code="common.date"/></th>
+                                            <th><fmt:message code="common.quantite"/></th>
+                                            <th><fmt:message code="common.type"/></th>
+                                            <th><fmt:message code="common.article"/></th>
+                                            <th><fmt:message code="common.fournisseur"/></th>
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${articles }" var="article">
-                                        <tr class="odd gradeX">
-                                           <td class="center"><img src="${article.getPhoto() }" width="50px" height="50px"/></td>
-                                            <td>${article.getCode() }</td>
-                                            <td>${article.getLibelle() }</td>
-                                            <td>${article.getPrixUnitaireHT() }</td>
-                                            <td>${article.getPrixUnitaireTTC() }</td> 
-                                            <td>${article.getTauxTVA() }</td>
-                                            <td>${article.getCategory().getCode() }</td>
-                                            <td>${article.getSeuilMinimal() }</td>
+                                    <c:forEach items="${stocks }" var="stock">
+                                        <tr class="odd gradeX">                      
+                                            <td>${stock.getDate() }</td>
+                                            <td>${stock.getQuantite() }</td>
+                                            <td>${stock.getType() }</td>
+                                            <td>${stock.getArticle() }</td> 
+                                            <td>${stock.getFournisseur() }</td>
                                            <td> 
-                                                   <c:url value="/article/modifier/${article.getCode() }" var="urlModif" />                                      
+                                                   <c:url value="/stock/modifier/${article.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${article.getCode()}"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
-                                 <div class="modal fade" id="modalArticle${article.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${stock.getId() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
+                                 <div class="modal fade" id="modalArticle${stock.getId()}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
 							                                        <div class="modal-header">
@@ -124,7 +118,7 @@
 							                                        </div>
 							                                        <div class="modal-footer">
 							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message code="common.annuler"/></button>
-							                                            <c:url value="/article/supprimer/${article.getCode() }" var="urlSuppression"/>
+							                                            <c:url value="/stock/supprimer/${stock.getId()}" var="urlSuppression"/>
 							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.confirmer"/></i></a>
 							                                        </div>
 							                                    </div>

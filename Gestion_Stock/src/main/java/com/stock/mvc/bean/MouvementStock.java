@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 @Entity
 @Table(name = "mouvementStock")
 public class MouvementStock implements Serializable{
@@ -20,6 +22,7 @@ public class MouvementStock implements Serializable{
     @GeneratedValue
     @Column(name="id")
     private Long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private BigDecimal quantite;
     private int typeMvt;

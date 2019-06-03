@@ -10,18 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.Category;
+import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.MouvementStock;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.FournisseurService;
 import com.stock.mvc.service.MouvementStockService;
 
 @Controller
-@RequestMapping(value="/article")
+@RequestMapping(value="/stock")
 public class MouvementStockController {
 	@Autowired
 	private ArticleService articleService;
@@ -32,63 +32,46 @@ public class MouvementStockController {
 	
 	// find//
 	@RequestMapping("/")
-	public String mouvement(Model model) {
+	public String Stock(Model model) {
 		List<MouvementStock> stocks = stockService.selectAll();
 		if(stocks ==null) {
 			stocks  = new ArrayList<MouvementStock>();
 		}
 		model.addAttribute("stocks",stocks);
 		return "mouvementStock/mouvementStock";
-	}/*
+	}
 	//find par defaut//
-	@RequestMapping(value="/nouveau" , method = RequestMethod.GET)
-	public String ajouterArticle(Model model) {
-		Article article = new Article();
-		List<Category> categories = categoryService.selectAll();
-		if(categories==null) {
-			 categories = new ArrayList<Category>();
+	@RequestMapping(value="/nouveau" )
+	public String ajouterStock(Model model) {
+		MouvementStock stock = new MouvementStock();
+		List<Article> articles = articleService.selectAll();
+		List<Fournisseur> fournisseurs = fournisseurService.selectAll();
+		if(articles==null || fournisseurs==null) {
+			articles = new ArrayList<Article>();
+			fournisseurs= new ArrayList<Fournisseur>();
 		}
-		model.addAttribute("article",article);
-		model.addAttribute("categories",categories);
-		return "article/ajouterArticle";
+		model.addAttribute("stock",stock);
+		model.addAttribute("articles",articles);
+		model.addAttribute("fournisseurs",fournisseurs);
+		return "mouvementStock/AjouterMouvementStock";
 		
 	}
 	
 	//creation et mis a jours//
 	@RequestMapping(value="/enregistrer")
-	public String enregistrer(Model model, Article article,MultipartFile file){
-		String photoUrl =null;
-		if(article!=null) {
-			if(file!=null && !file.isEmpty()) {	
-			InputStream stream=null;
-			try{
-			
-				stream = file.getInputStream();
-					photoUrl=flickrService.savePhoto(stream, article.getLibelle());
-					article.setPhoto(photoUrl);
-			  }	catch(Exception e){
-			               e.printStackTrace();
-			        }	finally {
-			        	try {
-							stream.close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-			      
-			        }
-						
-			}
-			if(article.getCode()!=null){
-				articleService.update(article);
+	public String enregistrer(Model model, MouvementStock stock){
+		
+			if(stock.getId()!=null){
+				stockService.update(stock);
 			         }
 			else{
 			
-				articleService.save(article);
+				stockService.save(stock);
 			}
-		}
-		return "redirect:/article/";
+		
+		return "redirect:/stock/";
 
-		}
+		}/*
 	//modification
 	@RequestMapping(value="/modifier/{code}")
 	public String modifierArticle(Model model, @PathVariable String code) {
@@ -116,7 +99,7 @@ public class MouvementStockController {
 		}
 		return "redirect:/article/";	
 	}
-	/*
+	
 	@RequestMapping(value="/export/")
 public String exportArticles(HttpServletResponse response) {
 	exporter.exportDataToExcel(response,null,null);

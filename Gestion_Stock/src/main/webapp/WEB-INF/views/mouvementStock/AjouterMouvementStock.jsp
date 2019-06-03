@@ -62,50 +62,53 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                         <c:url value="/article/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="article" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-                            <!-- <f:hidden path="code"/>-->
-                             <f:hidden path="photo"/>
-
-	                          <div class="form-group">
-	                                 <label><fmt:message code="common.code"/></label>
-	                                   <f:input path="code" class="form-control" placeholder="codeArticle"/>
-	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.libelle"/></label>
-	                                   <f:input path="libelle" class="form-control" placeholder="Designation"/>
-	                              </div>
-	                             <div class="form-group">
-	                                 <label><fmt:message code="common.prixUnitaireHT"/></label>
-	                                   <f:input path="prixUnitaireHT" class="form-control" placeholder="PrixUnitaireHT"/>
-	                              </div>
-	                              
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.tauxTVA"/></label>
-	                                   <f:input path="tauxTVA" class="form-control" placeholder="TauxTVA"/>
-	                              </div>
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.prixUnitaireTTC"/></label>
-	                                   <f:input path="prixUnitaireTTC" class="form-control" placeholder="PrixUnitaireTTC"/>
-	                              </div>
-	                              
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.category"/></label>
-	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="code" itemValue="id"/>
-	                              </div>
-	                              
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.seuil"/></label>
-	                                   <f:input path="seuilMinimal" class="form-control" placeholder="Seuil Minimal"/>
-	                              </div>
-	                              
-			                            <div class="form-group">
-		                                 <label><fmt:message code="common.photo"/></label>
-		                                   <input type="file" name="file"/>
+                         <c:url value="/stock/enregistrer" var="urlEnregistrer"/>
+                          <f:form modelAttribute="stock" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+                          
+                           <div class="form-row">
+	                          <div class="col-md-4 mb-3">
+		                                 <label><fmt:message code="common.date"/></label>
+		                                   <f:input path="date" class="form-control" placeholder="Date"/>
 		                              </div>
+		                              
+		                              <div class="col-md-4 mb-3">
+		                                 <label><fmt:message code="common.quantite"/></label>
+		                                  <f:input path="quantite" class="form-control" placeholder="Quantite"/>
+		                              </div>
+		                              
+		                              <div class="col-md-4 mb-3">
+		                                 <label><fmt:message code="common.type"/></label>
+		                                  <f:input path="typeMvt" class="form-control" placeholder="Type de Stock"/>
+		                              </div>
+		                              
+		                              <div class="col-md-4 mb-3">
+		                              <label><fmt:message code="common.fournisseur"/></label>
+		                                 <select class="form-control" id="listfournisseurs">
+		                                 
+		                                 <option value="-1"><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
+		                                     <c:forEach items="${fournisseurs }" var="four">
+		                                           <option value="${four.getId() }">${four.getNom() }</option>
+		                                     </c:forEach>
+		                                          
+		                                 </select>
+		                              </div>
+		                               <div class="col-md-4 mb-3">
+		                              <label><fmt:message code="common.article"/></label>
+		                                 <select class="form-control" id="listfournisseurs">
+		                                 
+		                                 <option value="-1"><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
+		                                     <c:forEach items="${articles }" var="article">
+		                                           <option value="${article.getCode() }">${article.getLibelle() }</option>
+		                                     </c:forEach>
+		                                          
+		                                 </select>
+		                              </div>	
+                          </div> 
+                     
+	                        <br /><br /><br /><br /> 
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/article/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
+                                          <a href="<c:url value="/stock/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
                                     </div>
                           
                           </f:form>
@@ -136,9 +139,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
-    
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath() %>/resources/javascript/article.js"></script>
+
 
 </body>
 
