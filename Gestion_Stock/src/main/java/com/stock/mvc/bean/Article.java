@@ -8,8 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,8 +31,17 @@ public class Article implements Serializable{
            private BigDecimal prixUnitaireTTC;
            private BigDecimal tauxTVA;
            private String photo;
+           private BigDecimal seuilMinimal;
               
-           @ManyToOne
+           public BigDecimal getSeuilMinimal() {
+			return seuilMinimal;
+		}
+
+		public void setSeuilMinimal(BigDecimal seuilMinimal) {
+			this.seuilMinimal = seuilMinimal;
+		}
+
+		@ManyToOne
            @JoinColumn(name="idCategory")
            private Category category;
            @ManyToOne
@@ -40,12 +49,12 @@ public class Article implements Serializable{
            @ManyToOne
            private BonCommande bonCommande;
            @OneToOne
-           private LigneVente ligneVente;
-           @OneToOne
+       /*    private LigneVente ligneVente;
+           @OneToOne*/
            private LigneCmdClient ligneCmdClient;
            @OneToOne
            private LigneCmdFournisseur ligneCmdFournisseur;
-           @ManyToMany
+           @OneToMany(mappedBy="article")
           private List<MouvementStock> MouvementStocks;
            
           public Article() {
@@ -136,7 +145,7 @@ public class Article implements Serializable{
 		public void setLigneCmdClient(LigneCmdClient ligneCmdClient) {
 			this.ligneCmdClient = ligneCmdClient;
 		}
-
+/*
 		public LigneVente getLigneVente() {
 			return ligneVente;
 		}
@@ -144,7 +153,7 @@ public class Article implements Serializable{
 		public void setLigneVente(LigneVente ligneVente) {
 			this.ligneVente = ligneVente;
 		}
-
+*/
 		public LigneCmdFournisseur getLigneCmdFournisseur() {
 			return ligneCmdFournisseur;
 		}

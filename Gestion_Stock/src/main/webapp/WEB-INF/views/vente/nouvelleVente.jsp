@@ -62,9 +62,12 @@
                             <fmt:message code="common.detailVente" />
                         </div>
                         <!-- /.panel-heading -->
+                      
                         <div class="panel-body">
-                        <!--  <c:url value="/commandefournisseur/enregistrer" var="urlEnregistrer"/> -->
-                      <form  action="/mvc/vente" method="post" enctype="multipart/form-data" role="form">
+                        <!--
+                       <c:url value="/vente/enregistrerVente" var="urlEnregistrer"/> 
+                        <form modelAttribute="commandeclients" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">-->
+                        <form  action="/mvc/vente/" method="post" enctype="multipart/form-data" role="form">
                           <div class="form-row">
 	                          <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.code"/></label>
@@ -77,16 +80,17 @@
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
-		                              <label><fmt:message code="common.CommandeClient"/></label>
+		                              <label><fmt:message code="common.commandeClient"/></label>
 		                                 <select class="form-control" id="listClients">
 		                                 
-		                                 <option value="-1"><fmt:message code="commande.select" /></option>
-		                                     <c:forEach items="${cmdClients }" var="cmdClient">
+		                                 <option><fmt:message code="commande.select" /></option>
+		                                     <c:forEach items="${commandeclients }" var="cmdClient">
 		                                           <option value="${cmdClient.getCode() }">${cmdClient.getCode() }</option>
 		                                     </c:forEach>
 		                                          
 		                                 </select>
 		                              </div>	
+		                             
                           </div>   
                           <br /><br /><br /><br />                                   		
 	                           <div class="panel-footer">

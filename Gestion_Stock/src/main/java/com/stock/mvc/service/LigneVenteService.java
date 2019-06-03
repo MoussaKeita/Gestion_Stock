@@ -1,4 +1,4 @@
-package com.stock.mvc.service;
+/*package com.stock.mvc.service;
 
 import java.util.List;
 
@@ -16,4 +16,4 @@ public interface LigneVenteService{
 	public LigneVente findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
 	public List<LigneVente> getbyCodeCommande(String code);
-}
+}*/

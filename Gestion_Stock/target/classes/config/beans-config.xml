@@ -25,10 +25,12 @@
         <property name="dao" ref="venteDao"></property>
 		</bean>
 		
-		 <bean id="ligneVenteDao" class="com.stock.mvc.dao.impl.LigneVenteDaoImpl"/>
-        <bean id="ligneVenteService" class="com.stock.mvc.serviceImpl.LigneVenteServiceImpl">
-        <property name="dao" ref="ligneVenteDao"></property>
+		 <bean id="mouvementStockDao" class="com.stock.mvc.dao.impl.MouvementStockDaoImpl"/>
+        <bean id="stockService" class="com.stock.mvc.serviceImpl.MouvementStockServiceImpl">
+        <property name="dao" ref="mouvementStockDao"></property>
 		</bean>
+		
+		
 		
 	<bean id="roleDao" class="com.stock.mvc.dao.impl.RoleDaoImpl"/>
         <bean id="roleService" class="com.stock.mvc.serviceImpl.RoleServiceImpl">

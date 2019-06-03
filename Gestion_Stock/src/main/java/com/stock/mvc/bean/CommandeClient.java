@@ -11,18 +11,16 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name="Commande_Client")
@@ -47,11 +45,13 @@ public class CommandeClient implements Serializable {
 	@JsonBackReference*/
 	@OneToMany(mappedBy="commandeClient",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<LigneCmdClient> ligneCommandeClients;
-	
+	/*
 	@OneToMany(mappedBy="commandeClient")
     private List<Vente> ventes; 
-	    
-
+	 */   
+	@OneToOne
+	private Vente vente;
+	
 	public String getCode() {
 		return code;
 	}
@@ -81,15 +81,14 @@ public class CommandeClient implements Serializable {
 	public void setLigneCommandeClients(List<LigneCmdClient> ligneCommandeClients) {
 		this.ligneCommandeClients = ligneCommandeClients;
 	}
-	@JsonIgnore
-	public List<Vente> getVentes() {
-		return ventes;
-	}
-	public void setVentes(List<Vente> ventes) {
-		this.ventes = ventes;
-	}
+
 	
-	
+	public Vente getVente() {
+		return vente;
+	}
+	public void setVente(Vente vente) {
+		this.vente = vente;
+	}
 	public BigDecimal getTotalCommande() {
 		totalCommande = BigDecimal.ZERO;
 		if(!ligneCommandeClients.isEmpty()) {

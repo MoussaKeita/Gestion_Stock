@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
@@ -23,10 +22,9 @@ public class MouvementStock implements Serializable{
     private Long id;
     private Date date;
     private BigDecimal quantite;
-    private int seuilMinimal;
     private int typeMvt;
-    @ManyToMany
-    private List<Article> articles;
+    @ManyToOne
+    private Article article;
     @ManyToOne
     private Fournisseur fournisseur;
    
@@ -58,14 +56,6 @@ public class MouvementStock implements Serializable{
 		this.quantite = quantite;
 	}
 
-	public int getSeuilMinimal() {
-		return seuilMinimal;
-	}
-
-	public void setSeuilMinimal(int seuilMinimal) {
-		this.seuilMinimal = seuilMinimal;
-	}
-
 	public int getTypeMvt() {
 		return typeMvt;
 	}
@@ -74,12 +64,13 @@ public class MouvementStock implements Serializable{
 		this.typeMvt = typeMvt;
 	}
 
-	public List<Article> getArticles() {
-		return articles;
+
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setArticles(List<Article> articles) {
-		this.articles = articles;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	public Fournisseur getFournisseur() {

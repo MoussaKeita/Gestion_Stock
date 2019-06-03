@@ -18,7 +18,7 @@ import com.stock.mvc.bean.Vente;
 import com.stock.mvc.model.ModelVente;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.CommandeClientService;
-import com.stock.mvc.service.LigneVenteService;
+//import com.stock.mvc.service.LigneVenteService;
 import com.stock.mvc.service.VenteService;
 
 
@@ -29,11 +29,13 @@ public class VenteController {
 	@Autowired
 	private VenteService venteService;
 	@Autowired
+	private CommandeClientService cmdService;
+	@Autowired
 	private CommandeClientService commandeClientService;
 	@Autowired
 	private ArticleService articleService;
-	@Autowired
-	private LigneVenteService ligneVenteService;
+	/*@Autowired
+	private LigneVenteService ligneVenteService;*/
 	@Autowired
 	private ModelVente modelVente;
 	@Autowired
@@ -56,14 +58,14 @@ public class VenteController {
 	
 	@RequestMapping(value="/nouveau")
 	public String nouvelleCommande(Model model) {
-		List<CommandeClient> commandeclients = commandeClientService.selectAll();
-		if(commandeclients ==null) {
-			commandeclients = new ArrayList<CommandeClient>();
+		List<CommandeClient> cmdClients = commandeClientService.selectAll();
+		if(cmdClients==null) {
+			cmdClients = new ArrayList<CommandeClient>();
 		}
 		modelVente.creerVente();
 		model.addAttribute("codecmd",modelVente.getCommande().getCode());
 		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());
-		model.addAttribute("commandeclients",commandeclients);
+		model.addAttribute("cmdClients",cmdClients);
 		return "vente/nouvelleVente";	
 	}
 	
@@ -126,12 +128,10 @@ public class VenteController {
 	@ResponseBody
 	public String enregistrerCommande(HttpServletRequest request) {
 		Vente nouvelleCommande = null;
-		if(modelVente.getCommande() !=null) {
-			nouvelleCommande = venteService.update(modelVente.getCommande());
-		}else {
 			nouvelleCommande = venteService.save(modelVente.getCommande());
-			
-		}
+			CommandeClient cmd=nouvelleCommande.getCommandeClient();
+			cmd.setVente(nouvelleCommande);
+			cmdService.save(cmd);
 		/*if(nouvelleCommande !=null) {
 			Collection<LigneVente> ligneVentes = modelVente.getLignesVente(nouvelleCommande);
 			if(ligneVentes  !=null && !ligneVentes.isEmpty()) {

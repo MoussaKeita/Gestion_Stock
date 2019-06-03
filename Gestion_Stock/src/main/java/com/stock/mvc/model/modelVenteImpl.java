@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.CommandeClient;
-import com.stock.mvc.bean.LigneVente;
+//import com.stock.mvc.bean.LigneVente;
 import com.stock.mvc.bean.Vente;
 
 
@@ -19,7 +19,7 @@ import com.stock.mvc.bean.Vente;
 public class modelVenteImpl implements ModelVente {
 	
 	private Vente vente;
-	private Map<String, LigneVente> ligneVente= new HashMap<String ,LigneVente>();
+	//private Map<String, LigneVente> ligneVente= new HashMap<String ,LigneVente>();
 	@Override
 	public void creerVente() {
 		vente = new Vente();
@@ -40,7 +40,7 @@ public class modelVenteImpl implements ModelVente {
 		vente = oldvente;
 		return vente;
 	}
-	@Override
+	/*@Override
 	public LigneVente ajouterLigneVente(Article article) {
 		if(article==null) {
 			return null;
@@ -79,7 +79,7 @@ public class modelVenteImpl implements ModelVente {
 			return null;
 		}
 		return ligneVente.remove(article.getCode());
-	}
+	}*/
 	@Override
 	public String generateCodeCommande() {
 		return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
@@ -89,7 +89,7 @@ public class modelVenteImpl implements ModelVente {
 		
 		return vente;
 	}
-	@Override
+	/*@Override
 	public Map<String, LigneVente> getLigneVente() {
 		return ligneVente;
 	}
@@ -110,5 +110,5 @@ public class modelVenteImpl implements ModelVente {
 		this.ligneVente.put(code, ligneVente);
 		
 	}
-
+*/
 }

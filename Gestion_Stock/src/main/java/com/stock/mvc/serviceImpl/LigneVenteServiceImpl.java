@@ -1,4 +1,4 @@
-package com.stock.mvc.serviceImpl;
+/*package com.stock.mvc.serviceImpl;
 
 import java.util.List;
 
@@ -73,3 +73,4 @@ public class LigneVenteServiceImpl implements LigneVenteService {
 	}
 
 }
+*/

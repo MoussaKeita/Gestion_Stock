@@ -121,7 +121,7 @@ public class CommandeClientController {
 		}
 		// modelCommande.supprimerLigneCmd(article);
 		articleService.remove(article.getCode());
-		return "redirect:/commandeclient/modifierCommande";
+		return "redirect:/commandeClient/modifierCommande";
 	}
 	
 	@RequestMapping(value="/enregistrerCommande")
@@ -144,7 +144,7 @@ public class CommandeClientController {
 			}
 			
 		}
-		return "redirect:/commandeclient/";
+		return "redirect:/commandeClient/";
 	}
 	
 	@RequestMapping(value = "/modifier/{code}")
@@ -183,7 +183,7 @@ public class CommandeClientController {
 			ligneCmdClientService.remove(ligneCmdCli.getId());
 		}
 		commandeclientService.remove(code);
-		return "redirect:/commandeclient/";
+		return "redirect:/commandeClient/";
 	}
 
 	
