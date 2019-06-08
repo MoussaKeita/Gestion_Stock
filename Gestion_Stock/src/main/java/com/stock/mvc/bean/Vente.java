@@ -10,11 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "vente")
@@ -24,9 +27,11 @@ public class Vente implements Serializable{
     @Column(name="code_vente")
     private String code;
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date dateVente;
     
-    @OneToOne
+   // @OneToOne
+    @ManyToOne
 	private CommandeClient commandeClient;
     
     @Transient

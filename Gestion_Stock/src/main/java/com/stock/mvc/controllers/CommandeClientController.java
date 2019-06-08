@@ -4,8 +4,10 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.Client;
 import com.stock.mvc.bean.CommandeClient;
 import com.stock.mvc.bean.LigneCmdClient;
+import com.stock.mvc.export.FileExporter;
 import com.stock.mvc.model.ModelCmdClient;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.ClientService;
@@ -37,6 +40,10 @@ public class CommandeClientController {
 	private ModelCmdClient modelCommande;
 	@Autowired
 	private ClientService clientService;
+	
+	@Autowired
+	@Qualifier("bonExporter")
+	private FileExporter exporter;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -146,7 +153,6 @@ public class CommandeClientController {
 		}
 		return "redirect:/commandeClient/";
 	}
-	
 	@RequestMapping(value = "/modifier/{code}")
 	public String modifierCommande(Model model ,@PathVariable String code) {
 		
@@ -185,7 +191,27 @@ public class CommandeClientController {
 		commandeclientService.remove(code);
 		return "redirect:/commandeClient/";
 	}
-
 	
+	@RequestMapping(value = "/modifierBon/{code}")
+	public String modifierBon(Model model ,@PathVariable String code) {
+			
+		List<LigneCmdClient> lignes = ligneCmdClientService.getbyCodeCommande(code);
+		if (lignes != null || !lignes.isEmpty() ){
+			for (LigneCmdClient ligne : lignes) {
+				//map.put(ligne.getArticle().getIdArticle(), ligne);
+				modelCommande.setLigne(ligne.getArticle().getCode(), ligne);
+			}
+		}	
+		model.addAttribute("lignes", lignes);
+		return "commandeclient/blank";
+	}
+	
+
+	@RequestMapping(value="/export/")
+public String exportBon(HttpServletResponse response) {
+	exporter.exportDataToExcel(response,null,null);
+	return "commandeclient/commandeclient";
+}
+
 }
 

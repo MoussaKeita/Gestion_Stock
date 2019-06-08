@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stock.mvc.bean.CommandeClient;
+import com.stock.mvc.bean.MouvementStock;
 import com.stock.mvc.bean.Vente;
 import com.stock.mvc.model.ModelVente;
 import com.stock.mvc.service.ArticleService;
@@ -58,17 +59,31 @@ public class VenteController {
 	
 	@RequestMapping(value="/nouveau")
 	public String nouvelleCommande(Model model) {
+		    Vente vente = new Vente();
 		List<CommandeClient> cmdClients = commandeClientService.selectAll();
 		if(cmdClients==null) {
 			cmdClients = new ArrayList<CommandeClient>();
 		}
-		modelVente.creerVente();
+		/*modelVente.creerVente();
 		model.addAttribute("codecmd",modelVente.getCommande().getCode());
-		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());
+		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());*/
+		model.addAttribute("vente",vente);
 		model.addAttribute("cmdClients",cmdClients);
 		return "vente/nouvelleVente";	
 	}
-	
+	@RequestMapping(value="/enregistrer")
+	public String enregistrerVente(Model model, Vente vente){
+		
+			if(vente == null) {
+				return null;
+			}
+				venteService.save(vente);
+			
+		
+		return "redirect:/vente/";
+
+		}
+	/*
 	@RequestMapping(value="/creerVente")
 	@ResponseBody
 	
@@ -82,7 +97,7 @@ public class VenteController {
 			return null;
 		}
 		return modelVente.getCommande();		
-	}/*
+	}*//*
 	@RequestMapping(value="/ajouterLigne")
 	@ResponseBody
 	public LigneVente getArticleByCode(final String code) {
@@ -123,7 +138,7 @@ public class VenteController {
 		articleService.remove(article.getCode());
 		return "redirect:/vente/modifierVente";
 	}
-	*/
+	*//*
 	@RequestMapping(value="/enregistrerVente")
 	@ResponseBody
 	public String enregistrerCommande(HttpServletRequest request) {
@@ -142,7 +157,7 @@ public class VenteController {
 				modelVente.init();
 			}
 			
-		}*/
+		}*//*
 		return "redirect:/vente/";
 	}
 	/*

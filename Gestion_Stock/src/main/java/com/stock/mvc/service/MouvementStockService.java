@@ -14,5 +14,6 @@ public interface MouvementStockService{
 	public MouvementStock findOne(String paramName, Object paramValue);
 	public MouvementStock findOne(String[] paramName, Object[] paramValue);
 	public int findCountBy(String paramNames, Object paramValues);
+	
 }
 

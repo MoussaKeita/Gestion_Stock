@@ -64,8 +64,7 @@
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/commandeClient/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
-						 <c:url value="/commandeClient/export/" var ="export" />
-						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
+						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
 
 						  </ol>
@@ -85,53 +84,21 @@
                                     <thead>
                                         <tr>
                                             
-                                           <th><fmt:message code="common.code"/></th>
-                                            <th><fmt:message code="common.client"/></th>
-                                            <th><fmt:message code="common.date"/></th>
-                                            <th><fmt:message code="common.total"/></th>
-                                            <th><fmt:message code="common.actions"/></th>
+                                           <th><fmt:message code="common.article"/></th>
+                                            <th><fmt:message code="common.quantite"/></th>
+                                            <th><fmt:message code="common.prixUnitaireTTC"/></th>
+                                            <th><fmt:message code="common.total"/></th> 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${cmdClients }" var="cmd">
+                                    <c:forEach items="${lignes }" var="cmd">
                                         <tr class="odd gradeX">
                                            
-                                        <td>${cmd.getCode() }</td>
-                                            <td>${cmd.getClient().getNom() }</td>
-                                            <td>${cmd.getDateCommande() }</td>
-                                            <td>${cmd.getTotalCommande()}</td>
-                                            <td>  
-                                              <textArea  id = "json${cmd.getCode() }" style="display: none;">${cmd.getLigneCommandeJson() } </textArea>                               
-                                                <button class="btn btn-link" onclick="updateDetailCommande('${cmd.getCode() }');"><i class="fa fa-eye"></i></button>     
-                                                        &nbsp;|&nbsp;
-                                                   <c:url value="/commandeClient/modifier/${cmd.getCode() }" var="urlModif" />                                      
-                                                <a href="${urlModif }"><i class="fa fa-edit"></i></a>
-                                                        &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommande${cmd.getCode() }"><i class="fa fa-trash-o"></i></a>  
-                                 <div class="modal fade" id="modalcommande${cmd.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							                                <div class="modal-dialog">
-							                                    <div class="modal-content">
-							                                        <div class="modal-header">
-							                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message code="common.confirm.suppression"/></h4>
-							                                        </div>
-							                                        <div class="modal-body">
-							                                          <fmt:message code="fournisseur.confirm.suppression"/>
-							                                        </div>
-							                                        <div class="modal-footer">
-							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message code="common.annuler"/></button>
-							                                            <c:url value="/commandeClient/supprimer/${cmd.getCode() }" var="urlSuppression"/>
-							                                            <a href="${urlSuppression }" class="btn btn-danger"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.confirmer"/></i></a>
-							                                        </div>
-							                                    </div>
-							                                    <!-- /.modal-content -->
-							                                </div>
-							                                <!-- /.modal-dialog -->
-							                            </div> 
-							                            &nbsp;|&nbsp;
-							                    <c:url value="/commandeClient/modifierBon/${cmd.getCode() }" var="urlModif" />                                      
-                                             <a href="${urlModif }"><i class="fa fa-edit"></i></a>                                                                                             
-                                            </td>
+                                        <td>${cmd.getArticle().getCode() }</td>
+                                            <td>${cmd.getQuantite() }</td>
+                                            <td>${cmd.getPrixUnitaireTTC() }</td>
+                                           
+                                            <td>${cmd.getPrixUnitaireTTC()* cmd.getQuantite()}</td>
                                         </tr>
                                     </c:forEach>                                     
                                     </tbody>
@@ -149,41 +116,7 @@
                 
             </div>
              <!-- detail commande fournisseur -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <fmt:message code="common.detail" />
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th><fmt:message code="common.article"/></th>
-                                            <th><fmt:message code="common.quantite"/></th>
-                                            <th><fmt:message code="common.prixUnitaireTTC"/></th>
-                                            <th><fmt:message code="common.total"/></th>                                           
-                                        </tr>
-                                    </thead>
-                                    <tbody id="detailCommande">                          
-	                                  	                                    
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                           
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-         
-                <!-- /.row -->
-                
-            </div>
+        
             
             <!-- /.container-fluid -->
         </div>

@@ -64,35 +64,34 @@
                         <!-- /.panel-heading -->
                       
                         <div class="panel-body">
-                        <!--
-                       <c:url value="/vente/enregistrerVente" var="urlEnregistrer"/> 
-                        <form modelAttribute="commandeclients" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">-->
-                        <form  action="/mvc/vente/" method="post" enctype="multipart/form-data" role="form">
+                      
+                       <c:url value="/vente/enregistrer" var="urlEnregistrer"/> 
+                        <form modelAttribute="vente" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">    
                           <div class="form-row">
 	                          <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.code"/></label>
-		                                   <input class="form-control" placeholder="Code" id="codeVente" value="${codecmd }" disabled/>
+		                                   <input class="form-control" placeholder="Code" id="codeVente" />
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.date"/></label>
-		                                   <input  class="form-control" placeholder="Date Vente" id="dateVente" value="${dateCmd }" disabled />
+		                                   <input  class="form-control" placeholder="Date Vente"  type="date" id="dateVente"  />
 		                              </div>
 		                              
-		                              <div class="col-md-4 mb-3">
-		                              <label><fmt:message code="common.commandeClient"/></label>
-		                                 <select class="form-control" id="listClients">
+		                            <div class="col-md-4 mb-3">
+		                              <label><fmt:message code="common.article"/></label>
+		                                 <select class="form-control" id="listfournisseurs">
 		                                 
-		                                 <option><fmt:message code="commande.select" /></option>
-		                                     <c:forEach items="${commandeclients }" var="cmdClient">
-		                                           <option value="${cmdClient.getCode() }">${cmdClient.getCode() }</option>
+		                                 <option value="-1"><fmt:message code="commande.article.select.article" /></option>
+		                                     <c:forEach items="${cmdClients }" var="article">
+		                                           <option value="${article.getCode() }">${article.getCode() }</option>
 		                                     </c:forEach>
 		                                          
 		                                 </select>
 		                              </div>	
 		                             
                           </div>   
-                          <br /><br /><br /><br />                                   		
+                    <br /><br /><br /><br />                                   		
 	                           <div class="panel-footer">
                                             <button type="submit" id="btnEnregistrerVente" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>    
                                         <!--   <a href="<c:url value="/enregistrerCommande/"/>" class="btn btn-primary"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.enregistrer"/></i></a> -->
@@ -127,8 +126,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath() %>/resources/javascript/vente.js"></script>
+  
 
 </body>
 

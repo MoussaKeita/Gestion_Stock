@@ -56,7 +56,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="common.article" /></h1>
+                        <h1 class="page-header"><fmt:message code="common.MouvementStock" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->                 
                 </div>
@@ -64,11 +64,8 @@
                 <div class="row">
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
-						    <li><a href="<c:url value="/stock/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
-						    <c:url value="/article/export/" var ="export" />
-						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
-
+						    <li><a href="<c:url value="/stock/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.entrerSortieStock"/></i></a></li>
+						  
 						  </ol>
                      </div>
                 </div>
@@ -77,34 +74,35 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="article.List" />
+                          <h4> <fmt:message code="common.stock" /></h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
-                                        <tr>
-                                            <th><fmt:message code="common.date"/></th>
-                                            <th><fmt:message code="common.quantite"/></th>
-                                            <th><fmt:message code="common.type"/></th>
-                                            <th><fmt:message code="common.article"/></th>
-                                            <th><fmt:message code="common.fournisseur"/></th>
+                                        <tr>  
+                                         <th><fmt:message code="common.date"/></th>   
+                                             <th><fmt:message code="common.quantiteLivre"/></th>
+                                             <th><fmt:message code="common.quantiteSortie"/></th>
+                                              <th><fmt:message code="common.article"/></th>
+                                             <th><fmt:message code="common.fournisseur"/></th>
+                                             <th><fmt:message code="common.quantiteRestante"/></th>  
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${stocks }" var="stock">
-                                        <tr class="odd gradeX">                      
-                                            <td>${stock.getDate() }</td>
-                                            <td>${stock.getQuantite() }</td>
-                                            <td>${stock.getType() }</td>
-                                            <td>${stock.getArticle() }</td> 
-                                            <td>${stock.getFournisseur() }</td>
+                                        <tr class="odd gradeX"> 
+                                              <td>${stock.getDate() }</td>                                   
+                                            <td>${stock.getQuantiteLivre() }</td>
+                                            <td>${stock.getQuantiteSortie() }</td>  
+                                            <td>${stock.getArticle().getLibelle() }</td> 
+                                            <td>${stock.getFournisseur().getNom() }</td> 
+                                            <td>${stock.getQuantiteLivre() - stock.getQuantiteSortie()}</td>         
+ 
                                            <td> 
-                                                   <c:url value="/stock/modifier/${article.getCode() }" var="urlModif" />                                      
-                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
-                                                        &nbsp;|&nbsp;
+                                                   
                                                  <a href="javascript:void(0);" data-toggle="modal" data-target="#modalArticle${stock.getId() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
                                  <div class="modal fade" id="modalArticle${stock.getId()}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">

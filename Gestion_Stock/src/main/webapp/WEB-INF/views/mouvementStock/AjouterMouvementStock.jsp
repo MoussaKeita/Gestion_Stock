@@ -30,7 +30,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+<!--  
+        <style type="text/css">
+            fmt {
+                font: normal 12px courier !important;
+            }
+        </style>
+    -->
 </head>
 
 <body>
@@ -50,7 +56,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="article.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message code="common.MouvementStock" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -58,45 +64,57 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="article.nouveau" />
+                            <fmt:message code="mouvementStock.nouveau" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                          <c:url value="/stock/enregistrer" var="urlEnregistrer"/>
-                          <f:form modelAttribute="stock" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
-                          
+                  <f:form modelAttribute="stock" action="${urlEnregistrer }" method="post" enctype="multipart/form-data" role="form">
+                  <h1> <fmt:message code="common.entrerStock"/></h1>
                            <div class="form-row">
-	                          <div class="col-md-4 mb-3">
+	                          
+		                              
+		                              <div class="col-md-4 mb-3">
 		                                 <label><fmt:message code="common.date"/></label>
-		                                   <f:input path="date" class="form-control" placeholder="Date"/>
+		                                  <f:input path="date" type="date"  class="form-control" id="qteLivre" placeholder="date" />
 		                              </div>
 		                              
 		                              <div class="col-md-4 mb-3">
-		                                 <label><fmt:message code="common.quantite"/></label>
-		                                  <f:input path="quantite" class="form-control" placeholder="Quantite"/>
-		                              </div>
+		                                 <label><fmt:message code="common.quantiteLivre"/></label>
+		                                   <f:input path="quantiteLivre"  class="form-control" id="qteSortie" placeholder="quantiteLivre" />
+		                              </div>    
+		                                               
+		                            <div class="col-md-4 mb-3">
+	                                 <label><fmt:message code="commande.article.select.article"/></label>
+	                                   <f:select path="article.code" class="form-control" items="${articles }" itemLabel="libelle" itemValue="code"/>
+	                              </div>
+
+		                              <div class="col-md-4 mb-3">
+	                                 <label><fmt:message code="commande.fournisseur.select.fournisseur"/></label>
+	                                   <f:select path="fournisseur.id" class="form-control" items="${fournisseurs }" itemLabel="nom" itemValue="id"/>
+	                              </div>	
+                          </div> 
+                     
+	                        <br /><br /><br /><br /> <br /><br /><br /><br /> 
+	                           <div class="panel-footer">
+                                          <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
+                                          <a href="<c:url value="/stock/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
+                                    </div>
+                          <br /><br /><br />
+                      <h1><fmt:message code="common.sortieStock"/></h1>
+                             <div class="form-row">
+	                          
 		                              
 		                              <div class="col-md-4 mb-3">
-		                                 <label><fmt:message code="common.type"/></label>
-		                                  <f:input path="typeMvt" class="form-control" placeholder="Type de Stock"/>
+		                               <label><fmt:message code="common.quantiteSortie"/></label>
+		                                  <f:input path="quantiteSortie"  class="form-control" id="qteSortie" placeholder="quantiteSortie" />
 		                              </div>
-		                              
-		                              <div class="col-md-4 mb-3">
-		                              <label><fmt:message code="common.fournisseur"/></label>
-		                                 <select class="form-control" id="listfournisseurs">
-		                                 
-		                                 <option value="-1"><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
-		                                     <c:forEach items="${fournisseurs }" var="four">
-		                                           <option value="${four.getId() }">${four.getNom() }</option>
-		                                     </c:forEach>
-		                                          
-		                                 </select>
-		                              </div>
+		                                
 		                               <div class="col-md-4 mb-3">
 		                              <label><fmt:message code="common.article"/></label>
 		                                 <select class="form-control" id="listfournisseurs">
 		                                 
-		                                 <option value="-1"><fmt:message code="commande.fournisseur.select.fournisseur" /></option>
+		                                 <option value="-1"><fmt:message code="commande.article.select.article" /></option>
 		                                     <c:forEach items="${articles }" var="article">
 		                                           <option value="${article.getCode() }">${article.getLibelle() }</option>
 		                                     </c:forEach>
@@ -104,13 +122,6 @@
 		                                 </select>
 		                              </div>	
                           </div> 
-                     
-	                        <br /><br /><br /><br /> 
-	                           <div class="panel-footer">
-                                          <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
-                                          <a href="<c:url value="/stock/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           
-                                    </div>
-                          
                           </f:form>
                   
                         </div>
@@ -139,6 +150,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
+    
+     <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath() %>/resources/javascript/stock.js"></script>
 
 
 </body>

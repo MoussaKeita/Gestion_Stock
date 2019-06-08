@@ -45,13 +45,16 @@ public class CommandeClient implements Serializable {
 	@JsonBackReference*/
 	@OneToMany(mappedBy="commandeClient",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<LigneCmdClient> ligneCommandeClients;
-	/*
+	
+	public List<Vente> getVentes() {
+		return ventes;
+	}
+	public void setVentes(List<Vente> ventes) {
+		this.ventes = ventes;
+	}
 	@OneToMany(mappedBy="commandeClient")
     private List<Vente> ventes; 
-	 */   
-	@OneToOne
-	private Vente vente;
-	
+
 	public String getCode() {
 		return code;
 	}
@@ -83,12 +86,6 @@ public class CommandeClient implements Serializable {
 	}
 
 	
-	public Vente getVente() {
-		return vente;
-	}
-	public void setVente(Vente vente) {
-		this.vente = vente;
-	}
 	public BigDecimal getTotalCommande() {
 		totalCommande = BigDecimal.ZERO;
 		if(!ligneCommandeClients.isEmpty()) {

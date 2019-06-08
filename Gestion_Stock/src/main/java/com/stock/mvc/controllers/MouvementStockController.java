@@ -1,7 +1,5 @@
 package com.stock.mvc.controllers;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.stock.mvc.bean.Article;
-import com.stock.mvc.bean.Category;
 import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.MouvementStock;
+import com.stock.mvc.model.ModelCmdStock;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.FournisseurService;
 import com.stock.mvc.service.MouvementStockService;
@@ -29,6 +26,8 @@ public class MouvementStockController {
 	private MouvementStockService stockService;
 	@Autowired
 	private FournisseurService fournisseurService;
+	@Autowired
+	private ModelCmdStock modelCommande;
 	
 	// find//
 	@RequestMapping("/")
@@ -53,10 +52,11 @@ public class MouvementStockController {
 		model.addAttribute("stock",stock);
 		model.addAttribute("articles",articles);
 		model.addAttribute("fournisseurs",fournisseurs);
+		
 		return "mouvementStock/AjouterMouvementStock";
 		
 	}
-	
+
 	//creation et mis a jours//
 	@RequestMapping(value="/enregistrer")
 	public String enregistrer(Model model, MouvementStock stock){
@@ -71,7 +71,20 @@ public class MouvementStockController {
 		
 		return "redirect:/stock/";
 
-		}/*
+		}
+	
+	@RequestMapping(value="/supprimer/{id}")
+	public String supprimerStock(Model model, @PathVariable Long id) {
+		if(id!=null) {
+			MouvementStock stock = stockService.getbyId(id);
+			if(id!=null) {
+				stockService.remove(id);
+			}
+		}
+		return "redirect:/stock/";	
+	}
+	
+	/*
 	//modification
 	@RequestMapping(value="/modifier/{code}")
 	public String modifierArticle(Model model, @PathVariable String code) {
@@ -89,21 +102,6 @@ public class MouvementStockController {
 		
 		return "article/ajouterArticle";
 	}
-	@RequestMapping(value="/supprimer/{code}")
-	public String supprimerArticle(Model model, @PathVariable String code) {
-		if(code!=null) {
-			Article article = articleService.getbyCode(code);
-			if(article!=null) {
-				articleService.remove(code);
-			}
-		}
-		return "redirect:/article/";	
-	}
 	
-	@RequestMapping(value="/export/")
-public String exportArticles(HttpServletResponse response) {
-	exporter.exportDataToExcel(response,null,null);
-	return "article/article";
-}
 */
 }
