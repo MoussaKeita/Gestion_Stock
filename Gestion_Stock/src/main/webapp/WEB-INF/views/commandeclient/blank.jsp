@@ -64,7 +64,8 @@
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/commandeClient/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
+						   <c:url value="/article/export/" var ="export" />
+						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
 
 						  </ol>

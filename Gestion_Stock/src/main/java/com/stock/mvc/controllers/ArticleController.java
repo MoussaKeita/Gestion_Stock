@@ -122,9 +122,11 @@ public class ArticleController {
 		return "redirect:/article/";	
 	}
 	@RequestMapping(value="/export/")
+	//@RequestMapping("/pdf/{fileName:.+}")
 public String exportArticles(HttpServletResponse response) {
 	exporter.exportDataToExcel(response,null,null);
 	return "article/article";
 }
+
 
 }

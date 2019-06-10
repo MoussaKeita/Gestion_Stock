@@ -65,6 +65,8 @@
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/stock/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.entrerSortieStock"/></i></a></li>
+					 <c:url value="/stock/export/" var ="export" />
+		 <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
 						  
 						  </ol>
                      </div>

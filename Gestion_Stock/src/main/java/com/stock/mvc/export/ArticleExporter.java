@@ -3,11 +3,13 @@ package com.stock.mvc.export;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.axis.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.service.ArticleService;
@@ -37,6 +39,7 @@ public class ArticleExporter implements FileExporter{
 		}
 		response.setContentType(ApplicationConstants.EXCEL_CONTENT_TYPE);
 		response.setHeader(ApplicationConstants.CONTENET_DISPOSITION, "attachment; filename=" + fileName + ".xls");
+		//response.addHeader("Content-Disposition", "attachment; filename="+fileName);
 		WorkbookSettings workBookSettings = new WorkbookSettings();
 		workBookSettings.setEncoding(encodage);
 		try {
@@ -47,6 +50,7 @@ public class ArticleExporter implements FileExporter{
 			 */
 			Label labelCode = new Label(0, 0, ApplicationConstants.CODE_ARTICLE);
 			labelCode.setCellFeatures(new WritableCellFeatures());
+			//labelCode.setCellFormat(headerCellStyle);
 			labelCode.getCellFeatures().setComment("");
 			sheet.addCell(labelCode);
 			
@@ -123,5 +127,6 @@ public class ArticleExporter implements FileExporter{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

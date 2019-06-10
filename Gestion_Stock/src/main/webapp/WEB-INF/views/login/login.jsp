@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Gestion de Stock</title>
     <!-- Bootstrap Core CSS -->
     
 
@@ -38,11 +38,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+         body{
+        background-image:url(images/stock.jpg);
+         }
+    </style>
 
 </head>
 
 <body>
-
+ 
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">

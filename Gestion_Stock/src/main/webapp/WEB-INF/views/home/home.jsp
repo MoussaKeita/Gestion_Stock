@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Gestion de Stock</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath() %>/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,11 +30,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+            
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -50,7 +49,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Tableau de Bord</h1>
+                        <h1 class="page-header"><fmt:message code="common.bienvenu" /></h1>
+                     
+                       
+                         <img src="<c:url value="/resources/images/chef.jpg"/>" width="950" height="550" />
+                        
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

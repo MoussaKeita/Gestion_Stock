@@ -60,14 +60,14 @@
                     <!-- /.col-lg-12 -->                 
                 </div>
                 
-                <div class="row">
+                <div class="row">exportDetails
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/commandeClient/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						 <c:url value="/commandeClient/export/" var ="export" />
 						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
-
+						    <c:url value="/commandeClient/exportDetails/" var ="exportdet" />
+						    <li><a href="${exportdet }"><i class="fa fa-download">&nbsp;<fmt:message code="common.importer"/></i></a></li>
 						  </ol>
                      </div>
                 </div>

@@ -44,7 +44,9 @@ public class CommandeClientController {
 	@Autowired
 	@Qualifier("bonExporter")
 	private FileExporter exporter;
-	
+	/*
+	@Autowired
+	@Qualifier("detailsExporter")*/
 	@RequestMapping("/")
 	public String index(Model model) {
 		
@@ -213,5 +215,10 @@ public String exportBon(HttpServletResponse response) {
 	return "commandeclient/commandeclient";
 }
 
+	@RequestMapping(value="/exportDetails/")
+	public String exportDetails(HttpServletResponse response) {
+		exporter.exportDataToExcel(response,null,null);
+		return "commandeclient/commandeclient";
+	}
 }
 

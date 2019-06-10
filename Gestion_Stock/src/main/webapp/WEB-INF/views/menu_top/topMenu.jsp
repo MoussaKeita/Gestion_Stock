@@ -4,7 +4,7 @@
 		<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 		<span class="icon-bar"></span> <span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="javascript:void(0);"><fmt:message code="common.Stock" /></a>
+	<a style="font-size:2em;color:black" class="navbar-brand" href="javascript:void(0);"><fmt:message code="common.Stock" /></a>
 </div>
 <!-- /.navbar-header -->
 

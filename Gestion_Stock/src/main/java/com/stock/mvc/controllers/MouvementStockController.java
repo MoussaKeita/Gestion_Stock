@@ -3,7 +3,10 @@ package com.stock.mvc.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.Fournisseur;
 import com.stock.mvc.bean.MouvementStock;
+import com.stock.mvc.export.FileExporter;
 import com.stock.mvc.model.ModelCmdStock;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.FournisseurService;
@@ -28,6 +32,10 @@ public class MouvementStockController {
 	private FournisseurService fournisseurService;
 	@Autowired
 	private ModelCmdStock modelCommande;
+	
+	@Autowired
+	@Qualifier("stockExporter")
+	private FileExporter exporter;
 	
 	// find//
 	@RequestMapping("/")
@@ -83,7 +91,11 @@ public class MouvementStockController {
 		}
 		return "redirect:/stock/";	
 	}
-	
+	@RequestMapping(value="/export/")
+	public String exportBon(HttpServletResponse response) {
+		exporter.exportDataToExcel(response,null,null);
+		return "mouvementStock/mouvementStock";
+	}
 	/*
 	//modification
 	@RequestMapping(value="/modifier/{code}")

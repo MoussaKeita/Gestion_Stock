@@ -52,6 +52,7 @@
                         <h1 class="page-header"><fmt:message code="errors.msg.403"/></h1>
                         <c:url value="${backUrl }" var="back"/>
                         <a href="${backUrl }"><fmt:message code="common.back"/></a>
+                        <img src="<c:url value="/resources/images/error.jpg"/>" width="950" height="550" />
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
