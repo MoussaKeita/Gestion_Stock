@@ -92,7 +92,7 @@
                                             <th><fmt:message code="common.prixUnitaireTTC"/></th>
                                             <th><fmt:message code="common.tauxTVA"/></th>
                                             <th><fmt:message code="common.category"/></th>
-                                            <th><fmt:message code="common.seuil"/></th>
+                                          
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
@@ -106,7 +106,7 @@
                                             <td>${article.getPrixUnitaireTTC() }</td> 
                                             <td>${article.getTauxTVA() }</td>
                                             <td>${article.getCategory().getCode() }</td>
-                                            <td>${article.getSeuilMinimal() }</td>
+                                           
                                            <td> 
                                                    <c:url value="/article/modifier/${article.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>

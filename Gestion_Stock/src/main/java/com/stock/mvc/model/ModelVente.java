@@ -1,9 +1,5 @@
 package com.stock.mvc.model;
 
-import java.util.Collection;
-import java.util.Map;
-
-import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.CommandeClient;
 //import com.stock.mvc.bean.LigneVente;
 import com.stock.mvc.bean.Vente;

@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/views/includes/includes.jsp" %>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -55,7 +56,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="vente.list" /></h1>
+                        <h1 class="page-header"><fmt:message code="vente.List" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->                 
                 </div>
@@ -65,7 +66,7 @@
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/vente/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
+		<!--  	    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>			-->
 
 						  </ol>
                      </div>
@@ -75,7 +76,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="vente.list" />
+                            <fmt:message code="vente.List" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -83,23 +84,24 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            
-                                           <th><fmt:message code="common.code"/></th> 
+                                            <th><fmt:message code="common.code"/></th>
                                             <th><fmt:message code="common.date"/></th>
-                                            <th><fmt:message code="common.commandeClient"/></th>
+                                            <th><fmt:message code="common.client.commande"/></th>
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${ventes }" var="vente">
                                         <tr class="odd gradeX">
-                                           
-                                        <td>${vente.getCode() }</td>
+                                            <td>${vente.getCode() }</td>
                                             <td>${vente.getDateVente() }</td>
                                             <td>${vente.getCommandeClient().getCode() }</td>
-                                            <td>                  
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommande${vente.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
-                                 <div class="modal fade" id="modalcommande${vente.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <td>  
+                           <!--                       <c:url value="/vente/modifier/${vente.getCode() }" var="urlModif" />                                      
+                                                  <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
+                                                        &nbsp;|&nbsp;                                -->  
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalVente${vente.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
+                                 <div class="modal fade" id="modalVente${vente.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">
 							                                        <div class="modal-header">
@@ -107,7 +109,7 @@
 							                                            <h4 class="modal-title" id="myModalLabel"><fmt:message code="common.confirm.suppression"/></h4>
 							                                        </div>
 							                                        <div class="modal-body">
-							                                          <fmt:message code="fournisseur.confirm.suppression"/>
+							                                          <fmt:message code="vente.confirm.suppression"/>
 							                                        </div>
 							                                        <div class="modal-footer">
 							                                            <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message code="common.annuler"/></button>
@@ -132,13 +134,9 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-         
-                <!-- /.row -->
                 
+                <!-- /.row -->
             </div>
-             <!-- detail commande fournisseur -->
-           
-            
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
@@ -164,8 +162,8 @@
     <script src="<%=request.getContextPath() %>/resources/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
            <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
-    
- 
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true

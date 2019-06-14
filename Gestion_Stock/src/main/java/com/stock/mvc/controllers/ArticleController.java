@@ -5,10 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.Category;
-import com.stock.mvc.export.FileExporter;
+import com.stock.mvc.bean.MouvementStock;
 import com.stock.mvc.service.ArticleService;
 import com.stock.mvc.service.CategoryService;
 import com.stock.mvc.service.IflickrService;
+import com.stock.mvc.service.MouvementStockService;
 
 @Controller
 @RequestMapping(value="/article")
@@ -31,10 +29,13 @@ public class ArticleController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
+	private MouvementStockService stockService;
+	@Autowired
 	private IflickrService flickrService;
+	/*
 	@Autowired
 	@Qualifier("articleExporter")
-	private FileExporter exporter;
+	private FileExporter exporter;*/
 	// find//
 	@RequestMapping("/")
 	public String article(Model model) {
@@ -115,18 +116,20 @@ public class ArticleController {
 	public String supprimerArticle(Model model, @PathVariable String code) {
 		if(code!=null) {
 			Article article = articleService.getbyCode(code);
-			if(article!=null) {
+			List<MouvementStock> stocks = article.getMouvementStocks();
+			for(MouvementStock stock :stocks) {
+				stockService.remove(stock.getId());
+		}	
 				articleService.remove(code);
-			}
 		}
 		return "redirect:/article/";	
-	}
+	}/*
 	@RequestMapping(value="/export/")
 	//@RequestMapping("/pdf/{fileName:.+}")
 public String exportArticles(HttpServletResponse response) {
 	exporter.exportDataToExcel(response,null,null);
 	return "article/article";
-}
+}*/
 
 
 }

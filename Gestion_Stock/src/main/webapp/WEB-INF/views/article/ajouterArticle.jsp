@@ -94,10 +94,6 @@
 	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="code" itemValue="id"/>
 	                              </div>
 	                              
-	                              <div class="form-group">
-	                                 <label><fmt:message code="common.seuil"/></label>
-	                                   <f:input path="seuilMinimal" class="form-control" placeholder="Seuil Minimal"/>
-	                              </div>
 	                              
 			                            <div class="form-group">
 		                                 <label><fmt:message code="common.photo"/></label>

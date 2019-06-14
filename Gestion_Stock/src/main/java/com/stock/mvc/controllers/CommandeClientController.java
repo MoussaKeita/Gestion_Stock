@@ -40,13 +40,14 @@ public class CommandeClientController {
 	private ModelCmdClient modelCommande;
 	@Autowired
 	private ClientService clientService;
-	
+	/*
 	@Autowired
 	@Qualifier("bonExporter")
 	private FileExporter exporter;
-	/*
+	*/
 	@Autowired
-	@Qualifier("detailsExporter")*/
+	@Qualifier("detailsExporter")
+	private FileExporter exporter;
 	@RequestMapping("/")
 	public String index(Model model) {
 		
@@ -209,13 +210,12 @@ public class CommandeClientController {
 	}
 	
 
-	@RequestMapping(value="/export/")
+/*	@RequestMapping(value="/export/")
 public String exportBon(HttpServletResponse response) {
 	exporter.exportDataToExcel(response,null,null);
 	return "commandeclient/commandeclient";
-}
-
-	@RequestMapping(value="/exportDetails/")
+}*/
+	@RequestMapping(value="/exportdetails/")
 	public String exportDetails(HttpServletResponse response) {
 		exporter.exportDataToExcel(response,null,null);
 		return "commandeclient/commandeclient";

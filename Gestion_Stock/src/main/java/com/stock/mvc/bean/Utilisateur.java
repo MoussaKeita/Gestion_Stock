@@ -3,7 +3,9 @@ package com.stock.mvc.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -23,7 +25,7 @@ public class Utilisateur implements Serializable{
 	private String password;
 	private String photo;
 	private boolean actived;
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<Roles> roles;
 	
 	public Utilisateur() {

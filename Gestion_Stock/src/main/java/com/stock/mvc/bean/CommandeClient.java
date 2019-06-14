@@ -46,6 +46,7 @@ public class CommandeClient implements Serializable {
 	@OneToMany(mappedBy="commandeClient",fetch = FetchType.EAGER , cascade= CascadeType.REMOVE)
 	private List<LigneCmdClient> ligneCommandeClients;
 	
+	@JsonIgnore
 	public List<Vente> getVentes() {
 		return ventes;
 	}

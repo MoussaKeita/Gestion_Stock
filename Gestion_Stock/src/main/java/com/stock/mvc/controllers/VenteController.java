@@ -1,7 +1,6 @@
 package com.stock.mvc.controllers;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stock.mvc.bean.CommandeClient;
-import com.stock.mvc.bean.MouvementStock;
 import com.stock.mvc.bean.Vente;
 import com.stock.mvc.model.ModelVente;
 import com.stock.mvc.service.ArticleService;
@@ -59,34 +57,19 @@ public class VenteController {
 	
 	@RequestMapping(value="/nouveau")
 	public String nouvelleCommande(Model model) {
-		    Vente vente = new Vente();
 		List<CommandeClient> cmdClients = commandeClientService.selectAll();
 		if(cmdClients==null) {
 			cmdClients = new ArrayList<CommandeClient>();
 		}
-		/*modelVente.creerVente();
+		modelVente.creerVente();
 		model.addAttribute("codecmd",modelVente.getCommande().getCode());
-		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());*/
-		model.addAttribute("vente",vente);
+		model.addAttribute("dateCmd",modelVente.getCommande().getDateVente());
 		model.addAttribute("cmdClients",cmdClients);
 		return "vente/nouvelleVente";	
 	}
-	@RequestMapping(value="/enregistrer")
-	public String enregistrerVente(Model model, Vente vente){
-		
-			if(vente == null) {
-				return null;
-			}
-				venteService.save(vente);
-			
-		
-		return "redirect:/vente/";
-
-		}
-	/*
+	
 	@RequestMapping(value="/creerVente")
 	@ResponseBody
-	
 	public Vente creerVente(final String code) {
 		if(code==null) {
 			return null;
@@ -97,7 +80,31 @@ public class VenteController {
 			return null;
 		}
 		return modelVente.getCommande();		
-	}*//*
+	}
+	
+	@RequestMapping(value="/enregistrerVente")
+	@ResponseBody
+	public String enregistrerVente(HttpServletRequest request) {
+		Vente nouvelleCommande = null;
+		nouvelleCommande = venteService.save(modelVente.getCommande());
+		CommandeClient cmd=nouvelleCommande.getCommandeClient();
+		//cmd.setVente(nouvelleCommande);
+		cmdService.save(cmd);
+	/*if(nouvelleCommande !=null) {
+		Collection<LigneVente> ligneVentes = modelVente.getLignesVente(nouvelleCommande);
+		if(ligneVentes  !=null && !ligneVentes.isEmpty()) {
+			//ligneCmdFournisseurService.update();
+			for(LigneVente ligneV :ligneVentes) {
+				ligneVenteService.save(ligneV);	
+			}
+			modelVente.init();
+		}
+		
+	}*/
+		return "redirect:/vente/";
+	}
+	
+/*
 	@RequestMapping(value="/ajouterLigne")
 	@ResponseBody
 	public LigneVente getArticleByCode(final String code) {
@@ -138,27 +145,18 @@ public class VenteController {
 		articleService.remove(article.getCode());
 		return "redirect:/vente/modifierVente";
 	}
-	*//*
-	@RequestMapping(value="/enregistrerVente")
+	
+	@RequestMapping(value="/enregistrer")
 	@ResponseBody
-	public String enregistrerCommande(HttpServletRequest request) {
-		Vente nouvelleCommande = null;
-			nouvelleCommande = venteService.save(modelVente.getCommande());
-			CommandeClient cmd=nouvelleCommande.getCommandeClient();
-			cmd.setVente(nouvelleCommande);
-			cmdService.save(cmd);
-		/*if(nouvelleCommande !=null) {
-			Collection<LigneVente> ligneVentes = modelVente.getLignesVente(nouvelleCommande);
-			if(ligneVentes  !=null && !ligneVentes.isEmpty()) {
-				//ligneCmdFournisseurService.update();
-				for(LigneVente ligneV :ligneVentes) {
-					ligneVenteService.save(ligneV);	
-				}
-				modelVente.init();
-			}
-			
-		}*//*
-		return "redirect:/vente/";
+	public String enregistrerCommande(Model model, Vente vente) {
+
+		if(vente == null) {
+			return null;
+		}
+			venteService.save(vente);
+		
+	
+	return "redirect:/vente/";
 	}
 	/*
 	@RequestMapping(value = "/modifier/{code}")

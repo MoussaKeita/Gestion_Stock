@@ -24,7 +24,7 @@
 			<li><a href="${enUrl}"><i class="fa fa-globe fa-fw"></i> <fmt:message code="locale.en" /> </a></li>
 			<li class="divider"></li>
 			<c:url value = "/j_spring_security_logout" var = "logout" />
-			<li><a href="${logout }"><i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
+			<li><a href="${logout }"><i class="fa fa-sign-out fa-fw"></i><fmt:message code="common.logout" /></a></li>
 		</ul> <!-- /.dropdown-user --></li>
 	<!-- /.dropdown -->
 </ul>

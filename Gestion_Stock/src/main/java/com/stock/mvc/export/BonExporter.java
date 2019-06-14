@@ -105,11 +105,18 @@ public class BonExporter implements FileExporter{
 			return false;
 		}
 	}
-	
+
 	@Override
-	public boolean ImportDataToExcel() {
+	public boolean ImportDataToExcel(HttpServletResponse response, String fileName, String encodage) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@Override
+	public boolean MerdeDataToExcel(HttpServletResponse response, String fileName, String encodage) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 }

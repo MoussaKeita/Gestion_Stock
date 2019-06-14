@@ -39,7 +39,7 @@ public class UtilisateurController {
 
 	@RequestMapping(value = "/nouveau", method = RequestMethod.GET)
 	public String ajouterUtilisateur(Model model) {
- 
+
 		Utilisateur user = new Utilisateur();
  		model.addAttribute("user", user);
 		return "utilisateur/ajouterUtilisateur";
@@ -69,7 +69,7 @@ public class UtilisateurController {
 			}
 		}
 		
-		return"utilisateurs/ajouterUtilisateur";
+		return"utilisateur/ajouterUtilisateur";
 	}
 	
 	@RequestMapping(value="/supprimer/{idUtilisateur}")
@@ -77,9 +77,11 @@ public class UtilisateurController {
 		if (idUtilisateur != null) {
 			
 			Utilisateur user = userService.getbyId(idUtilisateur);
-			if (user != null) {
-				userService.remove(idUtilisateur);
+			List<Roles> roles = user.getRoles();
+			for(Roles role : roles) {
+				roleService.remove(idUtilisateur);
 			}
+				userService.remove(idUtilisateur);
 		}
 		
 		return"redirect:/utilisateur/";

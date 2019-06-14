@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,15 +33,9 @@ public class Article implements Serializable{
            private BigDecimal prixUnitaireTTC;
            private BigDecimal tauxTVA;
            private String photo;
-           private BigDecimal seuilMinimal;
+          // private BigDecimal seuilMinimal;
               
-           public BigDecimal getSeuilMinimal() {
-			return seuilMinimal;
-		}
-
-		public void setSeuilMinimal(BigDecimal seuilMinimal) {
-			this.seuilMinimal = seuilMinimal;
-		}
+        
 
 		@ManyToOne
            @JoinColumn(name="idCategory")
@@ -49,13 +45,12 @@ public class Article implements Serializable{
            @ManyToOne
            private BonCommande bonCommande;
            @OneToOne
-       /*    private LigneVente ligneVente;
-           @OneToOne*/
            private LigneCmdClient ligneCmdClient;
            @OneToOne
            private LigneCmdFournisseur ligneCmdFournisseur;
+           
            @OneToMany(mappedBy="article")
-          private List<MouvementStock> MouvementStocks;
+           private List<MouvementStock> MouvementStocks;
            
           public Article() {
         	  
@@ -145,15 +140,7 @@ public class Article implements Serializable{
 		public void setLigneCmdClient(LigneCmdClient ligneCmdClient) {
 			this.ligneCmdClient = ligneCmdClient;
 		}
-/*
-		public LigneVente getLigneVente() {
-			return ligneVente;
-		}
 
-		public void setLigneVente(LigneVente ligneVente) {
-			this.ligneVente = ligneVente;
-		}
-*/
 		public LigneCmdFournisseur getLigneCmdFournisseur() {
 			return ligneCmdFournisseur;
 		}
@@ -161,7 +148,7 @@ public class Article implements Serializable{
 		public void setLigneCmdFournisseur(LigneCmdFournisseur ligneCmdFournisseur) {
 			this.ligneCmdFournisseur = ligneCmdFournisseur;
 		}
-@JsonIgnore
+         @JsonIgnore
 		public List<MouvementStock> getMouvementStocks() {
 			return MouvementStocks;
 		}

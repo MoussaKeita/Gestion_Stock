@@ -30,7 +30,6 @@ public class Vente implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd") 
     private Date dateVente;
     
-   // @OneToOne
     @ManyToOne
 	private CommandeClient commandeClient;
     
