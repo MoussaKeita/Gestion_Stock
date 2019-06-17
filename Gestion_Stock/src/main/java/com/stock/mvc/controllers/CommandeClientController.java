@@ -40,14 +40,10 @@ public class CommandeClientController {
 	private ModelCmdClient modelCommande;
 	@Autowired
 	private ClientService clientService;
-	/*
 	@Autowired
 	@Qualifier("bonExporter")
 	private FileExporter exporter;
-	*/
-	@Autowired
-	@Qualifier("detailsExporter")
-	private FileExporter exporter;
+
 	@RequestMapping("/")
 	public String index(Model model) {
 		
@@ -156,6 +152,7 @@ public class CommandeClientController {
 		}
 		return "redirect:/commandeClient/";
 	}
+	
 	@RequestMapping(value = "/modifier/{code}")
 	public String modifierCommande(Model model ,@PathVariable String code) {
 		
@@ -194,31 +191,10 @@ public class CommandeClientController {
 		commandeclientService.remove(code);
 		return "redirect:/commandeClient/";
 	}
-	
-	@RequestMapping(value = "/modifierBon/{code}")
-	public String modifierBon(Model model ,@PathVariable String code) {
-			
-		List<LigneCmdClient> lignes = ligneCmdClientService.getbyCodeCommande(code);
-		if (lignes != null || !lignes.isEmpty() ){
-			for (LigneCmdClient ligne : lignes) {
-				//map.put(ligne.getArticle().getIdArticle(), ligne);
-				modelCommande.setLigne(ligne.getArticle().getCode(), ligne);
-			}
-		}	
-		model.addAttribute("lignes", lignes);
-		return "commandeclient/blank";
-	}
-	
 
-/*	@RequestMapping(value="/export/")
-public String exportBon(HttpServletResponse response) {
-	exporter.exportDataToExcel(response,null,null);
-	return "commandeclient/commandeclient";
-}*/
-	@RequestMapping(value="/exportdetails/")
-	public String exportDetails(HttpServletResponse response) {
+	@RequestMapping(value="/export/")
+	public String exportArticles(HttpServletResponse response) {
 		exporter.exportDataToExcel(response,null,null);
 		return "commandeclient/commandeclient";
 	}
 }
-

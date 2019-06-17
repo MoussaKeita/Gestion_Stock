@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import com.stock.mvc.bean.Article;
 import com.stock.mvc.bean.MouvementStock;
 import com.stock.mvc.service.MouvementStockService;
-import com.stock.mvc.utils.ApplicationConstants;
 import com.stock.mvc.utils.ApplicationConstants3;
 
 import jxl.CellView;
@@ -28,9 +27,9 @@ public class StockExporter implements FileExporter{
 	@Autowired
 	private MouvementStockService stockService;
 	private static final String FILE_NAME = "Liste des stocks";
-
+	
 	@Override
-	public boolean MerdeDataToExcel(HttpServletResponse response, String fileName, String encodage) {
+	public boolean exportDataToExcel(HttpServletResponse response, String fileName, String encodage) {
 		if(StringUtils.isEmpty(fileName)) {
 			fileName = FILE_NAME;
 		}
@@ -38,8 +37,7 @@ public class StockExporter implements FileExporter{
 			encodage = ApplicationConstants3.DEFAULT_ENCODAGE;
 		}
 		response.setContentType(ApplicationConstants3.EXCEL_CONTENT_TYPE);
-		response.setHeader(ApplicationConstants.CONTENET_DISPOSITION, "attachment; filename=" + fileName + ".xls");
-		//response.addHeader("Content-Disposition", "attachment; filename="+fileName);
+		response.setHeader(ApplicationConstants3.CONTENET_DISPOSITION, "attachment; filename=" + fileName + ".xls");
 		WorkbookSettings workBookSettings = new WorkbookSettings();
 		workBookSettings.setEncoding(encodage);
 		try {
@@ -62,11 +60,11 @@ public class StockExporter implements FileExporter{
 			labelSortie.setCellFeatures(new WritableCellFeatures());
 			labelSortie.getCellFeatures().setComment("");
 			sheet.addCell(labelSortie);
-		/*	
+		
 			Label labelArticle = new Label(3, 0, ApplicationConstants3.ARTICLE);
 			labelArticle.setCellFeatures(new WritableCellFeatures());
 			labelArticle.getCellFeatures().setComment("");
-			sheet.addCell(labelArticle);*/
+			sheet.addCell(labelArticle);
 			
 			Label labelFournisseur = new Label(4, 0, ApplicationConstants3.FOURNISSEURS);
 			labelFournisseur.setCellFeatures(new WritableCellFeatures());
@@ -77,8 +75,9 @@ public class StockExporter implements FileExporter{
 			labelQuantiteRestante.setCellFeatures(new WritableCellFeatures());
 			labelQuantiteRestante.getCellFeatures().setComment("");
 			sheet.addCell(labelQuantiteRestante);
+			
 			int currentRow = 1;
-			List<MouvementStock> stocks =  stockService.selectAll();;
+			List<MouvementStock> stocks =  stockService.selectAll();
 			if(stocks !=null && !stocks.isEmpty()) {
 				/**
 				 * Writting in the sheet
@@ -87,9 +86,10 @@ public class StockExporter implements FileExporter{
 					sheet.addCell(new  Label(0, currentRow , stock.getDate().toGMTString()));
 					sheet.addCell(new  Label(1, currentRow , stock.getQuantiteLivre().toString()));
 					sheet.addCell(new  Label(2, currentRow , stock.getQuantiteSortie().toString()));
-					//sheet.addCell(new  Label(3, currentRow , stock.getArticle().getLibelle()));
+					sheet.addCell(new  Label(3, currentRow , stock.getArticle().getCode()));
 					sheet.addCell(new  Label(4, currentRow , stock.getFournisseur().getNom()));
 					sheet.addCell(new  Label(5, currentRow , stock.getQuantiteRestante().toString()));
+
 					currentRow++;
 				}
 				CellView cellView = new CellView();
@@ -98,7 +98,7 @@ public class StockExporter implements FileExporter{
 				sheet.setColumnView(0, cellView);
 				sheet.setColumnView(1, cellView);
 				sheet.setColumnView(2, cellView);
-				//sheet.setColumnView(3, cellView);
+				sheet.setColumnView(3, cellView);
 				sheet.setColumnView(4, cellView);
 				sheet.setColumnView(5, cellView);
 				/**
@@ -119,13 +119,6 @@ public class StockExporter implements FileExporter{
 			e.printStackTrace();
 			return false;
 		}
-		
-	}
-	
-	@Override
-	public boolean exportDataToExcel(HttpServletResponse response, String fileName, String encodage) {
-		// TODO Auto-generated method stub
-				return false;
 	}
 
 	@Override
@@ -134,5 +127,5 @@ public class StockExporter implements FileExporter{
 		return false;
 	}
 
-
+	
 }

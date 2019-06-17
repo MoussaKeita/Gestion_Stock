@@ -1,8 +1,7 @@
 package com.stock.mvc.utils;
 
-public class ApplicationConstants {
-   public static final String EXCEL_CONTENT_TYPE = "application/vmd.ms-excel";
-	//public static final String EXCEL_CONTENT_TYPE = "application/pdf";
+public class ApplicationConstants{
+    public static final String EXCEL_CONTENT_TYPE = "application/vmd.ms-excel";
 	public static final String CONTENET_DISPOSITION = "Content-disposition";
 	public static final String DEFAULT_ENCODAGE = "ISO-8859-1";
 	public static final String CODE_ARTICLE = "code";

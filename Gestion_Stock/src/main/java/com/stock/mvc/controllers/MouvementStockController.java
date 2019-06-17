@@ -93,7 +93,7 @@ public class MouvementStockController {
 	}
 	@RequestMapping(value="/export/")
 	public String exportStock(HttpServletResponse response) {
-		exporter.MerdeDataToExcel(response, null, null);
+		exporter.exportDataToExcel(response, null, null);
 		return "mouvementStock/mouvementStock";
 	}
 	/*

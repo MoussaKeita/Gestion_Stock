@@ -86,10 +86,10 @@
 	                                 <label><fmt:message code="common.password"/></label>
 	                                   <f:input path="password" class="form-control" type="password" placeholder="Mot de passe"/>
 	                              </div>
-	                              <div class="form-group">
+	                  <!--              <div class="form-group">
 	                                 <label><fmt:message code="common.status"/></label>
 	                                   <f:input path="actived" class="form-control" placeholder="Statut"/>
-	                              </div>
+	                              </div>      --> 
 	                           <div class="panel-footer">
                                           <button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;<fmt:message code="common.enregistrer"/></i></button>
                                           <a href="<c:url value="/utilisateur/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;<fmt:message code="common.annuler"/></i></a>                                         	                           

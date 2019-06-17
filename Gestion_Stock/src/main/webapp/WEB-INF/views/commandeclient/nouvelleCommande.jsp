@@ -67,7 +67,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="common.detail" />
+                            <fmt:message code="common.info" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

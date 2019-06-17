@@ -116,11 +116,6 @@ public class DetailExporter implements FileExporter{
 		return false;
 	}
 
-	@Override
-	public boolean MerdeDataToExcel(HttpServletResponse response, String fileName, String encodage) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

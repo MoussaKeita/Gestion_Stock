@@ -45,15 +45,16 @@ public class UtilisateurController {
 		return "utilisateur/ajouterUtilisateur";
 	}
 
-	@RequestMapping(value = "/enregistrer")
+		@RequestMapping(value = "/enregistrer")
 	public String enregistrer(Model model, Utilisateur user) {
 	  	
 		if (user != null) {
 			
 			if (user.getIdUtilisateur() != null) {
+				user.setActived(true);
 				userService.update(user);
 			}else {
-				
+				user.setActived(true);
 				userService.save(user);
 			}
 		}

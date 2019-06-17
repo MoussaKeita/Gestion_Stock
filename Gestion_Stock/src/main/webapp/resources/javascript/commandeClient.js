@@ -119,6 +119,3 @@ function supprimerLigneCmd(code){
 	}
 	
 }
-
-
-

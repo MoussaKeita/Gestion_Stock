@@ -65,8 +65,8 @@
                      <div class="col-lg-12">
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/utilisateur/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
+				<!--  		    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>	 -->
+				<!--  		    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>		-->
 
 						  </ol>
                      </div>
@@ -89,7 +89,6 @@
                                             <th><fmt:message code="common.prenom"/></th>
                                             <th><fmt:message code="common.adresse"/></th>
                                             <th><fmt:message code="common.email"/></th>
-                                           <th><fmt:message code="common.password"/></th>
                                            <th><fmt:message code="common.status"/></th>
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
@@ -101,7 +100,6 @@
                                             <td>${user.getPrenom() }</td>
                                             <td>${user.getAdresse() }</td>
                                             <td>${user.getEmail() }</td>
-                                            <td>${user.getPassword() }</td>
                                             <td>${user.isActived() }</td>
                                             <td>  
                                                    <c:url value="/utilisateur/modifier/${user.getIdUtilisateur() }" var="urlModif" />                                      
