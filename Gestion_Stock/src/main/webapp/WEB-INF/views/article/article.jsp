@@ -67,7 +67,7 @@
 						    <li><a href="<c:url value="/article/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						    <c:url value="/article/export/" var ="export" />
 						    <li><a href="${export }"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
+			<!--   			    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>		-->
 
 						  </ol>
                      </div>
@@ -92,7 +92,6 @@
                                             <th><fmt:message code="common.prixUnitaireTTC"/></th>
                                             <th><fmt:message code="common.tauxTVA"/></th>
                                             <th><fmt:message code="common.category"/></th>
-                                          
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
                                     </thead>
@@ -105,8 +104,7 @@
                                             <td>${article.getPrixUnitaireHT() }</td>
                                             <td>${article.getPrixUnitaireTTC() }</td> 
                                             <td>${article.getTauxTVA() }</td>
-                                            <td>${article.getCategory().getCode() }</td>
-                                           
+                                            <td>${article.getCategory().getLibelle() }</td>
                                            <td> 
                                                    <c:url value="/article/modifier/${article.getCode() }" var="urlModif" />                                      
                                                   <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>

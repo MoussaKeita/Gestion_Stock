@@ -71,7 +71,7 @@
                                 </li>
                                     <c:url value="/role/" var="role" />
                                 <li>
-                                    <a href="${role}"><fmt:message code="common.role"/></a>
+                                    <a href="${role}"><fmt:message code="role.menu"/></a>
                                 </li>
                              </ul>     <!-- /.nav-second-level -->
                         </ul>

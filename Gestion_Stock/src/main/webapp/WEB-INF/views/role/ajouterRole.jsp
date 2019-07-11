@@ -50,7 +50,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header"><fmt:message code="article.nouveau" /></h1>
+                        <h1 class="page-header"><fmt:message code="role.menu" /></h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -67,10 +67,10 @@
 
 	                          <div class="form-group">
 	                                 <label><fmt:message code="common.role"/></label>
-	                                   <f:input path="roleName" class="form-control" placeholder="codeArticle"/>
+	                                   <f:input path="roleName" class="form-control" placeholder="Nom du Role [ROLE_ADMIN ou ROLE_USER]"/>
 	                              </div>
 	                              <div class="form-group">
-	                                 <label><fmt:message code="common.category"/></label>
+	                                 <label><fmt:message code="common.user"/></label>
 	                                   <f:select path="utilisateur.idUtilisateur" class="form-control" items="${users }" itemLabel="nom" itemValue="idUtilisateur"/>
 	                              </div>
 	                           <div class="panel-footer">

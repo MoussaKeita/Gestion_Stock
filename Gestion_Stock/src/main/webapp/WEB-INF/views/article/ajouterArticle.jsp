@@ -58,7 +58,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <fmt:message code="article.nouveau" />
+                            <fmt:message code="article.infopropose" />
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -91,10 +91,8 @@
 	                              
 	                              <div class="form-group">
 	                                 <label><fmt:message code="common.category"/></label>
-	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="code" itemValue="id"/>
+	                                   <f:select path="category.id" class="form-control" items="${categories }" itemLabel="libelle" itemValue="id"/>
 	                              </div>
-	                              
-	                              
 			                            <div class="form-group">
 		                                 <label><fmt:message code="common.photo"/></label>
 		                                   <input type="file" name="file"/>

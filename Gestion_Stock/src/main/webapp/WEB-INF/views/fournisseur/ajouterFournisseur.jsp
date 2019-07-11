@@ -83,6 +83,14 @@
 	                                   <f:input path="adresse" class="form-control" placeholder="Adresse"/>
 	                              </div>
 	                              <div class="form-group">
+	                                 <label><fmt:message code="common.tel"/></label>
+	                                   <f:input path="tel" class="form-control" placeholder="Numero de telephone"/>
+	                              </div>
+	                              <div class="form-group">
+	                                 <label><fmt:message code="common.adresse"/></label>
+	                                   <f:input path="raisonSociale" class="form-control" placeholder="Raison sociale de l'entreprise"/>
+	                              </div>
+	                              <div class="form-group">
 	                                 <label><fmt:message code="common.email"/></label>
 	                                   <f:input path="email" class="form-control" placeholder="Email"/>
 	                              </div>

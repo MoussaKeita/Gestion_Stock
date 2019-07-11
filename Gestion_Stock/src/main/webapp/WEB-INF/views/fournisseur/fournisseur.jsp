@@ -66,7 +66,7 @@
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/fournisseur/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
+		<!--				    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>		-->
 
 						  </ol>
                      </div>
@@ -88,6 +88,8 @@
                                             <th><fmt:message code="common.nom"/></th>
                                             <th><fmt:message code="common.prenom"/></th>
                                             <th><fmt:message code="common.adresse"/></th>
+                                            <th><fmt:message code="common.tel"/></th>
+                                            <th><fmt:message code="common.raisonSociale"/></th>
                                             <th><fmt:message code="common.email"/></th>
                                             <th><fmt:message code="common.actions"/></th>
                                         </tr>
@@ -99,6 +101,8 @@
                                             <td>${fournisseur.getNom() }</td>
                                             <td>${fournisseur.getPrenom() }</td>
                                             <td>${fournisseur.getAdresse() }</td>
+                                            <td>${fournisseur.getTel() }</td>
+                                            <td>${fournisseur.getRaisonSociale() }</td>
                                             <td>${fournisseur.getEmail() }</td>
                                             <td>  
                                                    <c:url value="/fournisseur/modifier/${fournisseur.getId() }" var="urlModif" />                                      

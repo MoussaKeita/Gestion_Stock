@@ -65,7 +65,7 @@
 						  <ol class="breadcrumb">
 						    <li><a href="<c:url value="/commandefournisseur/nouveau" />" ><i class="fa fa-plus">&nbsp;<fmt:message code="common.ajouter"/></i></a></li>
 						    <li><a href="#"><i class="fa fa-download">&nbsp;<fmt:message code="common.exporter"/></i></a></li>
-						    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>
+			<!--			    <li><a href="#"><i class="fa fa-upload">&nbsp;<fmt:message code="common.importer"/></i></a></li>    -->
 
 						  </ol>
                      </div>
@@ -106,7 +106,9 @@
                                                    <c:url value="/commandefournisseur/modifier/${cmd.getCode() }" var="urlModif" />                                      
                                                 <a href="${urlModif }"><i class="fa fa-edit">&nbsp;<fmt:message code="common.modifier"/></i></a>
                                                         &nbsp;|&nbsp;
-                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommande${cmd.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>  
+                                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalcommande${cmd.getCode() }"><i class="fa fa-trash-o">&nbsp;<fmt:message code="common.supprimer"/></i></a>
+                                                		|&nbsp;
+                                                 <a href="#"><i class="fa fa-list">&nbsp;</i></a>  
                                  <div class="modal fade" id="modalcommande${cmd.getCode() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							                                <div class="modal-dialog">
 							                                    <div class="modal-content">

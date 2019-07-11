@@ -24,6 +24,8 @@ public class Fournisseur implements Serializable {
 	private String email;
 	private String password;
 	private String photo;
+	private String raisonSociale;
+	private Long tel;
 	
     @OneToMany(mappedBy="fournisseur")
     private List<CommandeFournisseur> commandeFournisseurs;
@@ -88,5 +90,18 @@ public class Fournisseur implements Serializable {
 	public void setCommandeFournisseurs(List<CommandeFournisseur> commandeFournisseurs) {
 		this.commandeFournisseurs = commandeFournisseurs;
 	}
+	public String getRaisonSociale() {
+		return raisonSociale;
+	}
+	public void setRaisonSociale(String raisonSociale) {
+		this.raisonSociale = raisonSociale;
+	}
+	public Long getTel() {
+		return tel;
+	}
+	public void setTel(Long tel) {
+		this.tel = tel;
+	}
+	
 	
 }
